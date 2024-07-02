@@ -117,6 +117,67 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/* my code */
+.clock-container {
+  position: absolute;
+  top: 180px;
+  right: 90px;
+  width: 400px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.exchange-rate-img {
+  position: absolute;
+  top: 400px;
+  right: 110px;
+
+}
+.exchange-rate-img img {
+  width: 100%;  /* Make the image responsive */
+  height: auto;  /* Maintain aspect ratio */
+  max-width: 350px; /* Set the maximum width */
+  max-height: auto; /* Set the maximum height */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+.chart {
+  position: absolute;
+  top: 560px;
+  right: 40px;
+  width: 450px;
+  height: 300px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .exchange-rate-img {
+    position: fixed;
+    top: 60%;
+    bottom: 0;
+    left: 50px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clock-container{
+    position: fixed;
+    top: 3%;
+    bottom: 0;
+    right: 10px;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+}
+
+.medium-font {
+  font-size: 24px;
+}
 
 hr {
   margin: 1rem 0;
@@ -3632,7 +3693,7 @@ textarea.form-control.is-invalid {
   display: inline-block;
   padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
   font-family: var(--bs-btn-font-family);
-  font-size: var(--bs-btn-font-size);
+  font-size: var(--bs-btnme-size);
   font-weight: var(--bs-btn-font-weight);
   line-height: var(--bs-btn-line-height);
   color: var(--bs-btn-color);
@@ -8084,7 +8145,7 @@ fieldset:disabled .btn {
 
 .text-bg-secondary {
   color: #000 !important;
-  background-color: RGBA(, 128, 154, var(--bs-bg-opacity, 1)) !important;
+  background-color: RGBA(128, 154, var(--bs-bg-opacity, 1)) !important;
 }
 
 .text-bg-success {
@@ -9631,7 +9692,11 @@ fieldset:disabled .btn {
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.large-font {
+  font-size: 105px;
 }
 
 .mb-5 {
@@ -9720,6 +9785,10 @@ fieldset:disabled .btn {
 
 .ms-12 {
   margin-left: 16rem !important;
+}
+
+.ms-13 {
+  margin-left: 26rem !important;
 }
 
 .ms-auto {
@@ -20671,14 +20740,14 @@ fieldset:disabled .btn {
 
 .btn-secondary,
 .btn.bg-gradient-secondary {
-  box-shadow: 0 3px 3px 0 rgba(, 128, 154, 0.15), 0 3px 1px -2px rgba(, 128, 154, 0.2), 0 1px 5px 0 rgba(, 128, 154, 0.15);
+  box-shadow: 0 3px 3px 0 rgba(128, 154, 0.15), 0 3px 1px -2px rgba(128, 154, 0.2), 0 1px 5px 0 rgba(128, 154, 0.15);
 }
 
 .btn-secondary:hover,
 .btn.bg-gradient-secondary:hover {
   background-color: #7b809a;
   border-color: #7b809a;
-  box-shadow: 0 14px 26px -12px rgba(, 128, 154, 0.4), 0 4px 23px 0 rgba(, 128, 154, 0.15), 0 8px 10px -5px rgba(, 128, 154, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(128, 154, 0.4), 0 4px 23px 0 rgba(128, 154, 0.15), 0 8px 10px -5px rgba(128, 154, 0.2);
 }
 
 .btn-secondary .btn.bg-outline-secondary,
@@ -21769,7 +21838,7 @@ fieldset:disabled .btn {
 
 .dark-version .fc-theme-standard td,
 .dark-version .fc-theme-standard th {
-  border-color: rgba(, 128, 154, 0.3);
+  border-color: rgba(128, 154, 0.3);
 }
 
 .dark-version .dataTable-sorter::after {
@@ -22777,7 +22846,7 @@ label,
 }
 
 .bg-gradient-faded-secondary {
-  background-image: radial-gradient(370px circle at 80% 50%, rgba(, 128, 154, 0.6) 0, #626780 100%);
+  background-image: radial-gradient(370px circle at 80% 50%, rgba(128, 154, 0.6) 0, #626780 100%);
 }
 
 .bg-gradient-faded-success {
@@ -22817,7 +22886,7 @@ label,
 }
 
 .bg-gradient-faded-secondary-vertical {
-  background-image: radial-gradient(200px circle at 50% 70%, rgba(, 128, 154, 0.3) 0, #7b809a 100%);
+  background-image: radial-gradient(200px circle at 50% 70%, rgba(128, 154, 0.3) 0, #7b809a 100%);
 }
 
 .bg-gradient-faded-success-vertical {
