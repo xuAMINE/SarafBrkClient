@@ -142,8 +142,8 @@ body {
 
 .clock-container-send {
   position: absolute;
-  left: 67%;
-  top: 10%;
+  left: 60%;
+  top: 15%;
   width: 400px;
   height: auto;
   overflow: hidden;
@@ -152,7 +152,7 @@ body {
 @media (max-width: 768px) {
   .clock-container-send {
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: 57px;
     width: 70%;
     height: auto;
@@ -207,10 +207,10 @@ body {
 
 @media (max-width: 768px) {
   .exchange-rate-img {
-    position: fixed;
+    position: absolute;
     top: 60%;
     bottom: 0;
-    left: 50px;
+    left: 10px;
     width: 100%;
     height: auto;
     padding: 10px;
@@ -219,14 +219,14 @@ body {
 
 .mv-left {
   position: absolute;
-  left: 40%;
-  bottom: 250px;
+  left: 30%;
+  bottom: 200px;
 }
 
 @media (max-width: 768px) {
   .mv-left{
     position: relative;
-    bottom: 80px;
+    bottom: 0px;
     height: auto;
     left: 0%;
   }
@@ -234,16 +234,36 @@ body {
 
 .d-flex-cus {
   display: flex !important;
+  padding: 200px;
 }
 
 @media (max-width: 768px) {
   .d-flex-cus {
-    top: 50px;
+    top: 130px;
   }
 }
 
 .medium-font {
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.l-font {
+  font-size: 64px;
+  font-weight: 900;
+}
+
+.lct {
+  width: 400px;
+  height: auto;
+  position: absolute;
+  top: 34%;
+}
+
+.btn-xl {
+  width: 200px;
+  height: 50px;
+  font-size: 40px;
 }
 
 hr {
@@ -22443,7 +22463,7 @@ body.dark-version {
 
 .input-group.input-group-dynamic .input-group-text,
 .input-group.input-group-static .input-group-text {
-  border-right: 0;
+  border-right: 110;
 }
 
 .input-group.input-group-dynamic.is-focused .form-label,
