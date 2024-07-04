@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-      Material Kit 2 by Creative Tim
+      Send
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -27,7 +27,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute bg-transparent shadow-none">
       <div class="container">
-        <a class="navbar-brand text-white" href="javascript:;">SARAF BRK</a>
+        <a class="navbar-brand text-white" href="home-page.html">SARAF BRK</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header-2" aria-controls="navbar-header-2" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,75 +70,96 @@
         </div>
       </div>
     </nav>
-    <section class="py-7 min-vh-100 position-relative" style="background-image: url('../assets/img/cos-dz.jpeg'); background-size:cover;">
+    <section class="py-7 min-vh-100 position-relative" style="background-image: url('../assets/img/currency-dz.jpeg'); background-size:cover;">
       <div class="mask bg-gradient-dark"></div>
-      <div class="container position-relative z-index-2">
-        <div class="row">
-          <div class="col-lg-5 my-auto">
-            <h2 class="text-white">Get in Touch</h2>
-            <p class="text-white text-lg mb-lg-5">You need more information? Check what other persons are saying about our product. They are very happy with their purchase.</p>
-            <div class="p-3 d-flex">
-              <i class="material-icons text-3xl text-white">location_on</i>
-              <div class="ms-5">
-                <h5 class="text-white">Find us at the office</h5>
-                <p class="text-white text-sm"> Bld Mihail Kogalniceanu, nr. 8,<br>
-                  7652 Bucharest,<br>
-                  Romania
-                </p>
+      <div class="clock-container-send">
+        <script src="https://cdn.logwork.com/widget/text.js"></script>
+        <a href="https://logwork.com/current-time-in-algiers-algeria-alger" class="clock-widget-text" data-timezone="Africa/Algiers" data-language="en" data-textcolor="#fafafa" data-digitscolor="#fafafa">Time in Algeria</a>
+      </div>
+        <div class="container position-relative z-index-2">
+          <div class="row">
+
+          <div class="container py-5">
+            <div class="row">
+              <div class="col-lg-7 d-flex justify-content-center flex-column">
+                <div class="card card-body d-flex-cus justify-content-center shadow-lg p-5 blur align-items-center">
+                  <h3 class="text-center">SARAF</h3>
+                  <form role="form" id="contact-form" method="post" autocomplete="off">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="mb-4">
+                          <div class="input-group input-group-static">
+                            <label>Full Name</label>
+                            <input class="form-control" placeholder="eg. Amine Yahiaoui" aria-label="First Name..." type="text">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <div class="input-group input-group-static">
+                          <label>CCP N:</label>
+                          <input type="number" class="form-control" placeholder="eg: 00799999000074524724">
+                        </div>
+                      </div>
+                      <div class="input-group input-group-static">
+                        <label>Amount $</label>
+                        <input type="number" class="form-control" placeholder="eg: 200$">
+                      </div>   
+                      
+                      <div class="payment-options">
+                        <div class="payment-option">
+                          <input type="radio" id="paypal" name="payment-method" value="paypal" required>
+                          <label for="paypal">
+                            <img src="../assets/img/paypal-black.png" alt="PayPal">
+                          </label>
+                        </div>
+                        <div class="payment-option">
+                          <input type="radio" id="zelle" name="payment-method" value="zelle" required>
+                          <label for="zelle">
+                            <img src="../assets/img/zelle-black.png" alt="Zelle">
+                          </label>
+                        </div>
+                        <div class="payment-option">
+                          <input type="radio" id="venmo" name="payment-method" value="venmo" required>
+                          <label for="venmo">
+                            <img src="../assets/img/venmo-black.png" alt="Venmo">
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-check form-switch d-flex align-items-center mb-4">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
+                            <label class="form-check-label ms-3 mb-0" for="flexSwitchCheckDefault">I agree to the <a href="javascript:;" class="text-dark"><u>Terms and Conditions</u></a>.</label>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <button type="submit" class="btn bg-gradient-dark w-100">SEND</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-            <div class="p-3 d-flex">
-              <i class="material-icons text-3xl text-white">notifications_active</i>
-              <div class="ms-5">
-                <h5 class="text-white">Give us a ring</h5>
-                <p class="text-white text-sm"> Michael Jordan<br>
-                  +40 762 321 762<br>
-                  Mon - Fri, 8:00-22:00
-                </p>
-              </div>
-            </div>
-    
           </div>
-          <div class="col-lg-5 m-auto">
-            <div class="card card-contact card-raised">
-              <form id="contact-form1" method="post">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                    <h5 class="text-center text-white">Contact Us</h5>
+          <div class="mv-left">
+            <div class="row">
+              <div class="col-6-wide mx-auto mt-7">
+                <div class="toast-wide bg-gradient-dark fade show p-2 mx-auto" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header border-0 bg-transparent">
+                    <i class="material-icons me-2 text-white">diamond</i>
+                    <span class="me-auto font-weight-bold text-white">Keep in mind</span>
+                    <i class="fas fa-times text-md ms-3 cursor-pointer text-white" data-bs-dismiss="toast" aria-label="Close"></i>
+                  </div>
+                  <hr class="horizontal light m-0">
+                  <div class="toast-body text-white">
+                    - To ensure same-day delivery of your transfer, payment validation must occur before 14:00 PM Algerian Time.
+                    <br><br>
+                    - Payments via Zelle or Venmo typically require an hour for validation, whereas PayPal payments are validated immediately.
                   </div>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6 pe-2">
-                      <div class="input-group input-group-dynamic mb-4">
-                        <label class="form-label">First name</label>
-                        <input class="form-control" type="text" >
-                      </div>
-                    </div>
-                    <div class="col-md-6 ps-2">
-                      <div class="input-group input-group-dynamic mb-4">
-                        <label class="form-label">Last name</label>
-                        <input class="form-control" type="text" >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-group input-group-dynamic mb-4">
-                    <label class="form-label">Email address</label>
-                    <input class="form-control" type="email" >
-                  </div>
-                  <div class="input-group input-group-static mb-4">
-                    <label>Your message</label>
-                    <textarea name="message" class="form-control" id="message" rows="6"></textarea>
-                  </div>
-    
-                  <div class="row">
-                    <div class="col-md-6 text-center m-auto">
-                      <button type="submit" class="btn bg-gradient-primary mb-0">Send Message</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
           </div>
         </div>
       </div>
