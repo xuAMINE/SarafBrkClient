@@ -159,11 +159,18 @@ body {
   }
 }
 
+
 .exchange-rate-img {
   position: absolute;
-  top: 400px;
+  top: 200px;
   right: 110px;
 
+}
+
+.modal-qr img{
+  width: 300px;
+  height: auto;
+  padding: 20px 0;
 }
 
 .exchange-rate-img img {
@@ -10422,6 +10429,11 @@ fieldset:disabled .btn {
 .py-7 {
   padding-top: 6rem !important;
   padding-bottom: 6rem !important;
+}
+
+.py-77 {
+  position: absolute;
+  bottom: 200px;
 }
 
 .py-8 {
