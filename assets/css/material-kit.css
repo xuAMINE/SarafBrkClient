@@ -118,7 +118,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* my code */
+/* my code **********************************************/
 .clock-container {
   position: absolute;
   top: 180px;
@@ -162,7 +162,7 @@ body {
 
 .exchange-rate-img {
   position: absolute;
-  top: 200px;
+  top: 400px;
   right: 110px;
 
 }
@@ -171,6 +171,11 @@ body {
   width: 300px;
   height: auto;
   padding: 20px 0;
+}
+
+.modal-check img{
+  width: 110px;
+  height: auto;
 }
 
 .exchange-rate-img img {
@@ -204,12 +209,18 @@ body {
 }
 
 .chart {
-  position: absolute;
-  top: 560px;
-  right: 40px;
-  width: 450px;
-  height: 300px;
+  position: relative;
+  bottom: 10%;
+  width: 550px;
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .chart {
+    position: relative;
+    padding-top: 20px;
+    bottom: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -259,7 +270,7 @@ body {
   font-size: 64px;
   font-weight: 900;
 }
-
+ 
 .lct {
   width: 400px;
   height: auto;
@@ -267,11 +278,44 @@ body {
   top: 34%;
 }
 
-.btn-xl {
-  width: 200px;
-  height: 50px;
-  font-size: 40px;
+.password-error {
+  color: red;
+  font-weight: bolder;
+  margin-top: 50px;
 }
+
+.error-message-old {
+  display: block !important;
+  font-size: 0.75em; /* Small font size */
+  width: 100%;
+  color: red;
+  font-weight: bolder;
+  margin-top: 8px;
+  margin-bottom: 0px;
+}
+
+.bg-success {
+  background-color: green !important;
+}
+
+.bg-danger {
+  background-color: red !important;
+}
+
+.bg-primary {
+  background-color: blue !important;
+}
+
+.badge-dot i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+
+/* end code ************************************** */
 
 hr {
   margin: 1rem 0;
@@ -2826,8 +2870,16 @@ progress {
 }
 
 .table-responsive {
+  height: 700px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 560px) {
+  .table-responsive {
+    height: 700px;
+    overflow: auto;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -6847,6 +6899,19 @@ fieldset:disabled .btn {
   border-bottom-left-radius: var(--bs-modal-inner-border-radius);
 }
 
+.modal-footer-email {
+  display: flex;
+  padding: 15px 20px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: var(--bs-modal-footer-bg);
+  border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color);
+  border-bottom-right-radius: var(--bs-modal-inner-border-radius);
+  border-bottom-left-radius: var(--bs-modal-inner-border-radius);
+}
+
 .modal-footer>* {
   margin: calc(var(--bs-modal-footer-gap) * .5);
 }
@@ -9404,6 +9469,7 @@ fieldset:disabled .btn {
 
 .align-items-center {
   align-items: center !important;
+  padding: 0;
 }
 
 .align-items-baseline {
@@ -10485,6 +10551,19 @@ fieldset:disabled .btn {
   padding-top: 3rem !important;
 }
 
+.pt-5-wide {
+  position: relative;
+  padding: 20px 50px !important;
+  width: 4000px;
+}
+
+@media (max-width: 560px) {
+  .pt-5-wide {
+    right: 30px;
+    width: 460px;
+  }
+}
+
 .pt-6 {
   padding-top: 4rem !important;
 }
@@ -11111,7 +11190,15 @@ fieldset:disabled .btn {
 
 .overflow-x-auto {
   overflow-x: auto !important;
+  overflow-y: auto !important;
 }
+
+/* @media (max-width: 768px) { /* Adjust the breakpoint as needed */
+  /* .overflow-x-auto {
+    overflow-x: auto;
+    overflow-y: auto !important;
+  } */
+
 
 .overflow-x-hidden {
   overflow-x: hidden !important;
@@ -25990,7 +26077,7 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
 }
 
 .table thead th {
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   text-transform: capitalize;
   letter-spacing: 0px;
   border-bottom: 1px solid #f0f2f5;
