@@ -131,7 +131,7 @@ body {
 @media (max-width: 768px) {
   .clock-container{
     position: fixed;
-    top: 3%;
+    top: 6%;
     bottom: 0;
     right: 10px;
     width: 100%;
@@ -152,7 +152,7 @@ body {
 @media (max-width: 768px) {
   .clock-container-send {
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 57px;
     width: 70%;
     height: auto;
@@ -210,6 +210,7 @@ body {
 
 .chart {
   position: relative;
+  padding-top: 30px;
   bottom: 10%;
   width: 550px;
   margin: auto;
@@ -218,7 +219,8 @@ body {
 @media (max-width: 768px) {
   .chart {
     position: relative;
-    padding-top: 20px;
+    padding-right: 0px;
+    width: 350px;
     bottom: 0;
   }
 }
@@ -9469,7 +9471,7 @@ fieldset:disabled .btn {
 
 .align-items-center {
   align-items: center !important;
-  padding: 0;
+  padding: 20 0;
 }
 
 .align-items-baseline {
@@ -10553,7 +10555,7 @@ fieldset:disabled .btn {
 
 .pt-5-wide {
   position: relative;
-  padding: 20px 50px !important;
+  padding: 50px !important;
   width: 4000px;
 }
 

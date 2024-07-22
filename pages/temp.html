@@ -1,253 +1,89 @@
-<section class="pt-5 mt-5">
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="card">
-          <div class="table-responsive">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Completion</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Spotify</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$2,500</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-info"></i>
-                      <span class="text-dark text-xs">working</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">60%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
+    <a class="navbar-brand  text-white " href="home-page.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+      SARAF BRK
+    </a>
+    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-header-2">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="javascript:;">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="about-us.html">
+            About Us
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="contact-us.html">
+            Contact Us
+          </a>
+        </li>
+      </ul>
 
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Invision</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$5,000</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-success"></i>
-                      <span class="text-dark text-xs">done</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">100%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Jira</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$3,400</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-danger"></i>
-                      <span class="text-dark text-xs">canceled</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">30%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Slack</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$1,000</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-danger"></i>
-                      <span class="text-dark text-xs">canceled</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">0%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Webdev</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$14,000</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-info"></i>
-                      <span class="text-dark text-xs">working</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">80%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="d-flex px-2">
-                      <div>
-                        <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                      </div>
-                      <div class="my-auto">
-                        <h6 class="mb-0 text-xs">Adobe XD</h6>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">$2,300</p>
-                  </td>
-                  <td>
-                    <span class="badge badge-dot me-4">
-                      <i class="bg-success"></i> <!-- Change class to bg-danger for red or bg-primary for blue -->
-                      <span class="text-dark text-xs">done</span>
-                    </span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <div class="d-flex align-items-center">
-                      <span class="me-2 text-xs">11%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="10" style="width: 11%;"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-xs"></i>
-                    </button>
-                  </td>
-                </tr>
-                
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="https://x.com/amine_zirek" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white mx-2" href="https://www.facebook.com/muhammudz" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="https://www.instagram.com/muhammudz/" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
-</section>
+</nav>
+
+
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+  <div class="container">
+    <a class="navbar-brand  text-white " href="home-page.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+      SARAF BRK
+    </a>
+    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white mx-2" href="https://x.com/amine_zirek" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white mx-2" href="https://www.facebook.com/muhammudz" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white mx-2" href="https://www.instagram.com/muhammudz/" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="sign-in.html" class="btn btn-sm  btn-warning  mb-0 me-1 mx-2">Sing In</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

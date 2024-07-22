@@ -34,7 +34,7 @@ function collectValues(event) {
   
     // AJAX request
     let endpoint = 'http://localhost:8088/api/v1/auth/activate-account';
-    let url = `${endpoint}?token=${finalValue}`;
+    let url = `${endpoint}?verToken=${finalValue}`;
   
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -65,4 +65,26 @@ function collectValues(event) {
   
   // Attach collectValues() function to form submit event
   document.getElementById('emailValidationForm').addEventListener('submit', collectValues);
+
+  function resendEmail() {
+    const email = sessionStorage.getItem('userEmail');
+    if (email) {
+      fetch('http://localhost:8088/api/v1/auth/resend-verification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } else {
+      console.error('No email found in session storage.');
+    }
+  }
   

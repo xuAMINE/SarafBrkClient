@@ -21,7 +21,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       });
 
       if (response.ok) {
-        // Registration successful, redirect to login page or show success message
+        sessionStorage.setItem('userEmail', formData.email);
         window.location.href = './email-validation.html';
       } else if (response.status === 400) {
         const errorMessages = await response.json();
