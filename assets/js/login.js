@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   
   if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('sb_token', data.access_token);
       alert('Login successful');
       window.location.href = 'recipients.html';
   } else {
@@ -28,3 +28,5 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
   }
 });
+
+

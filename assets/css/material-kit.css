@@ -243,10 +243,25 @@ body {
   bottom: 200px;
 }
 
+.mv-left-add {
+  position: absolute;
+  left: 30%;
+  bottom: 200px;
+}
+
 @media (max-width: 768px) {
   .mv-left{
     position: relative;
     bottom: 0px;
+    height: auto;
+    left: 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mv-left-add{
+    position: relative;
+    bottom: 65px;
     height: auto;
     left: 0%;
   }
@@ -257,9 +272,20 @@ body {
   padding: 200px;
 }
 
+.d-flex-cus-add {
+  display: flex !important;
+  padding: 200px;
+}
+
 @media (max-width: 768px) {
   .d-flex-cus {
     top: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .d-flex-cus-add {
+    top: 50px;
   }
 }
 
@@ -9291,6 +9317,17 @@ fieldset:disabled .btn {
 
 .w-100 {
   width: 100% !important;
+}
+
+.w-100-cus {
+  width: 100% !important;
+  height: auto;
+}
+
+@media (max-width: 767.98px) { /* For phone sizes */
+  .w-100-cus {
+    max-width: 20%; /* Adjust as needed */
+  }
 }
 
 .w-auto {
@@ -23001,6 +23038,10 @@ label,
   color: #6c757d;
 }
 
+.input-group .input-group-text i {
+  color: #6c757d;
+}
+
 .input-group.input-group-static .input-group-text {
   bottom: 0;
 }
@@ -23347,6 +23388,11 @@ html {
   box-shadow: inset 0px 0px 2px #fefefed1;
   -webkit-backdrop-filter: saturate(200%) blur(30px);
   backdrop-filter: saturate(200%) blur(30px);
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.blur-less {
+  box-shadow: inset 0px 0px 2px #fefefed1;
   background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
