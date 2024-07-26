@@ -36,4 +36,11 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     } catch (error) {
       console.error('An error occurred:', error);
     }
+});
+
+// Add event listeners to clear error messages when input fields are changed
+document.querySelectorAll('#registerForm input').forEach(input => {
+  input.addEventListener('input', function() {
+    document.getElementById(`${this.id}-error`).innerText = '';
   });
+});

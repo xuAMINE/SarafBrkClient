@@ -1,12 +1,26 @@
 document.getElementById('check-session').addEventListener('click', function() {
-  // Replace 'authToken' with the key you are using to store the login token
   const token = localStorage.getItem('sb_token');
-  
+
   if (token) {
-      // User is logged in, navigate to another page
-      window.location.href = 'recipients.html';
+      fetch('http://localhost:8088/api/v1/auth/verify-token', {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`  // Include the "Bearer " prefix
+          }
+      })
+      .then(response => response.json())
+      .then(isValid => {
+          if (isValid) {
+              window.location.href = 'recipients.html';
+          } else {
+              window.location.href = 'sign-in.html';
+          }
+      })
+      .catch(error => {
+          console.error('Error verifying token:', error);
+          window.location.href = 'sign-in.html';
+      });
   } else {
-      // User is not logged in, navigate to the login page
       window.location.href = 'sign-in.html';
   }
 });

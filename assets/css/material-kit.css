@@ -21836,6 +21836,22 @@ fieldset:disabled .btn {
   text-align: left;
 }
 
+.card-profile .profile-text {
+  font-size: 1.2rem;
+  margin-left: -2.9rem;
+  margin-top: 55px;
+}
+
+.card-profile .profile-text-b2 {
+  font-size: 0.9rem;
+  margin-left: -2.9rem;
+}
+
+.card-profile .row {
+  display: flex;
+  align-items: center;
+}
+
 .back-background .card-body {
   min-height: auto;
   padding-top: 15px;
