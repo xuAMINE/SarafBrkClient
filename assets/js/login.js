@@ -21,6 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const error = await response.json();
     if (error.message === 'Email not verified') {
         alert('Please verify your email before logging in.');
+        window.location.href = 'email-validation.html';
+
     } else if (error.message === 'Invalid credentials') {
         alert('Please check your email or password.');
     } else {

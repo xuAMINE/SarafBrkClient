@@ -120,7 +120,7 @@
                     </div>
                   </div>
                   <h2>Verify Your Email</h2>
-                  <p class="mb-4">Please check your inbox for verification code.<h4>Enter code</h4></p>
+                  <p class="mb-4">Please check your inbox for verification code.<h4 class="mb-4">Enter code</h4></p>
                   <form id="emailValidationForm" onsubmit="return collectValues()">
                     <div class="row mb-4">
                       <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
@@ -153,6 +153,9 @@
                           <input type="text" class="form-control text-lg text-center" aria-label="2fa" maxlength="1" oninput="moveToNext(this, event)">
                         </div>
                       </div>
+                    </div>
+                    <div class="input-group error-input input-group-dynamic mb-3">
+                      <p id="validation-error" class="error-message-old"></p>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-warning my-4">Submit</button>
@@ -187,7 +190,7 @@
             </div>
             <hr class="horizontal light mb-0">
             <div class="modal-footer-email justify-content-between border-0">
-              <button type="button" class="btn btn-white my-1" onclick="window.location.href='recipients.html'">Ok, Got it</button>
+              <button type="button" class="btn btn-white my-1" onclick="window.location.href='sign-in'">Ok, Got it</button>
             </div>
           </div>
         </div>

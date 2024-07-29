@@ -23,6 +23,11 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       if (response.ok) {
         sessionStorage.setItem('userEmail', formData.email);
         window.location.href = './email-validation.html';
+      } else if (response.status === 409) { // Handle email already in use
+        const errorMessage = await response.text();
+        let modalText = document.getElementById('modal-email');
+        modalText.innerHTML = `An account with Email <strong>${formData.email}</strong> already exists`;
+        $('#userExist').modal('show');
       } else if (response.status === 400) {
         const errorMessages = await response.json();
         // Display error messages
