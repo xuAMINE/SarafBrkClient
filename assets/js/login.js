@@ -15,7 +15,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   if (response.ok) {
       const data = await response.json();
       localStorage.setItem('sb_token', data.access_token);
-      alert('Login successful');
       window.location.href = 'recipients.html';
   } else {
     const error = await response.json();

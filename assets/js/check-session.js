@@ -2,7 +2,7 @@ document.getElementById('check-session').addEventListener('click', function() {
   const token = localStorage.getItem('sb_token');
 
   if (token) {
-      fetch('http://localhost:8088/api/v1/auth/verify-token', {
+      fetch('http://localhost:8088/api/v1/auth/check-session', {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}`  // Include the "Bearer " prefix

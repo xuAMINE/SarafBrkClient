@@ -1,4 +1,7 @@
 function moveToNext(element, event) {
+  // Clear validation message
+  document.getElementById('validation-message').innerHTML = '';
+
   if (!/^\d$/.test(event.data)) {
       element.value = '';
       return;
@@ -22,22 +25,11 @@ function moveToNext(element, event) {
   }
 }
 
-// Function to clear the error message
-function clearErrorMessage() {
-  document.getElementById('validation-error').innerHTML = '';
-}
 
-// Attach the clearErrorMessage function to input change events
-document.querySelectorAll('.form-control').forEach(input => {
-  input.addEventListener('input', clearErrorMessage);
-});
 
 // Function to collect values and send GET request
 async function collectValues(event) {
   event.preventDefault(); // Prevent default form submission
-
-  // Clear previous error messages
-  clearErrorMessage();
 
   let inputs = document.querySelectorAll('.form-control');
   let finalValue = '';
@@ -64,7 +56,7 @@ async function collectValues(event) {
           $('#exampleModalNotification').modal('show');
       } else if (response.status === 400) {
           let message = await response.text();
-          document.getElementById('validation-error').innerHTML = 
+          document.getElementById('validation-message').innerHTML = 
               '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + message;
       } else {
           // Request failed
@@ -77,11 +69,6 @@ async function collectValues(event) {
   }
 }
 
-
-
-
-  
-  
   // Attach collectValues() function to form submit event
   document.getElementById('emailValidationForm').addEventListener('submit', collectValues);
 
@@ -95,9 +82,14 @@ async function collectValues(event) {
         },
         body: JSON.stringify({ email: email })
       })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(response => {
+        if (response.ok) {
+          // Success, display success message
+          document.getElementById('validation-message').innerHTML = 
+              '<i class="fa fa-check" aria-hidden="true" style="padding: 0 5px; color: green;"></i><span style="color: green;">Verification email has been resent.</span>';
+        } else {
+          return response.text().then(text => { throw new Error(text); });
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -106,4 +98,3 @@ async function collectValues(event) {
       console.error('No email found in session storage.');
     }
   }
-  
