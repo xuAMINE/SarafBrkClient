@@ -19,13 +19,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
-    <!-- Nepcha Analytics (nepcha.com) -->
-    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <!-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> -->
   </head>        
 
 <body>
-  <!-- -------- START HEADER 1 w/ text and image on right ------- -->
   <header>
     <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
       <div class="container">
@@ -56,42 +52,40 @@
                 <i class="fab fa-instagram"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a id="logoutButton" class="btn btn-sm  bg-gradient-danger  mb-0 me-1 mx-2">Log out</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- statrt of new part -->
+    <!-- start of new part -->
     <section class="py-7 min-vh-100 position-relative" style="background-image: url('../assets/img/dz-flag.jpeg'); background-size:cover;">
       <span class="mask bg-gradient-dark"></span>
       <div class="container position-relative mb-4">
         <div class="row">
           <div class="col-md-6 mb-5">
-            <div class="icon icon-shape icon-md bg-gradient-info shadow-info mb-3 text-center">
-              <i class="material-icons opacity-10">people</i>
-            </div>
             <h3 class="text-white z-index-1 position-relative">MY RECIPIENTS</h3>
-            <p class="text-white opacity-8">There’s nothing I really wanted to do in life that I wasn’t able to get good at. That’s my skill.</p>
           </div>
         </div>
         <div id="recipient-container" class="row">
           <div class="col-lg-6 col-12">
-            <div class="card card-profile mt-lg-5 mt-5">
-              <div class="row align-items-center">
-                <div class="col-lg-4 col-md-6 col-6 mt-n5">
-                  <a href="javascript:;">
-                    <div class="p-3 pe-md-0">
-                      <img class="w-100 border-radius-md shadow-lg" src="../assets/img/bruce-mars.jpg" alt="image">
+            <a href="add-reciepient.html">
+              <div class="card card-profile mt-lg-5 mt-5">
+                <div class="row align-items-center">
+                  <div class="col-lg-4 col-md-6 col-6 mt-n5">
+                      <div class="p-3 pe-md-0">
+                        <img class="w-100 border-radius-md shadow-lg" src="../assets/img/add-icon-2.png" alt="image">
+                      </div>
+                  </div>
+                  <div class="col-lg-8 col-md-6 col-6 mt-n5">
+                    <div class="card-body ps-lg-5">
+                      <h5 class="mb-0 profile-text">Add a new Recipient</h5>
                     </div>
-                  </a>
-                </div>
-                <div class="col-lg-8 col-md-6 col-6 mt-n5">
-                  <div class="card-body ps-lg-5">
-                    <h5 class="mb-0 profile-text">Mohamed Amine Zirek</h5>
-                    <h6 class="ccp text-info profile-text-b2">00009843982344</h6>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

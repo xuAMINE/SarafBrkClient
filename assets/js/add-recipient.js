@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
           doContact: doContact
       };
 
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('sb_token');
 
       if (!token) {
           console.error('No token found');
