@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Function to check if the user is authenticated
+  async function isAuthenticated() {
+    const token = localStorage.getItem('sb_token');
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8088/api/v1/auth/check-session', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Session is not valid');
+      }
+
+      const result = await response.text();
+      return result === 'true'; // Check if the response text is "true"
+    } catch (error) {
+      console.error('Error checking session:', error);
+      return false;
+    }
+  }
+
+  // Redirect to login page if not authenticated
+  isAuthenticated().then(authenticated => {
+    if (!authenticated) {
+      window.location.href = 'sign-in.html';
+    } else {
+      // Fetch recipients when the page loads
+      fetchRecipients();
+    }
+  });
+
   // Function to fetch recipients
   function fetchRecipients() {
     // Retrieve the token from local storage (or other storage mechanism)
@@ -32,92 +70,70 @@ document.addEventListener('DOMContentLoaded', function () {
   function createRecipientCard(recipient) {
     // Create card elements
     const colDiv = document.createElement('div');
-    colDiv.classList.add('col-lg-6', 'col-12');
-
+    colDiv.classList.add('col-lg-4', 'col-12');
+  
     const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card', 'card-profile', 'mt-lg-5', 'mt-5');
-
+    cardDiv.classList.add('card-color-tr' ,'card', 'card-profile', 'mt-lg-5', 'mt-5');
+    cardDiv.style.cursor = 'pointer'; // Change cursor to pointer to indicate it's clickable
+  
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('row', 'align-items-center');
-
+  
     const imgColDiv = document.createElement('div');
     imgColDiv.classList.add('col-lg-4', 'col-md-6', 'col-6', 'mt-n5');
-
+  
     const imgLink = document.createElement('a');
-    imgLink.href = 'javascript:;';
-
+  
     const imgWrapperDiv = document.createElement('div');
     imgWrapperDiv.classList.add('p-3', 'pe-md-0');
-
+  
     const img = document.createElement('img');
     img.classList.add('w-100', 'border-radius-md', 'shadow-lg');
-    img.src = '../assets/img/bruce-mars.jpg'; // Placeholder image source, replace as needed
+    
+    // Generate the image URL using UI Avatars with the recipient's initials
+    const initials = `${recipient.firstname.charAt(0).toUpperCase()}${recipient.lastname.charAt(0).toUpperCase()}`;
+    img.src = `https://ui-avatars.com/api/?name=${initials}&background=random&size=128`;
     img.alt = 'image';
-
+  
     imgWrapperDiv.appendChild(img);
     imgLink.appendChild(imgWrapperDiv);
     imgColDiv.appendChild(imgLink);
-
+  
     const textColDiv = document.createElement('div');
     textColDiv.classList.add('col-lg-8', 'col-md-6', 'col-6', 'mt-n5');
-
+  
     const cardBodyDiv = document.createElement('div');
     cardBodyDiv.classList.add('card-body', 'ps-lg-5');
-
+  
     const nameHeading = document.createElement('h5');
     nameHeading.classList.add('mb-0', 'profile-text');
     nameHeading.textContent = `${recipient.firstname} ${recipient.lastname}`;
-
+  
     const ccpHeading = document.createElement('h6');
     ccpHeading.classList.add('ccp', 'text-info', 'profile-text-b2');
     ccpHeading.textContent = recipient.ccp;
-
+  
     cardBodyDiv.appendChild(nameHeading);
     cardBodyDiv.appendChild(ccpHeading);
     textColDiv.appendChild(cardBodyDiv);
-
+  
     rowDiv.appendChild(imgColDiv);
     rowDiv.appendChild(textColDiv);
-
+  
     cardDiv.appendChild(rowDiv);
     colDiv.appendChild(cardDiv);
-
+  
+    // Add click event listener to redirect to send-user.html with recipient data
+    cardDiv.addEventListener('click', () => {
+      const fullName = encodeURIComponent(`${recipient.firstname} ${recipient.lastname}`);
+      const ccpNumber = encodeURIComponent(recipient.ccp);
+      const doContact = recipient.doContact ? '- recipient will be contacted.' : '- recipient will not be contacted.';
+      const doContactEncoded = encodeURIComponent(doContact);
+      
+      window.location.href = `send-user.html?fullName=${fullName}&ccpNumber=${ccpNumber}&doContact=${doContactEncoded}`;
+    });
+  
     // Append the card to the container
     document.getElementById('recipient-container').appendChild(colDiv);
-  }
-
-  // Fetch recipients when the page loads
-  fetchRecipients();
-});
-
-
-
-document.getElementById('logoutButton').addEventListener('click', function() {
-  const token = localStorage.getItem('sb_token');
-
-  if (token) {
-    fetch('http://localhost:8088/api/v1/auth/logout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // Include the token in the request headers
-      },
-      body: JSON.stringify({ token }) // Optionally include the token in the request body if needed
-    })
-    .then(response => {
-      if (response.ok) {
-        // Remove the token from localStorage after the request
-        localStorage.removeItem('sb_token');
-        window.location.href = 'sign-in.html'; // Redirect to login page after logout
-      } else {
-        alert('Logout failed');
-      }
-    })
-    .catch(error => {
-      console.error('Error during logout:', error);
-      alert('Error during logout');
-    });
-  } else {
-    alert('No token found');
   }
 });

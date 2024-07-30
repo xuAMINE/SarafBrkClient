@@ -322,6 +322,23 @@ body {
   margin-bottom: 0px;
 }
 
+.bold-block {
+  display: block !important;
+  width: 100%;
+  font-weight: bolder;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+
+.less-bold-block {
+  display: block !important;
+  font-size: 0.9em; /* Small font size */
+  font-weight: bolder;
+  color: #3d8b40;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
 .bg-success {
   background-color: green !important;
 }
@@ -5499,6 +5516,15 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+}
+
+.card-color-tr {
+  --bs-card-bg: rgba(255, 255, 255, 0.7); 
+}
+
+
+.card-color-bl {
+  --bs-card-bg: rgba(0, 0, 0, 0.4); 
 }
 
 .card>hr {
@@ -10887,6 +10913,11 @@ fieldset:disabled .btn {
   font-weight: 400 !important;
 }
 
+.fw-bold-me {
+  font-weight: 600 !important;
+  display: block;
+}
+
 .fw-bold {
   font-weight: 600 !important;
 }
@@ -10992,6 +11023,10 @@ fieldset:disabled .btn {
 
 .text-dark {
   color: #344767 !important;
+}
+
+.text-dark-cus {
+  color: rgba(79, 79, 79, 0.7) !important;
 }
 
 .text-white {
@@ -21839,6 +21874,13 @@ fieldset:disabled .btn {
 .card-profile .profile-text {
   font-size: 1.2rem;
   margin-left: -2.9rem;
+  margin-top: 55px;
+}
+
+.card-profile .profile-text-cus {
+  font-size: 1.3rem;
+  margin-left: -2.9rem;
+  padding-bottom: 35px;
   margin-top: 55px;
 }
 
