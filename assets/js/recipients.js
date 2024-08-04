@@ -1,42 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Function to check if the user is authenticated
-  async function isAuthenticated() {
-    const token = localStorage.getItem('sb_token');
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const response = await fetch('http://localhost:8088/api/v1/auth/check-session', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error('Session is not valid');
-      }
-
-      const result = await response.text();
-      return result === 'true'; // Check if the response text is "true"
-    } catch (error) {
-      console.error('Error checking session:', error);
-      return false;
-    }
-  }
-
-  // Redirect to login page if not authenticated
-  isAuthenticated().then(authenticated => {
-    if (!authenticated) {
-      window.location.href = 'sign-in.html';
-    } else {
-      // Fetch recipients when the page loads
-      fetchRecipients();
-    }
-  });
-
+  fetchRecipients();
+  
   // Function to fetch recipients
   function fetchRecipients() {
     // Retrieve the token from local storage (or other storage mechanism)

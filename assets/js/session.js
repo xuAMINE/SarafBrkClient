@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const loadingScreen = document.getElementById('loading-screen');
+  const body = document.body;
+
+  // Show the loading screen immediately
+  loadingScreen.style.visibility = 'visible';
+
   // Function to check if the user is authenticated
   async function isAuthenticated() {
     const token = localStorage.getItem('sb_token');
@@ -28,14 +34,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Redirect to login page if not authenticated
-  isAuthenticated().then(authenticated => {
-    if (!authenticated) {
-      window.location.href = 'sign-in.html';
-    }
-    // If authenticated, you can add any additional logic here if needed
-  });
+  // Add a small delay before starting the authentication check
+  setTimeout(() => {
+    isAuthenticated().then(authenticated => {
+      // Add a delay before hiding the loading screen for better user experience
+      setTimeout(() => {
+        if (authenticated) {
+          body.classList.remove('hidden-content');
+          loadingScreen.style.visibility = 'hidden';
+        } else {
+          window.location.href = 'sign-in.html';
+        } 
+      }, 300); // Adjust this value to control the delay before hiding the loading screen (in milliseconds)
+    });
+  }, 300); // Adjust this value to control the initial delay before starting the authentication check (in milliseconds)
 });
+
+
 
 
 document.getElementById('logoutButton').addEventListener('click', function() {

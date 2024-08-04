@@ -119,6 +119,11 @@ body {
 }
 
 /* my code **********************************************/
+body.hidden-content {
+  visibility: hidden;
+  overflow: hidden;
+}
+
 .clock-container {
   position: absolute;
   top: 180px;
@@ -133,8 +138,8 @@ body {
     position: fixed;
     top: 6%;
     bottom: 0;
-    right: 10px;
-    width: 100%;
+    right: 45px;
+    width: 80%;
     height: auto;
     padding: 10px;
   }
@@ -165,6 +170,102 @@ body {
   top: 400px;
   right: 110px;
 
+}
+
+.fadeIn1 {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.fadeIn2 {
+  animation: fadeIn 2s ease-in-out;
+}
+
+.fadeInBottom {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInBottom 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom styles for smaller screens */
+@media (max-width: 767.98px) {
+  .mt-md-cus {
+    margin-top: 1rem;
+    position: absolute;
+    top: 400px;
+  }
+
+  .mt-md-cus h4 {
+    font-size: 1rem;
+    position: relative;
+    left: 125px;
+  }
+
+  .mt-md-cus h1 {
+    font-size: 4rem;
+    position: relative;
+    left: 125px;
+  }
+
+  .lct-home {
+    position: relative;
+    top: -50px;
+  }
+
+  .lct-home h1 {
+    font-size: 2.7rem;
+    position: relative;
+    left: 140px;
+  }
+
+  .lct-home h2 {
+    font-size: 1rem;
+    position: relative;
+    left: 180px;
+  }
+
+  .lct-home .buttons {
+    text-align: center;
+    position: relative;
+    top: -10px;
+    left: 190px;
+  }
+
+  .rate-text {
+    font-size: 2.5rem;
+  }
+  
+  .clock-container {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .lct-home h1,
+  .lct-home h2,
+  .lct-home h1.medium-font {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+  }
 }
 
 .modal-qr img{
@@ -267,6 +368,27 @@ body {
   }
 }
 
+.mt-md-cus {
+  margin-top: -20rem !important;
+  position: relative;
+  left: 50%;
+}
+
+@media (max-width: 768px) {
+  .mt-md-cus{
+    position: relative;
+    bottom: 65px;
+    height: auto;
+    left: 0%;
+  }
+}
+
+.rate-text {
+  font-size: 7rem;
+  position: relative;
+  top: -20px;
+}
+
 .d-flex-cus {
   display: flex !important;
   padding: 200px;
@@ -357,6 +479,25 @@ body {
   height: 8px;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+/* loading-screen.css */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8; /* Off-white color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden; /* Hide by default */
+}
+
+.loading-screen img {
+  width: 150px; /* Adjust the size as needed */
 }
 
 
@@ -8835,6 +8976,12 @@ fieldset:disabled .btn {
 
 .d-flex {
   display: flex !important;
+}
+
+.d-flex-home {
+  display: flex !important;
+  position: relative;
+  right: 90%
 }
 
 .d-inline-flex {
@@ -21880,8 +22027,8 @@ fieldset:disabled .btn {
 .card-profile .profile-text-cus {
   font-size: 1.3rem;
   margin-left: -2.9rem;
-  padding-bottom: 35px;
-  margin-top: 55px;
+  padding-bottom: 1.2rem;
+  margin-top: 70px;
 }
 
 .card-profile .profile-text-b2 {

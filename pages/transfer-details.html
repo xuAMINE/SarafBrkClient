@@ -4,7 +4,7 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+      <link rel="icon" type="image/png" href="../assets/img/sb-logo-off-white.png">
       <title>
         Transactions
       </title>
@@ -25,7 +25,10 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
-  <body>
+  <body class="hidden-content">
+    <div class="loading-screen" id="loading-screen">
+      <img src="../assets/img/sb-logo.png" alt="Loading...">
+    </div>
       <!-- -------- START HEADER 1 w/ text and image on right ------- -->
     <header>
       <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
@@ -98,25 +101,25 @@
                                 <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
                               </div>
                               <div class="my-auto">
-                                <h6 class="mb-0 text-xs">Mohamed Amine Zirek</h6>
+                                <h6 id="recipientFullName" class="mb-0 text-xs">Mohamed Amine Zirek</h6>
                               </div>
                             </div>
                           </td>
                           <td>
-                            <p class="text-xs font-weight-bold mb-0">$500</p>
+                            <p id="amount" class="text-xs font-weight-bold mb-0">$500</p>
                           </td>
                           <td>
-                            <p class="text-xs font-weight-bold mb-0">107500 DZD</p>
+                            <p id="amountReceived" class="text-xs font-weight-bold mb-0">107500 DZD</p>
                           </td>
                           <td>
                             <span class="badge badge-dot me-4">
                               <i class="bg-success"></i>
-                              <span class="text-dark-cus text-xs mb-0">Received</span>
+                              <span id="status" class="text-dark-cus text-xs mb-0">Received</span>
                             </span>
                           </td>
                           <td class="align-middle text-center">
                             <div class="d-flex align-items-center">
-                              <p class="text-xs font-weight-bold mb-0">07/15/2024</p>
+                              <p id="transferDate" class="text-xs font-weight-bold mb-0">07/15/2024</p>
                             </div>
                           </td>
                         </tr>
@@ -197,6 +200,8 @@
 
       </div>
     </header>
+    <!--  -->
+    <script src="../assets/js/transfers.js"></script>
     <!-- -------- END HEADER 1 w/ text and image on right ------- -->
     <script src="../assets/js/chart.js"></script>
     <script src="../assets/js/session.js"></script>
