@@ -158,17 +158,17 @@ body.hidden-content {
   .clock-container-send {
     position: absolute;
     top: 30px;
-    left: 57px;
-    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
     height: auto;
   }
 }
 
-
 .exchange-rate-img {
   position: absolute;
-  top: 400px;
-  right: 110px;
+  bottom: 28vh;
+  right: 4vw;
 
 }
 
@@ -206,48 +206,70 @@ body.hidden-content {
   }
 }
 
+@media (max-width: 767.98px) { /* Mobile devices */
+  .custom-width-sm-6 {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 767.98px) { /* Mobile devices */
+  .custom-width-sm-2 {
+    width: 30% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* Tablets */
+  .custom-width-md {
+    width: 50% !important;
+  }
+}
+
+/* Add more media queries as needed */
+
+
 /* Custom styles for smaller screens */
 @media (max-width: 767.98px) {
   .mt-md-cus {
-    margin-top: 1rem;
-    position: absolute;
-    top: 400px;
+    margin-top: 4rem;
+    position: relative;
+    left: 90px;
+    top: 0px;
   }
 
   .mt-md-cus h4 {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: -5px;
     position: relative;
-    left: 125px;
+    left: 6.3rem;
   }
 
   .mt-md-cus h1 {
-    font-size: 4rem;
+    font-size: 7rem;
     position: relative;
-    left: 125px;
+    left: 6.3rem;
   }
 
   .lct-home {
     position: relative;
-    top: -50px;
   }
 
   .lct-home h1 {
     font-size: 2.7rem;
     position: relative;
-    left: 140px;
+    left: 38vw;
   }
 
   .lct-home h2 {
     font-size: 1rem;
     position: relative;
-    left: 180px;
+    left: 48vw;
   }
 
   .lct-home .buttons {
     text-align: center;
     position: relative;
     top: -10px;
-    left: 190px;
+    left: 51vw;
   }
 
   .rate-text {
@@ -310,21 +332,38 @@ body.hidden-content {
 }
 
 .chart {
-  position: relative;
-  padding-top: 30px;
-  bottom: 10%;
-  width: 550px;
-  margin: auto;
+  position: relative; /* Position it absolutely relative to the closest positioned ancestor */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center the chart */
+  width: 550px; /* Set a fixed width for larger screens */
+  bottom: 10%; /* Adjust vertical positioning */
+  padding-top: 30px; /* Maintain padding if needed */
 }
 
 @media (max-width: 768px) {
   .chart {
-    position: relative;
-    padding-right: 0px;
-    width: 350px;
-    bottom: 0;
+    width: 350px; /* Adjust width for smaller screens */
+    bottom: 0; /* Adjust vertical positioning if needed */
   }
 }
+
+.input-group-text-ph {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-text-ph img {
+  margin-right: -50px;
+}
+
+
+/* @media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 20px;
+  }
+} */
+
 
 @media (max-width: 768px) {
   .exchange-rate-img {
@@ -401,7 +440,7 @@ body.hidden-content {
 
 @media (max-width: 768px) {
   .d-flex-cus {
-    top: 130px;
+    top: 8rem;
   }
 }
 
@@ -414,6 +453,13 @@ body.hidden-content {
 .medium-font {
   font-size: 18px;
   font-weight: 600;
+}
+
+.sm-font {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding-bottom: 0;
+  margin-bottom: -20px;
 }
 
 .l-font {
@@ -442,6 +488,16 @@ body.hidden-content {
   font-weight: bolder;
   margin-top: 8px;
   margin-bottom: 0px;
+}
+
+.copied-message {
+  display: block !important;
+  font-size: 1.1em; /* Small font size */
+  width: 100%;
+  color: white;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
 }
 
 .bold-block {
@@ -8981,7 +9037,7 @@ fieldset:disabled .btn {
 .d-flex-home {
   display: flex !important;
   position: relative;
-  right: 90%
+  left: -110%;
 }
 
 .d-inline-flex {
@@ -21716,6 +21772,16 @@ fieldset:disabled .btn {
 .card .card-body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   padding: 1.5rem;
+}
+
+.card .card-body-cus {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding: 2.5rem 0.5rem;
+}
+
+.card .card-body-send {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding: 1.5rem 0.1rem;
 }
 
 .card.card-plain {

@@ -45,14 +45,14 @@ function updateTransfers(transfers) {
       const amountReceivedTd = document.createElement('td');
       amountReceivedTd.innerHTML = `<p class="text-xs font-weight-bold mb-0">${transfer.amountReceived} DZD</p>`;
       tr.appendChild(amountReceivedTd);
-
+  
       const statusTd = document.createElement('td');
       const statusClass = transfer.status === 'RECEIVED' ? 'bg-success' : 
-                          transfer.status === 'PROCESSING' ? 'bg-info' : 'bg-danger';
+                          transfer.status === 'PROCESSING' ? 'bg-info' :
+                          transfer.status === 'PENDING' ? 'bg-secondary' : 'bg-danger';
       statusTd.innerHTML = `
           <span class="badge badge-dot me-4">
-              <i class="${statusClass}"></i>
-              <span class="text-dark-cus text-xs mb-0">${transfer.status}</span>
+              <span class="badge rounded-pill ${statusClass}">${transfer.status}</span>
           </span>`;
       tr.appendChild(statusTd);
 

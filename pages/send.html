@@ -15,7 +15,7 @@
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7898bcf363.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
@@ -57,6 +57,9 @@
                 <i class="fab fa-instagram"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="recipients.html" class="btn btn-sm  bg-gradient-secondary  mb-0 me-1 mx-2">My recipients</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -85,12 +88,20 @@
                           </div>
                         </div>
                       </div>
-                      <div class="mb-4">
-                        <div class="input-group input-group-static">
-                          <label>CCP N:</label>
-                          <input type="number" class="form-control" placeholder="eg: 00799999000074524724">
+                      <div class="row">
+                          <div class="col-md-8 col-sm-12 custom-width-sm-6 custom-width-md">
+                            <div class="input-group input-group-static mb-4">
+                              <label>CCP</label>
+                              <input class="form-control" placeholder="eg: 0029418955" type="text" id="ccp" inputmode="numeric">
+                            </div>
+                          </div>
+                          <div class="col-md-2 col-sm-4 custom-width-sm-2 custom-width-md">
+                            <div class="input-group input-group-static mb-4">
+                              <label>Cle</label>
+                              <input class="form-control" placeholder="eg: 52" type="text" id="cle">
+                            </div>
+                          </div>
                         </div>
-                      </div>
                       <div class="input-group input-group-static">
                         <label>Amount $</label>
                         <input type="number" class="form-control" placeholder="eg: 200$">
@@ -175,12 +186,12 @@
                     <div class="modal-qr">
                       <img src="../assets/img/my-zelle-qr-code.png" alt="Zelle">
                     </div>
-                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing OK, GOT IT.</p>
+                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing GOT IT.</p>
                   </div>
                 </div>
                 <hr class="horizontal light mb-0">
                 <div class="modal-footer justify-content-between border-0">
-                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">Ok, Got it</button>
+                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
                   <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -201,12 +212,12 @@
                     <div class="modal-qr">
                       <img src="../assets/img/my-venmo-qr-code.png" alt="Venmo">
                     </div>
-                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing OK, GOT IT.</p>
+                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing GOT IT.</p>
                   </div>
                 </div>
                 <hr class="horizontal light mb-0">
                 <div class="modal-footer justify-content-between border-0">
-                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">Ok, Got it</button>
+                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
                   <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -224,7 +235,7 @@
           let modal = new bootstrap.Modal(document.getElementById(modalId));
           modal.show();
         } else {
-          alert('Please select an option.');
+          alert('Please select a payment.');
         }
       });
       </script>
