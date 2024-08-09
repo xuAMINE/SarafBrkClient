@@ -165,6 +165,12 @@ body.hidden-content {
   }
 }
 
+.grayed-out {
+  background-color: #f0f0f0;
+  color: #a0a0a0;
+}
+
+
 .exchange-rate-img {
   position: absolute;
   bottom: 28vh;
@@ -325,6 +331,12 @@ body.hidden-content {
   height: auto;
   margin-right: 10px;
 }
+
+#ccp-error {
+  position: relative;
+  top: -23px; /* Adjust the value as needed */
+}
+
 
 .send-message {
   display: block;
@@ -488,7 +500,11 @@ body.hidden-content {
   font-weight: bolder;
   margin-top: 8px;
   margin-bottom: 0px;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
 }
+
 
 .copied-message {
   display: block !important;
@@ -499,6 +515,7 @@ body.hidden-content {
   margin: 0;
   padding: 0;
 }
+
 
 .bold-block {
   display: block !important;
@@ -21782,6 +21799,8 @@ fieldset:disabled .btn {
 .card .card-body-send {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   padding: 1.5rem 0.1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .card.card-plain {

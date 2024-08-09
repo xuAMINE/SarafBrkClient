@@ -10,13 +10,12 @@ function toggleTextColor() {
   }
 }
   
-  // Initial call to set the correct color on page load
+// Initial call to set the correct color on page load
 document.addEventListener('DOMContentLoaded', (event) => {
   toggleTextColor();
 });
   
   // Format phone number as user types
-    // Format phone number as user types
 document.addEventListener('DOMContentLoaded', function() {
     const phoneNumberInput = document.getElementById('phoneNumber');
 
@@ -122,5 +121,5 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Apply the restriction to specific input fields
     restrictInput('cle', 2); // Limits to 2 digits
-    restrictInput('ccp', 10); // Limits to 10 digits
+    restrictInput('ccp', 12); // Limits to 10 digits
   });

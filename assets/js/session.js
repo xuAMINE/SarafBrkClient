@@ -50,9 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 300); // Adjust this value to control the initial delay before starting the authentication check (in milliseconds)
 });
 
-
-
-
 document.getElementById('logoutButton').addEventListener('click', function() {
   const token = localStorage.getItem('sb_token');
 

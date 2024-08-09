@@ -78,8 +78,8 @@
               <div class="col-lg-7 d-flex justify-content-center flex-column">
                 <div class="card card-body d-flex-cus justify-content-center shadow-lg p-5 blur-less align-items-center">
                   <h3 class="text-center">SARAF</h3>
-                  <form role="form" id="contact-form" method="post" autocomplete="off">
-                    <div class="card-body">
+                  <form role="form" id="form-guest" method="post" autocomplete="off">
+                    <div class="card-body-send">
                       <div class="row">
                         <div class="mb-4">
                           <div class="input-group input-group-static">
@@ -89,24 +89,27 @@
                         </div>
                       </div>
                       <div class="row">
-                          <div class="col-md-8 col-sm-12 custom-width-sm-6 custom-width-md">
-                            <div class="input-group input-group-static mb-4">
-                              <label>CCP</label>
-                              <input class="form-control" placeholder="eg: 0029418955" type="text" id="ccp" inputmode="numeric">
-                            </div>
-                          </div>
-                          <div class="col-md-2 col-sm-4 custom-width-sm-2 custom-width-md">
-                            <div class="input-group input-group-static mb-4">
-                              <label>Cle</label>
-                              <input class="form-control" placeholder="eg: 52" type="text" id="cle">
-                            </div>
+                        <div class="col-md-8 col-sm-12 custom-width-sm-6 custom-width-md">
+                          <div class="input-group input-group-static mb-4">
+                            <label>CCP</label>
+                            <input class="form-control" placeholder="eg: 0029418955" type="text" id="ccp" inputmode="numeric">
                           </div>
                         </div>
-                      <div class="input-group input-group-static">
-                        <label>Amount $</label>
-                        <input type="number" class="form-control" placeholder="eg: 200$">
-                      </div>   
-                      
+                        <div class="col-md-2 col-sm-4 custom-width-sm-2 custom-width-md">
+                          <div class="input-group input-group-static mb-4">
+                            <label>Cle</label>
+                            <input class="form-control" placeholder="eg: 52" type="text" id="cle">
+                          </div>
+                        </div>
+                      </div>
+                      <p id="ccp-error" class="error-message-old"></p>
+                      <div class="col-md-12 col-sm-12 custom-width-sm-6 custom-width-md">
+                        <div class="input-group input-group-static">
+                          <label>Amount $</label>
+                          <input id="amount" type="number" class="form-control" placeholder="eg: 200$">
+                          <p id="amount-error" class="error-message-old"></p>
+                        </div>   
+                      </div>
                       <div class="payment-options">
                         <div class="payment-option">
                           <input type="radio" id="paypal" name="modalOption" value="paypal">
@@ -136,7 +139,7 @@
                           </div>
                         </div>
                         <div class="col-md-12">
-                          <button type="button" class="btn bg-gradient-dark w-100" id="openModalButton" data-bs-toggle="modal" data-bs-target="#exampleModalNotification">SEND</button>
+                          <button type="button" class="btn bg-gradient-dark w-100 send-transfer" id="send-transfer-guest" data-form="form-guest" data-bs-toggle="modal" data-bs-target="#exampleModalNotification">SEND</button>
                         </div>
                       </div>
                     </div>
@@ -177,7 +180,7 @@
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-header border-0">
                   <h6 class="modal-title text-white" id="modal-title-notification">Zelle for</h6>
-                  <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+                  <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
                 </div>
                 <hr class="horizontal light mt-0">
                 <div class="modal-body">
@@ -186,13 +189,14 @@
                     <div class="modal-qr">
                       <img src="../assets/img/my-zelle-qr-code.png" alt="Zelle">
                     </div>
-                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing GOT IT.</p>
+                    <p class="text-white opacity-8">Please ensure that your payment is complete before clicking GOT IT.</p>
+                    <p id="copied-message" class="copied-message"></p>
                   </div>
                 </div>
                 <hr class="horizontal light mb-0">
                 <div class="modal-footer justify-content-between border-0">
-                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
-                  <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="make-transfer btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
+                  <button type="button" class="btn btn-link text-white my-1" onclick="copyToClipboard('925-496-8027')">copie number</button>
                 </div>
               </div>
             </div>
@@ -203,22 +207,23 @@
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-header border-0">
                   <h6 class="modal-title text-white" id="modal-title-notification">Your attention is required</h6>
-                  <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
+                  <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
                 </div>
                 <hr class="horizontal light mt-0">
                 <div class="modal-body">
-                  <div class="py-3 text-center text-white">
+                  <div class="pb-2 pe-0 text-center text-white mt-0">
                     <h4 class="heading mt-4 text-white">Mohamed Zirek<br>@Uhammud</h4>
                     <div class="modal-qr">
                       <img src="../assets/img/my-venmo-qr-code.png" alt="Venmo">
                     </div>
-                    <p class="text-white opacity-8">Please ensure that your payment is completed before pressing GOT IT.</p>
+                    <p class="text-white">Please ensure that your payment is complete before clicking GOT IT.</p>
+                    <p class="text-white sm-font">press "VENMO ME" to be redirected to our Venmo account</p>
                   </div>
                 </div>
                 <hr class="horizontal light mb-0">
                 <div class="modal-footer justify-content-between border-0">
-                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
-                  <button type="button" class="btn btn-link text-white my-1" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="make-transfer btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
+                  <button id="venmo-me" type="button" class="btn btn-link text-white my-1">venmo me</button>
                 </div>
               </div>
             </div>
@@ -226,29 +231,17 @@
         </div>
       </div>
     </div>
-    <script>
-      document.getElementById('openModalButton').addEventListener('click', function() {
-        let selectedOption = document.querySelector('input[name="modalOption"]:checked');
+
       
-        if (selectedOption) {
-          let modalId = selectedOption.value;
-          let modal = new bootstrap.Modal(document.getElementById(modalId));
-          modal.show();
-        } else {
-          alert('Please select a payment.');
-        }
-      });
-      </script>
-      
-    
+  
     <!--   Core JS Files   -->
     <script src="../assets/js/session.js"></script>
+    <script src="../assets/js/send.js"></script>
+    <!--  -->
     <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
     <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
     <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
   </body>
 </html>

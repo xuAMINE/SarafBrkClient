@@ -19,9 +19,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
-      <!-- Nepcha Analytics (nepcha.com) -->
-      <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <link id="pagestyle" href="../assets/scss/output.css" rel="stylesheet" />
     </head>
 
   <body>
@@ -60,6 +58,9 @@
               <a class="nav-link text-white mx-2" href="https://www.instagram.com/muhammudz/" target="_blank">
                 <i class="fab fa-instagram"></i>
               </a>
+            </li>
+            <li class="nav-item">
+              <a id="account-button" class="btn btn-sm bg-gradient-light mb-2 me-1 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModalSignup" style="display: none;">Account</a>
             </li>
           </ul>
         </div>
@@ -101,11 +102,65 @@
           </div>
         </div>
       </header>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalSignup" tabindex="-1" aria-labelledby="exampleModalSignup" aria-hidden="true">
+        <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+          <div class="modal-content">
+            <div class="modal-body p-0">
+              <div class="card card-plain">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1 text-center py-4">
+                    <h4 class="font-weight-bolder text-white mt-1">Change Your Password</h4>
+                  </div>
+                </div>
+                <div class="card-body pb-3">
+                  <form role="form text-start">
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Password</label>
+                      <input id="currentPassword" type="password" class="form-control">
+                      <p id="password-error" class="error-message-old"></p>
+                    </div>
+
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">New Password</label>
+                      <input id="newPassword" type="password" class="form-control">
+                    </div>
+
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">Confirm Password</label>
+                      <input id="confirmNewPassword" type="password" class="form-control">
+                      <p id="new-password-error" class="error-message-old"></p>
+                    </div>
+                    <div class="text-center">
+                      <button id="changePassword" type="button" class="btn bg-gradient-success w-100 mt-1 mb-0">Change Password</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-sm-4 px-1">
+                  <a id="logoutButton" href="javascript:;" class="text-success text-gradient font-weight-bold">LOG OUT</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="loading-spinner" class="loading-sp">
+        <div class="loader">
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__ball"></div>
+        </div>
+      </div>
+      
     <!-- MY JS -->
-     <script src="../assets/js/check-session.js"></script>
-     <script src="../assets/js/home-page.js"></script>
+     <script type="module" src="../assets/js/check-session.js"></script>
+     <script type="module" src="../assets/js/home-page.js"></script>
     <!-- -------- END HEADER 1 w/ text and image on right ------- -->
-    <script src="../assets/js/chart.js"></script>
     <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
     <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
