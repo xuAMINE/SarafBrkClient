@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
-    <!-- Nepcha Analytics (nepcha.com) -->
+    <link id="pagestyle" href="../assets/scss/output.css" rel="stylesheet" />
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="SARAF BRK" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   </head>
@@ -231,17 +231,39 @@
         </div>
       </div>
     </div>
-
-      
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-sp">
+      <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+          var copiedMessage = document.getElementById('copied-message');
+          copiedMessage.textContent = 'copied!';
+          setTimeout(function() {
+              copiedMessage.textContent = '';
+          }, 1200);
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+      }
+    </script>
   
     <!--   Core JS Files   -->
-    <script src="../assets/js/session.js"></script>
-    <script src="../assets/js/send.js"></script>
     <!--  -->
     <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
     <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
+    <script src="../assets/js/session.js"></script>
+    <script type="module" src="../assets/js/send.js"></script>
   </body>
 </html>

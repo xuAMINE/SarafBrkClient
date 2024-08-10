@@ -1,3 +1,5 @@
+import { showSpinner, hideSpinner } from './spinner.js';
+
 document.getElementById('send-guest').addEventListener('click', async function() {
   console.log('test');
   // Get token from local storage

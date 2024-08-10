@@ -1,3 +1,5 @@
+import { showSpinner, hideSpinner } from './spinner.js';
+
 let globalAmount;
 let globalRip;
 
@@ -28,6 +30,7 @@ document.querySelectorAll('.send-transfer').forEach(button => {
 
     // Send the POST request
     try {
+      showSpinner();
       const response = await fetch('http://localhost:8088/api/v1/transfer/check-transfer-credentials', {
         method: 'POST',
         headers: {
@@ -79,6 +82,8 @@ document.querySelectorAll('.send-transfer').forEach(button => {
     } catch (error) {
       console.error('Error:', error);
       document.getElementById('amount-error').innerText = 'An error occurred. Please try again.';
+    } finally {
+      hideSpinner();
     }
   });
 });
@@ -97,6 +102,7 @@ document.querySelectorAll('.make-transfer').forEach(button => {
 
     // Send the POST request
     try {
+      showSpinner();
         const response = await fetch('http://localhost:8088/api/v1/transfer/add', {
             method: 'POST',
             headers: {
@@ -116,22 +122,11 @@ document.querySelectorAll('.make-transfer').forEach(button => {
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');
+    } finally {
+      hideSpinner();
     }
   });
 });
-
-
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(function() {
-      var copiedMessage = document.getElementById('copied-message');
-      copiedMessage.textContent = 'copied!';
-      setTimeout(function() {
-          copiedMessage.textContent = '';
-      }, 1200);
-  }, function(err) {
-      console.error('Could not copy text: ', err);
-  });
-}
 
 function clearErrorMessage(id) {
   document.getElementById(id).textContent = '';

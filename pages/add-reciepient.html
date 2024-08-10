@@ -21,9 +21,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
-    <!-- Nepcha Analytics (nepcha.com) -->
-    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <script defer data-site="SARAF BRK" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <link id="pagestyle" href="../assets/scss/output.css" rel="stylesheet" />
   </head>
   <body class="hidden-content">
     <div class="loading-screen" id="loading-screen">
@@ -77,7 +75,7 @@
                   <div class="card card-body d-flex-cus-add justify-content-center shadow-lg p-5 blur-less align-items-center">
                     <h3 class="text-center">Recipient</h3>
                     <form role="form" id="contact-form" method="post" autocomplete="off">
-                      <div class="card-body-cus">
+                      <div class="card-body-send">
                         <div class="row">
                           <div class="col-md-6 col-sm-12">
                             <div class="input-group input-group-dynamic mb-4">
@@ -92,6 +90,7 @@
                             </div>
                           </div>
                         </div>
+                        <p id="name-error" class="error-message-old" style="margin-top: -1rem; margin-bottom: 1rem;"></p>
                         <div class="row">
                           <div class="col-md-6 col-sm-12 custom-width-sm-6 custom-width-md">
                             <div class="input-group input-group-dynamic mb-4">
@@ -106,6 +105,8 @@
                             </div>
                           </div>
                         </div>
+                        <p id="ccp-error" class="error-message-old"></p>
+
                         <div class="row">
                           <div class="col-md-2 col-sm-4 custom-width-sm-2 custom-width-md">
                             <div class="input-group input-group-dynamic mb-4">
@@ -204,9 +205,20 @@
         </div>
       </div>
     </div>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-sp">
+      <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
 
     <!-- MY JS -->
-    <script src="../assets/js/add-recipient.js"></script>
+    <script type="module" src="../assets/js/add-recipient.js"></script>
     <script src="../assets/js/session.js"></script>
     <!--   Core JS Files   -->
     <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>

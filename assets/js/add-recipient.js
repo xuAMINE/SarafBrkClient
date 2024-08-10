@@ -1,3 +1,5 @@
+import { showSpinner, hideSpinner } from './spinner.js';
+
 function toggleTextColor() {
   const checkbox = document.getElementById('doContact');
   const label = document.getElementById('contactLabel');
@@ -39,13 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
   
-  // Add new recipient
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contact-form');
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
-
+    showSpinner();
     // Gather form data
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
@@ -54,6 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const rip = ccp + cle;
     const phoneNumber = '0' + document.getElementById('phoneNumber').value;
     const doContact = document.getElementById('doContact').checked;
+
+    // Clear previous error messages
+    document.getElementById('name-error').textContent = '';
+    document.getElementById('ccp-error').textContent = '';
 
     // Create the request body
     const requestBody = {
@@ -68,8 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!token) {
       console.error('No token found');
+      hideSpinner();
       return;
     }
+    
     try {
       const response = await fetch('http://localhost:8088/api/v1/recipient/add', {
         method: 'POST',
@@ -87,18 +94,26 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
           window.location.href = 'recipients.html'; // Replace with your redirect URL
         }, 1500);
-      } else {
-        const errorText = await response.text();
-        if (errorText === 'Duplicate key value violates unique constraint.') {
-          let modal = new bootstrap.Modal(document.getElementById('recipient-exist'));
-          modal.show();
-        } else {
-          alert('Error');
+      } else if (response.status === 400) {
+        const errors = await response.json();
+        
+        // Map the errors to the corresponding <p> elements
+        if (errors.firstName || errors.lastName) {
+          document.getElementById('name-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + (errors.firstName ? errors.firstName : errors.lastName);
         }
+        if (errors.ccp) {
+          document.getElementById('ccp-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errors.ccp;
+        }
+      } else if (errorText === 'Duplicate key value violates unique constraint.') {
+        let modal = new bootstrap.Modal(document.getElementById('recipient-exist'));
+        modal.show();
+      } else {
+        alert('Error');
       }
     } catch (error) {
       console.error('Network or other error:', error);
-      alert('An unexpected error occurred.');
+    } {
+      hideSpinner();
     }
   });
 });

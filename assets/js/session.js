@@ -79,3 +79,4 @@ document.getElementById('logoutButton').addEventListener('click', function() {
     alert('No token found');
   }
 });
+
