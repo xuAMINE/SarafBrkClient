@@ -96,27 +96,52 @@
             </a>
           </div>
           <div class="col-lg-4 col-12">
-            <a href="send-guest.html">
-              <div class="card-color-bl card card-profile mt-lg-5 mt-5">
-                <div class="row align-items-center">
-                  <div class="col-lg-4 col-md-6 col-6 mt-n5">
-                      <div class="p-3 pe-md-0">
-                        <img class="w-100 border-radius-md shadow-lg" src="../assets/img/send-wh.png" alt="image">
-                      </div>
-                  </div>
-                  <div class="col-lg-8 col-md-6 col-6 mt-n5">
-                    <div class="card-body ps-lg-5">
-                      <h5 class="mb-0 profile-text-cus" style="color: whitesmoke;">One time Transfer</h5>
+            <div class="card-color-bl card card-profile mt-lg-5 mt-5">
+              <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6 col-6 mt-n5">
+                  <a href="send-guest.html">
+                    <div class="p-3 pe-md-0">
+                      <img class="w-100 border-radius-md shadow-lg" src="../assets/img/send-wh.png" alt="image">
                     </div>
+                  </a>
+                </div>
+                <div class="col-lg-8 col-md-6 col-6 mt-n5">
+                  <div class="card-body ps-lg-5">
+                    <a href="send-guest.html">
+                      <h5 class="mb-0 profile-text-cus" style="color: whitesmoke;">One time Transfer</h5>
+                    </a>
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </header>
+  
+  <div class="modal fade" id="deleteRecipientModal" tabindex="-1" aria-labelledby="deleteRecipientModal" aria-hidden="true">
+    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+      <div class="modal-content bg-gradient-danger">
+        <div class="modal-header border-0">
+          <button type="button" class="btn btn-close text-white my-0" data-bs-dismiss="modal"></button>
+        </div>
+        <hr class="horizontal light mt-0">
+        <div class="modal-body">
+          <div class="py-3 text-center text-white">
+            <div class="modal-check">
+              <i class="fa-solid fa-circle-exclamation fa-2xl"></i>
+            </div>
+            <h6 class="heading mt-4 text-white">Are you sure you want to delete this recipient?</h6>
+          </div>
+        </div>
+        <div class="modal-footer-email justify-content-center border-0">
+          <button id="delete-recepient" type="button" class="btn btn-white my-1">YES, DELETE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MY JS -->
   <script src="../assets/js/recipients.js"></script>
   <script src="../assets/js/session.js"></script>

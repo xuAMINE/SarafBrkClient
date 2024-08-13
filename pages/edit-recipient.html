@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/sb-logo-off-white.png">
+    <title>
+      Edit Recipient
+    </title>
+    
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/7898bcf363.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="../assets/scss/output.css" rel="stylesheet" />
+  </head>
+  <body class="hidden-content">
+    <div class="loading-screen" id="loading-screen">
+      <img src="../assets/img/sb-logo.png" alt="Loading...">
+    </div>
+    <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+      <div class="container">
+        <a class="navbar-brand  text-white " href="home-page.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+          <img src="../assets/img/logo-offwhite-no-box.png" alt="SARAF BRK" style="height: 50px;"> <!-- Adjust the height as needed -->
+        </a>
+        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon mt-2">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+          <ul class="navbar-nav navbar-nav-hover ms-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white mx-2" href="https://x.com/amine_zirek" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white mx-2" href="https://www.facebook.com/muhammudz" target="_blank">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white mx-2" href="https://www.instagram.com/muhammudz/" target="_blank">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="recipients.html" class="btn btn-sm  bg-gradient-secondary  mb-0 me-1 mx-2">My recipients</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      <section class="page-header min-vh-100" style="background-image: url('../assets/img/dz-money.jpeg'); background-size:cover;" loading="lazy">
+        <div class="mask bg-gradient-dark">
+          </div>
+
+        <div class="container position-relative z-index-2">
+          <div class="row">
+            <div class="container py-5">
+              <div class="row">
+                <div class="col-lg-7 d-flex justify-content-center flex-column">
+                  <div class="card card-body d-flex-cus-add justify-content-center shadow-lg p-5 blur-less align-items-center">
+                    <h3 class="text-center">Recipient</h3>
+                    <form role="form" id="contact-form" method="post" autocomplete="off">
+                      <div class="card-body-send">
+                        <div class="row">
+                          <div class="col-md-6 col-sm-12">
+                            <div class="input-group input-group-dynamic mb-4">
+                              <label class="form-label">First Name</label>
+                              <input class="form-control" type="text" id="firstName">
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-sm-12">
+                            <div class="input-group input-group-dynamic mb-4">
+                              <label class="form-label">Last Name</label>
+                              <input type="text" class="form-control" id="lastName">
+                            </div>
+                          </div>
+                        </div>
+                        <p id="name-error" class="error-message-old" style="margin-top: -1rem; margin-bottom: 1rem;"></p>
+                        <div class="row">
+                          <div class="col-md-8 col-sm-12 custom-width-sm-6 custom-width-md">
+                            <div class="input-group input-group-static mb-4">
+                              <label style="font-weight: 700;">CCP N:</label>
+                              <p id="ccpNumber" class="bold-block"></p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-2 col-sm-4 custom-width-sm-2 custom-width-md">
+                            <div class="input-group input-group-dynamic mb-4">
+                              <img src="../assets/img/sm-dz-flag.png" alt="DZ Flag" style="height: 20px; margin-top: 10px;">
+                              <label class="form-label" style="margin-left: 36px; font-weight: bold;">+213</label>
+                            </div>
+                          </div>
+                          <div class="col-md-10 col-sm-12 mb-4 custom-width-sm-6">
+                            <div class="input-group input-group-dynamic mb-4">
+                              <label class="form-label">Phone number (Optional)</label>
+                              <input class="form-control" type="tel" id="phoneNumber" inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row"> 
+                          <div class="col-md-12 col-sm-12">
+                            <div class="form-check form-switch mb-4 d-flex align-items-center">
+                              <input class="form-check-input" type="checkbox" id="doContact" checked="" onchange="toggleTextColor()">
+                              <label class="form-check-label ms-4 mb-0 fw-bold" for="doContact" id="contactLabel">Contact recipient when money is delivered?</label>
+                            </div>
+                          </div>
+                          <div class="col-md-12 col-sm-2">
+                            <button type="submit" id="modalMessage" class="btn bg-gradient-dark w-100">UPDATE</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mv-left-add">
+              <div class="row">
+                <div class="col-6-wide mx-auto mt-7">
+                  <div class="toast-wide bg-gradient-faded-dark fade show p-2 mx-auto" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header border-0 bg-transparent">
+                      <i class="material-icons me-2 text-white">diamond</i>
+                      <span class="me-auto font-weight-bold text-white">Keep in mind</span>
+                    </div>
+                    <hr class="horizontal light m-0">
+                    <div class="toast-body text-white">
+                      - Recipient ccp can not be edited.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <div class="container py-77 hide-modal">
+      <div class="row mt-5">
+        <div class="col-sm-3 col-6 mx-auto">
+          <!-- Modal-1 -->
+          <div class="modal fade" id="recipient-exist" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+              <div class="modal-content bg-gradient-danger">
+                <div class="modal-header border-0">
+                  <h6 class="modal-title text-white" id="modal-title-notification">Your attention is required!</h6>
+                  <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal"></button>
+                </div>
+                <hr class="horizontal light mt-0">
+                <div class="modal-body">
+                  <div class="py-3 text-center text-white">
+                    <i class="material-icons text-3xl">notifications_active</i>
+                    <h4 class="heading mt-4 text-white">Recipient already exists.</h4>
+                    <p class="text-white opacity-8">Please check the details and try again.</p>
+                  </div>
+                </div>
+                <hr class="horizontal light mb-0">
+                <div class="modal-footer justify-content-between border-0">
+                  <button type="button" class="btn btn-white my-1" data-bs-dismiss="modal">Ok, Got it</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- success modal -->
+          <div class="modal fade" id="recipient-added" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+              <div class="modal-content bg-gradient-success">
+                <div class="modal-body">
+                  <div class="py-3 text-center text-white">
+                    <i class="material-icons text-3xl">notifications_active</i>
+                    <h4 class="heading mt-4 text-white">Recipient updated successfully.</h4>
+                  </div>
+                </div>
+                <hr class="horizontal light mb-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-sp">
+      <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
+
+    <!-- MY JS -->
+    <script src="../assets/js/session.js"></script>
+    <script type="module" src="../assets/js/edit-recipient.js"></script>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
+    <!--  Google Maps Plugin    -->
+    <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
+  </body>
+</html>
