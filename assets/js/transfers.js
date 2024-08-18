@@ -63,10 +63,22 @@ function updateTransfers(transfers) {
         dateTd.classList.add('align-middle', 'text-center');
         dateTd.innerHTML = `<div class="d-flex align-items-center"><p class="text-xs font-weight-bold mb-0">${new Date(transfer.transferDate).toLocaleDateString()}</p></div>`;
         tr.appendChild(dateTd);
+
+        // Add receipt button column
+        const receiptTd = document.createElement('td');
+        receiptTd.innerHTML = `
+            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" 
+                data-bs-toggle="modal" data-bs-target="#receiptModal" 
+                data-receipt="${transfer.receipt}">
+                <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
+            </button>`;
+        tr.appendChild(receiptTd);
   
         tbody.appendChild(tr);
+        console.log(transfer.id);
     });
-  }
+}
+
   
 
 

@@ -171,3 +171,27 @@ document.addEventListener('DOMContentLoaded', function () {
     restrictInput('cle', 2); // Limits to 2 digits
     restrictInput('ccp', 12); // Limits to 10 digits
   });
+
+// function copyToClipboard(text) {
+//   navigator.clipboard.writeText(text).then(function() {
+//     var copiedMessage = document.getElementById('copied-message');
+//     copiedMessage.textContent = 'copied!';
+//     setTimeout(function() {
+//         copiedMessage.textContent = '';
+//     }, 1200);
+//   }, function(err) {
+//       console.error('Could not copy text: ', err);
+//   });
+// }
+
+document.getElementById('copyNumber').addEventListener('click', () => {
+  navigator.clipboard.writeText('925-496-8027').then(function() {
+    var copiedMessage = document.getElementById('copied-message');
+    copiedMessage.textContent = 'copied!';
+    setTimeout(function() {
+        copiedMessage.textContent = '';
+    }, 1200);
+  }, function(err) {
+      console.error('Could not copy text: ', err);
+  });
+})
