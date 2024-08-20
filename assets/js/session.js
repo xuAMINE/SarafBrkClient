@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Check if the response is ok and session is valid
       if (response.ok) {
         const result = await response.text();
-        return result === 'true'; // Check if the response text is "true"
+        return result === 'true' || result === 'Admin session valid'; // Check if the response text is "true"
       } else {
         return false;
       }

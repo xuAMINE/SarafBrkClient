@@ -18,8 +18,6 @@
       <!-- CSS Files -->
       <link id="pagestyle" href="../../assets/css/material-kit.css" rel="stylesheet" />
       <!-- Nepcha Analytics (nepcha.com) -->
-      <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-      <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
@@ -71,7 +69,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="recipients.html" class="btn btn-sm bg-gradient-secondary mb-2 me-1 mx-2">My recipients</a>
+                <a href="../recipients.html" class="btn btn-sm bg-gradient-secondary mb-2 me-1 mx-2">My recipients</a>
               </li>
               <li class="nav-item">
                 <a id="logoutButton" class="btn btn-sm bg-gradient-danger mb-0 me-1 mx-2">Log out</a>
@@ -133,7 +131,7 @@
                             </ul>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
+                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#confirmModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
                               <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
                             </button>
                             <button type="button" class="custom-button btn bg-gradient-dark btn-xs m-n1 mx-n1" style="margin: 0">
@@ -179,7 +177,7 @@
                             </ul>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
+                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#deleteRecipientModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
                               <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
                             </button>
                             <button type="button" class="custom-button btn bg-gradient-dark btn-xs m-n1 mx-n1" style="margin: 0">
@@ -215,6 +213,40 @@
           <div class="modal-body text-center">
             <img id="receiptImage" src="" alt="Receipt Image" class="img-fluid">
           </div>
+        </div>
+      </div>
+    </div>  
+
+    <!-- STATUS CONFIRMATION MODAL -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dark modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-gradient-dark">
+          <div class="modal-body">
+            <div class="py-3 text-center text-white">
+              <div class="modal-check">
+                <i class="fa-solid fa-circle-exclamation fa-2xl"></i>
+              </div>
+              <h5 class="heading mt-4 text-white">Ak sure ak hab tabdl l <strong id="newStatus"></strong>?</h5>
+            </div>
+          </div>
+          <div class="modal-footer-email justify-content-center border-0">
+            <button id="confirmChangeStatus" type="button" class="btn btn-white mt-n4">ROH!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECEIPT CONFIMATION MODAL -->
+    <div class="modal fade" id="receiptConfirmation" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+      <div class="modal-dialog modal-success modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-gradient-success">
+          <div class="modal-body">
+            <div class="py-3 text-center text-white">
+              <i class="material-icons text-3xl">notifications_active</i>
+              <h4 class="heading mt-4 text-white">SAHAA!</h4>
+            </div>
+          </div>
+          <hr class="horizontal light mb-0">
         </div>
       </div>
     </div>

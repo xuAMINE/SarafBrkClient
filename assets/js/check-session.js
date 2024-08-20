@@ -11,24 +11,27 @@ document.getElementById('check-session').addEventListener('click', function() {
               'Authorization': `Bearer ${token}`  // Include the "Bearer " prefix
           }
       })
-      .then(response => response.json())
-      .then(isValid => {
-        hideSpinner();
-          if (isValid) {
+      .then(response => response.text())  // Use .text() to handle plain text response
+      .then(result => {
+          hideSpinner();
+          if (result === 'true') {
               window.location.href = 'recipients.html';
+          } else if (result === 'Admin session valid') {
+              window.location.href = './admin/manage-transfers.html';  // Redirect to admin page
           } else {
               window.location.href = 'sign-in.html';
           }
       })
       .catch(error => {
-          console.error('Error verifying token:', error);
+          console.error('Error verifying session:', error);
           window.location.href = 'sign-in.html';
           hideSpinner();
       });
   } else {
-        window.location.href = 'sign-in.html';
+      window.location.href = 'sign-in.html';
   }
 });
+
 
 document.getElementById('changePassword').addEventListener('click', async () => {
   const currentPassword = document.getElementById('currentPassword').value;
