@@ -15,6 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   if (response.ok) {
     const data = await response.json();
     localStorage.setItem('sb_token', data.access_token);
+    localStorage.setItem('sb_refreshToken', data.refresh_token);
     if (data.role === 'ADMIN' || data.role === 'MANAGER') {
       window.location.href = './admin/manage-transfers.html';
     } else {
@@ -23,12 +24,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   } else {
     const error = await response.json();
     if (error.message === 'Email not verified') {
-      // alert('Please verify your email before logging in.');
-      // window.location.href = 'email-validation.html';
+      sessionStorage.setItem('sb_email', email);
       document.getElementById('password-error').innerHTML = `
         Please verify your email before logging in. 
         <a href="email-validation.html" style="text-decoration: underline; red: blue;">Verify Email</a>`;
-
     } else if (error.message === 'Invalid credentials') {
       document.getElementById('password-error').innerHTML = `
           The password you’ve entered is incorrect. 

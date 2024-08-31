@@ -21,7 +21,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       });
 
       if (response.ok) {
-        sessionStorage.setItem('userEmail', formData.email);
+        sessionStorage.setItem('sb_email', formData.email);
         window.location.href = './email-validation.html';
       } else if (response.status === 409) { // Handle email already in use
         const errorMessage = await response.text();

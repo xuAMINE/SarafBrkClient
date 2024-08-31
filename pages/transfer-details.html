@@ -19,6 +19,27 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
+      <script>
+        // Function to get query parameter from URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Immediately handle the token in the URL if it exists
+        const token = getQueryParam('token');
+        if (token) {
+            // Store the token in localStorage
+            localStorage.setItem('sb_token', token);
+
+            // Remove the token from the URL to avoid confusion
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        } else if (!localStorage.getItem('sb_token')) {
+            // No token in URL or localStorage, redirect to login
+            window.location.href = '/sign-in.html';
+        }
+    </script>
       <!-- Nepcha Analytics (nepcha.com) -->
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
@@ -103,7 +124,7 @@
                                 <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
                               </div>
                               <div class="my-auto">
-                                <h6 id="recipientFullName" class="mb-0 text-xs">Mohamed Amine Zirek</h6>
+                                <h6 id="recipientFullName" class="mb-0 text-xs">test</h6>
                               </div>
                             </div>
                           </td>
@@ -120,107 +141,13 @@
                           </td>
                           <td class="align-middle text-center">
                             <div class="d-flex align-items-center">
-                              <p id="transferDate" class="text-xs font-weight-bold mb-0">07/15/2024</p>
+                              <p id="transferDate" class="text-xs font-weight-bold mb-0">01/01/0000</p>
                             </div>
                           </td>
                           <td>
                             <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
                               <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
                             </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex px-2">
-                              <div>
-                                <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                              </div>
-                              <div class="my-auto">
-                                <h6 class="mb-0 text-xs">Mohamed Amine Zirek</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">$200</p>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">43000 DZD</p>
-                          </td>
-                          <td>
-                            <span class="badge badge-dot me-4">
-                              <span class="badge rounded-pill bg-info">PROCESSING</span>
-                            </span>
-                          </td>
-                          <td class="align-middle text-center">
-                            <div class="d-flex align-items-center">
-                              <p class="text-xs font-weight-bold mb-0">07/15/2024</p>
-                            </div>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="https://live.staticflickr.com/65535/53920238387_5a398dea68.jpg">
-                              <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex px-2">
-                              <div>
-                                <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                              </div>
-                              <div class="my-auto">
-                                <h6 class="mb-0 text-xs">Mohamed Amine Zirek</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">$1000</p>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">215000 DZD</p>
-                          </td>
-                          <td>
-                            <span class="badge badge-dot me-4">
-                              <span class="badge rounded-pill bg-success">RECEIVED</span>
-                            </span>
-                          </td>
-                          <td class="align-middle text-center">
-                            <div class="d-flex align-items-center">
-                              <p class="text-xs font-weight-bold mb-0">07/15/2024</p>
-                            </div>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="">
-                              <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex px-2">
-                              <div>
-                                <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
-                              </div>
-                              <div class="my-auto">
-                                <h6 class="mb-0 text-xs">Mohamed Amine Zirek</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">$1000</p>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">215000 DZD</p>
-                          </td>
-                          <td>
-                            <span class="badge badge-dot me-4">
-                              <span class="badge rounded-pill bg-danger">CANCELED</span>
-                            </span>
-                          </td>
-                          <td class="align-middle text-center">
-                            <div class="d-flex align-items-center">
-                              <p class="text-xs font-weight-bold mb-0">07/15/2024</p>
-                            </div>
                           </td>
                         </tr>
                       </tbody>
@@ -257,28 +184,8 @@
       </div>
     </div>
 
-    <script>
-      // Update modal with the correct receipt image
-      document.addEventListener('DOMContentLoaded', function () {
-        var receiptModal = document.getElementById('receiptModal');
-        receiptModal.addEventListener('show.bs.modal', function (event) {
-          var button = event.relatedTarget;
-          var receiptImageSrc = button.getAttribute('data-receipt');
-          var modalImage = receiptModal.querySelector('#receiptImage');
-          
-          // Check if data-receipt is empty or undefined and set default image if needed
-          if (!receiptImageSrc || receiptImageSrc === 'null') {
-            modalImage.src = 'https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg'; // Replace with your default image path
-          } else {
-            modalImage.src = receiptImageSrc;
-          }
-        });
-      });
-
-    </script>
-
     <!-- MY JS -->
-    <!-- <script src="../assets/js/transfers.js"></script> -->
+    <script src="../assets/js/transfers.js"></script>
     <script src="../assets/js/chart.js"></script>
     <script src="../assets/js/session.js"></script>
     <!-- -------- END HEADER 1 w/ text and image on right ------- -->

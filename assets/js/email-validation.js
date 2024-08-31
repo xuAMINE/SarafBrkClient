@@ -73,7 +73,7 @@ async function collectValues(event) {
   document.getElementById('emailValidationForm').addEventListener('submit', collectValues);
 
   function resendEmail() {
-    const email = sessionStorage.getItem('userEmail');
+    const email = sessionStorage.getItem('sb_email');
     if (email) {
       fetch('http://localhost:8088/api/v1/auth/resend-verification', {
         method: 'POST',
@@ -87,6 +87,7 @@ async function collectValues(event) {
           // Success, display success message
           document.getElementById('validation-message').innerHTML = 
               '<i class="fa fa-check" aria-hidden="true" style="padding: 0 5px; color: green;"></i><span style="color: green;">Verification email has been resent.</span>';
+          clearForm();
         } else {
           return response.text().then(text => { throw new Error(text); });
         }
@@ -98,3 +99,14 @@ async function collectValues(event) {
       console.error('No email found in session storage.');
     }
   }
+
+  function clearForm() {
+    const form = document.getElementById('emailValidationForm');
+    const firstInput = form.querySelector('input[type="text"]');
+
+    // Clear all input fields
+    form.reset();
+
+    // Focus on the first input field
+    firstInput.focus();
+}

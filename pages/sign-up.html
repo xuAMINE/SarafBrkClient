@@ -83,22 +83,18 @@
                   <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Register with</h4>
                   <div class="row mt-3">
                     <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="/oauth2/authorization/facebook">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="/oauth2/authorization/github">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
+                      <button class="btn btn-link px-1" onclick="authenticate('facebook')">
+                        <i class="fa-brands fa-facebook text-white text-3xl"></i>
+                      </button>
                     </div>
                     <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="/oauth2/authorization/google">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>  
+                      <button class="btn btn-link px-2" onclick="authenticate('google')">
+                        <i class="fa fa-google text-white text-3xl"></i>
+                      </button>  
                     </div>
                   </div>
                 </div>
+                <!-- <i class="fa-brands fa-facebook text-white text-3xl"></i> -->
               </div>
               <div class="row px-xl-5 px-sm-4 px-3">
                 <div class="mt-2 position-relative text-center">
@@ -129,14 +125,14 @@
                     <p id="password-error" class="error-message-old"></p>
                   </div>
                   <!-- <div id="password-error" class="error-message"><i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i></div> -->
-                  <div class="form-check text-start ps-0">
+                  <!-- <div class="form-check text-start ps-0">
                     <input class="form-check-input bg-dark border-dark" type="checkbox" value id="flexCheckDefault" checked>
                     <label class="form-check-label" for="flexCheckDefault">
                       I agree the <a href="" class="text-dark font-weight-bolder">Terms and Conditions</a>
                     </label>
-                  </div>
+                  </div> -->
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                    <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">Sign up</button>
                   </div>
                   <p class="text-sm mt-3 mb-0">Already have an account? <a href="sign-in.html" class="text-dark font-weight-bolder">Sign in</a></p>
                 </form>
@@ -195,5 +191,6 @@
     <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
     <script src="../assets/js/plugins/typedjs.js"></script>
     <script src="../assets/js/register.js"></script>
+    <script src="../assets/js/oauth2.js"></script>
   </body>
 </html>

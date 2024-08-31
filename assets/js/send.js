@@ -55,28 +55,32 @@ document.querySelectorAll('.send-transfer').forEach(button => {
           document.getElementById('amount-error').innerText = 'An error occurred. Please try again.';
         }
       } else {
-        // Show the appropriate modal
+        // Show the appropriate modal or trigger PayPal
         let selectedOption = document.querySelector('input[name="modalOption"]:checked');
         if (selectedOption) {
-          let modalId = selectedOption.value;
-          let modal = new bootstrap.Modal(document.getElementById(modalId));
-          modal.show();
+          let paymentMethod = selectedOption.value;
+          
+          if (paymentMethod === 'paypal') {
+            // If PayPal is selected, trigger the PayPal form submission
+            window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
+          } else {
+            // Handle other payment methods (Zelle, Venmo)
+            let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
+            modal.show();
 
-          document.getElementById('venmo-me').addEventListener('click', function() {
-            // Venmo URL for Desktop
-            const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
-            // Venmo URL for Mobile (iOS/Android)
-            const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+            if (paymentMethod === 'modalVenmo') {
+              document.getElementById('venmo-me').addEventListener('click', function() {
+                const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+                const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
 
-            // Check if the user is on a mobile device
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
-
-            // Redirect to Venmo URL
-            window.open(venmoUrl, '_blank');
-          });
+                window.open(venmoUrl, '_blank');
+              });
+            }
+          }
         } else {
-          alert('Please select an option.');
+          alert('Please select a payment option.');
         }
       }
     } catch (error) {
@@ -87,6 +91,7 @@ document.querySelectorAll('.send-transfer').forEach(button => {
     }
   });
 });
+
 
 // send the transfer when user clicks GOT IT
 document.querySelectorAll('.make-transfer').forEach(button => {

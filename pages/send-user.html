@@ -62,7 +62,7 @@
         </div>
       </div>
     </nav>
-    <section class="page-header min-vh-100" style="background-image: url('../assets/img/currency-dz.jpeg'); background-size:cover;" loading="lazy">
+    <section class="page-header min-vh-100" style="background-image: url('../assets/img/currency-dz.jpg'); background-size:cover;" loading="lazy">
         <div class="mask bg-gradient-dark">
         </div>
       <div class="clock-container-send">
@@ -111,13 +111,13 @@
                           </label>
                         </div>
                         <div class="payment-option">
-                          <input type="radio" id="zelle" name="modalOption" value="modal1">
+                          <input type="radio" id="zelle" name="modalOption" value="modalZelle">
                           <label for="zelle">
                             <img src="../assets/img/zelle-black.png" alt="Zelle">
                           </label>
                         </div>
                         <div class="payment-option">
-                          <input type="radio" id="venmo" name="modalOption" value="modal2">
+                          <input type="radio" id="venmo" name="modalOption" value="modalVenmo">
                           <label for="venmo">
                             <img src="../assets/img/venmo-black.png" alt="Venmo">
                           </label>
@@ -136,6 +136,12 @@
                         </div>
                       </div>
                     </div>
+                  </form>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick" />
+                    <input type="hidden" name="hosted_button_id" value="6BC5WY2UHMDFU" />
+                    <input type="hidden" name="currency_code" value="USD" />
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
                   </form>
                 </div>
               </div>
@@ -167,8 +173,11 @@
     <div class="container py-77 hide-modal">
       <div class="row mt-5">
         <div class="col-sm-3 col-6 mx-auto">
-          <!-- Modal-1 -->
-          <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+          <!-- Paypal Form -->
+          
+        
+          <!-- Zelle Modal -->
+          <div class="modal fade" id="modalZelle" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-header border-0">
@@ -194,8 +203,8 @@
               </div>
             </div>
           </div>
-          <!-- Modal-2 -->
-          <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+          <!-- Venmo Modal -->
+          <div class="modal fade" id="modalVenmo" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-header border-0">

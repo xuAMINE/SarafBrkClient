@@ -236,36 +236,6 @@ function uploadStoredFiles(transferId) {
   }
 }
 
-
-
-
-
-// document.querySelector("table").addEventListener("click", function (event) {
-//   if (event.target.closest(".custom-button")) {
-//     const uploadButton = event.target.closest(".custom-button");
-//     const fileInput = uploadButton.nextElementSibling;
-
-//     if (fileInput) {
-//       fileInput.click();
-
-//       // Add event listener for file input change
-//       fileInput.addEventListener("change", function () {
-//         if (fileInput.files.length > 0) {
-//           // Change the button class when a file is selected
-//           uploadButton.classList.remove("bg-gradient-dark");
-//           uploadButton.classList.add("bg-gradient-danger");
-//         } else {
-//           uploadButton.classList.remove("bg-gradient-danger");
-//           uploadButton.classList.add("bg-gradient-dark");
-//         }
-//       });
-//     }
-//   }
-// });
-
-
-
-
 // GET receipt URL.
 document.addEventListener("DOMContentLoaded", function () {
   // Event delegation for showing receipt in modal
