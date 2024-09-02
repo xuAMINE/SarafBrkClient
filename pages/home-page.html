@@ -23,7 +23,7 @@
     </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent ">
+    <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
       <div class="container">
         <a class="navbar-brand text-white " href="home-page.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
           <img src="../assets/img/logo-offwhite-no-box.png" alt="SARAF BRK" style="height: 50px;"> <!-- Adjust the height as needed -->
@@ -71,37 +71,28 @@
       <header>
         <div class="page-header min-vh-100" style="background-image: url('../assets/img/cos-dz.jpg');" loading="lazy">
           <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-6 col-md-8 col-sm-10 text-center mx-auto mt-md-cus">
-                <h4 class="text-white fadeIn1 fadeInBottom">OUR RATE</h4>
-                <h1 id="rate-display" class="text-white fadeIn2 fadeInBottom rate-text">200</h1>
-              </div>
-            </div>
-          </div>
-          <div class="exchange-rate-img">
-            <img src="../assets/img/exchange-rate.png" alt="">
-          </div>
-          <span class="mask bg-gradient-dark opacity-5"></span>
-          <div class="container">
-            <!-- clock for algeria time -->
-            <!-- <div class="clock-container">
-              <script src="https://cdn.logwork.com/widget/text.js"></script>
-              <a href="https://logwork.com/current-time-in-algiers-algeria-alger" class="clock-widget-text" data-timezone="Africa/Algiers" data-language="en" data-textcolor="#fafafa" data-digitscolor="#fafafa">Time in Algeria</a>
-            </div> -->
-            <!-- end of clock -->
-    
             <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 d-flex-home justify-content-center flex-column lct-home text-center">
-                <h1 class="text-white mb-2 l-font">SARAF BRK</h1>
-                <h2 class="text-white medium-font ms-4">Transfer money to Algeria with same-day delivery.</h2>
+              <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+                <h1 class="text-white mb-1 text-6xl">SARAF BRK</h1>
+                <p class="text-white opacity-8 lead pe-5 me-5">
+                  Transfer money to Algeria with same-day delivery.
+                  <br>
+                  - Today's <i class="fa-solid fa-money-bill-transfer" style="color: #FFD700;"></i> 
+                  
+                  <span id="rate-display" class="fadeIn2 fadeInBottom rate-text">215</span>
+                </p>
                 <div class="buttons">
-                  <button type="button" class="btn btn-white mt-4 me-10" id="check-session">Get Started</button>
+                  <button id="check-session" type="button" class="btn btn-white mt-4">Get Started</button>
+                  <button type="button" class="btn text-white shadow-none mt-4">Read more</button>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
+        <div class="exchange-rate-img">
+          <img src="../assets/img/exchange-rate.png" alt="">
+        </div>
+        <span class="mask bg-gradient-dark opacity-5"></span>
       </header>
 
       <!-- Modal -->
@@ -167,4 +158,4 @@
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
   </body>
-</html>
+</html>s

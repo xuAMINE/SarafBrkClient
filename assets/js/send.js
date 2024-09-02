@@ -68,7 +68,7 @@ document.querySelectorAll('.send-transfer').forEach(button => {
             let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
             modal.show();
 
-            if (paymentMethod === 'modalVenmo') {
+            if (paymentMethod === 'modal2') {
               document.getElementById('venmo-me').addEventListener('click', function() {
                 const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
                 const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
@@ -173,28 +173,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     // Apply the restriction to specific input fields
-    restrictInput('cle', 2); // Limits to 2 digits
-    restrictInput('ccp', 12); // Limits to 10 digits
+    restrictInput('cle', 2);
+    restrictInput('ccp', 12);
   });
 
-// function copyToClipboard(text) {
-//   navigator.clipboard.writeText(text).then(function() {
-//     var copiedMessage = document.getElementById('copied-message');
-//     copiedMessage.textContent = 'copied!';
-//     setTimeout(function() {
-//         copiedMessage.textContent = '';
-//     }, 1200);
-//   }, function(err) {
-//       console.error('Could not copy text: ', err);
-//   });
-// }
+
 
 document.getElementById('copyNumber').addEventListener('click', () => {
   navigator.clipboard.writeText('925-496-8027').then(function() {
-    var copiedMessage = document.getElementById('copied-message');
+    var copiedMessage = document.getElementById('copyNumber');
     copiedMessage.textContent = 'copied!';
     setTimeout(function() {
-        copiedMessage.textContent = '';
+        copiedMessage.textContent = 'copie number';
     }, 1200);
   }, function(err) {
       console.error('Could not copy text: ', err);

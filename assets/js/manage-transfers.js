@@ -1,21 +1,86 @@
+
+import { showSpinner } from './spinner.js';
+import apiClient from './apiClient.js';
+
 async function fetchAdminTransfers(page = 0, size = 20) {
-  const token = localStorage.getItem('sb_token');
+    try {
+        // Use the apiClient to make the request
+        const response = await apiClient.get(`/api/v1/admin/transfers`, {
+            params: {
+                page: page,
+                size: size
+            }
+        });
 
-  const response = await fetch(`http://localhost:8088/api/v1/admin/transfers?page=${page}&size=${size}`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+        // The Axios response will already be JSON, so no need to parse
+        return response.data;
+
+    } catch (error) {
+        console.error('Error fetching transfers:', error);
+        throw new Error('Network response was not ok ' + error.response?.statusText || error.message);
     }
-  });
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok ' + response.statusText);
-  }
-
-  const data = await response.json();
-  return data;
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const paginationItems = document.querySelectorAll('.pagination .page-item a');
+
+  paginationItems.forEach((item) => {
+    item.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+
+      // Check if the clicked item is a numeric page number
+      const pageNumber = parseInt(item.textContent);
+      if (!isNaN(pageNumber)) {
+        const page = pageNumber - 1;
+        fetchAndRenderPage(page);
+      } else {
+        // Handle "Previous" and "Next" buttons
+        const currentPage = getCurrentPage();
+        const totalPages = getTotalPages();
+
+        if (item.getAttribute('aria-label') === 'Previous' && currentPage > 0) {
+          fetchAndRenderPage(currentPage - 1);
+        } else if (item.getAttribute('aria-label') === 'Next' && currentPage < totalPages - 1) {
+          fetchAndRenderPage(currentPage + 1);
+        }
+      }
+    });
+  });
+});
+
+function getCurrentPage() {
+  const activeItem = document.querySelector('.pagination .page-item.active a');
+  console.log(activeItem.textContent);
+  return parseInt(activeItem.textContent) - 1;
+}
+
+function getTotalPages() {
+  return document.querySelectorAll('.pagination .page-item').length - 2; // Exclude Prev and Next buttons
+}
+
+async function fetchAndRenderPage(page) {
+  try {
+    const data = await fetchAdminTransfers(page);
+    updateTransfers(data);
+
+    // Update active page in pagination
+    const paginationItems = document.querySelectorAll('.pagination .page-item');
+    paginationItems.forEach((item, index) => {
+      if (index > 0 && index < paginationItems.length - 1) { // Exclude Prev and Next buttons
+        if (index === page + 1) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      }
+    });
+
+  } catch (error) {
+    console.error('Error fetching or rendering page:', error);
+  }
+}
+
 
 function updateTransfers(responseData) {
   const transfers = responseData.content; // Extract the list of transfers
@@ -82,50 +147,44 @@ function updateTransfers(responseData) {
     dropdownItems.forEach(item => {
       item.addEventListener('click', function () {
         const selectedStatus = this.getAttribute('data-status');
-
+      
         // Show confirmation modal
         const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
         document.getElementById('newStatus').textContent = selectedStatus;
         document.getElementById('confirmChangeStatus').onclick = function() {
-          // Make the request to change the status
-          fetch(`http://localhost:8088/api/v1/admin/update-status`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('sb_token')}`
-            },
-            body: JSON.stringify({ id: transfer.id, status: selectedStatus })
-          })
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error('Failed to update transfer status');
-            }
-          })
-          .then(data => {
-            console.log('Status updated successfully', data);
-            // Update the specific row with the new status
-            const badgeWrapper = tr.querySelector('.badge-dot');
-            if (badgeWrapper) {
-              const badge = badgeWrapper.querySelector('.badge');
-              badge.className = `badge rounded-pill ${getStatusClass(selectedStatus)}`;
-              badge.textContent = selectedStatus;
-            }
-            const dropdownToggle = tr.querySelector('.dropdown-toggle');
-            if (dropdownToggle) 
-              dropdownToggle.className = `btn ${getStatusClass(selectedStatus)} dropdown-toggle btn-xs m-n1 mx-n1`;
-          
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
+          // Make the request to change the status using Axios
+          axios.patch('http://localhost:8088/api/v1/admin/update-status', 
+            { id: transfer.id, status: selectedStatus },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('sb_token')}`
+              }
+            })
+            .then(response => {
+              console.log('Status updated successfully', response.data);
+              // Update the specific row with the new status
+              const badgeWrapper = tr.querySelector('.badge-dot');
+              if (badgeWrapper) {
+                const badge = badgeWrapper.querySelector('.badge');
+                badge.className = `badge rounded-pill ${getStatusClass(selectedStatus)}`;
+                badge.textContent = selectedStatus;
+              }
+              const dropdownToggle = tr.querySelector('.dropdown-toggle');
+              if (dropdownToggle) 
+                dropdownToggle.className = `btn ${getStatusClass(selectedStatus)} dropdown-toggle btn-xs m-n1 mx-n1`;
+      
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
           
           confirmationModal.hide();
         };
-
+      
         confirmationModal.show();
       });
+      
     });
   });
 
@@ -143,6 +202,7 @@ function updateTransfers(responseData) {
 
 const fileStorage = new Map(); // Stores transfer ID -> Array of files
 
+// Upload a file to local storage
 document.querySelector("table").addEventListener("click", function (event) {
   const target = event.target;
 
@@ -195,6 +255,7 @@ document.querySelector("table").addEventListener("click", function (event) {
   }
 });
 
+// Upload file to S3 Bucket
 function uploadStoredFiles(transferId) {
   const files = fileStorage.get(transferId);
 

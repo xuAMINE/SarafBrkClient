@@ -4,9 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const rateElement = document.getElementById('rate-display');
   const duration = 1500; // Duration of the counting in milliseconds
 
-  // Function to fetch the rate from the backend
   function fetchRate() {
-    fetch('http://localhost:8088/api/v1/rate') // Replace with your actual endpoint
+    fetch('http://localhost:8088/api/v1/rate') 
       .then(response => response.json())
       .then(data => {
         const targetNumber = data;
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
     countUp();
   }
 
-  // Fetch the rate when the DOM is fully loaded
   fetchRate();
 
 

@@ -170,14 +170,6 @@ body.hidden-content {
   color: #a0a0a0;
 }
 
-
-.exchange-rate-img {
-  position: absolute;
-  bottom: 28vh;
-  right: 4vw;
-
-}
-
 .fadeIn1 {
   animation: fadeIn 1s ease-in-out;
 }
@@ -230,72 +222,6 @@ body.hidden-content {
   }
 }
 
-/* Add more media queries as needed */
-
-
-/* Custom styles for smaller screens */
-@media (max-width: 767.98px) {
-  .mt-md-cus {
-    margin-top: 4rem;
-    position: relative;
-    left: 90px;
-    top: 0px;
-  }
-
-  .mt-md-cus h4 {
-    font-size: 1.5rem;
-    margin-bottom: -5px;
-    position: relative;
-    left: 6.3rem;
-  }
-
-  .mt-md-cus h1 {
-    font-size: 7rem;
-    position: relative;
-    left: 6.3rem;
-  }
-
-  .lct-home {
-    position: relative;
-  }
-
-  .lct-home h1 {
-    font-size: 2.7rem;
-    position: relative;
-    left: 38vw;
-  }
-
-  .lct-home h2 {
-    font-size: 1rem;
-    position: relative;
-    left: 48vw;
-  }
-
-  .lct-home .buttons {
-    text-align: center;
-    position: relative;
-    top: -10px;
-    left: 51vw;
-  }
-
-  .rate-text {
-    font-size: 2.5rem;
-  }
-  
-  .clock-container {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .lct-home h1,
-  .lct-home h2,
-  .lct-home h1.medium-font {
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow text */
-    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
-  }
-}
-
 .modal-qr img{
   width: 300px;
   height: auto;
@@ -307,13 +233,6 @@ body.hidden-content {
   height: auto;
 }
 
-.exchange-rate-img img {
-  width: 100%;  /* Make the image responsive */
-  height: auto;  /* Maintain aspect ratio */
-  max-width: 350px; /* Set the maximum width */
-  max-height: auto; /* Set the maximum height */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
 
 .payment-options {
   display: flex;
@@ -368,26 +287,38 @@ body.hidden-content {
   margin-right: -50px;
 }
 
+.exchange-rate-img img {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  max-width: 100%;
+  height: auto;
+  transition: width 0.3s ease; /* Smooth transition when resizing */
+}
 
-/* @media (max-width: 768px) {
-  .col-md-6 {
-    flex: 0 0 auto;
-    width: 20px;
-  }
-} */
-
-
-@media (max-width: 768px) {
-  .exchange-rate-img {
-    position: absolute;
-    top: 60%;
-    bottom: 0;
-    left: 10px;
-    width: 100%;
-    height: auto;
-    padding: 10px;
+/* Medium screens */
+@media (max-width: 1200px) {
+  .exchange-rate-img img {
+    width: 320px; /* Slightly smaller */
   }
 }
+
+/* Small screens */
+@media (max-width: 768px) {
+  .exchange-rate-img img {
+    width: 300px; /* Even smaller */
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .exchange-rate-img img {
+    width: 280px; /* Smallest size */
+  }
+}
+
 
 .mv-left {
   position: absolute;
@@ -419,25 +350,13 @@ body.hidden-content {
   }
 }
 
-.mt-md-cus {
-  margin-top: -20rem !important;
-  position: relative;
-  left: 50%;
-}
-
-@media (max-width: 768px) {
-  .mt-md-cus{
-    position: relative;
-    bottom: 65px;
-    height: auto;
-    left: 0%;
-  }
-}
-
 .rate-text {
-  font-size: 7rem;
-  position: relative;
-  top: -20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FFD700;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .d-flex-cus {

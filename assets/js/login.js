@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     localStorage.setItem('sb_token', data.access_token);
     localStorage.setItem('sb_refreshToken', data.refresh_token);
     if (data.role === 'ADMIN' || data.role === 'MANAGER') {
-      window.location.href = './admin/manage-transfers.html';
+      window.location.href = './manage-transfers.html';
     } else {
       window.location.href = 'recipients.html';
     }

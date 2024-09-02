@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const response = await fetch('http://localhost:8088/api/v1/auth/check-session', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
       });
@@ -36,17 +35,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Add a small delay before starting the authentication check
   setTimeout(() => {
-    isAuthenticated().then(authenticated => {
+  isAuthenticated().then(authenticated => {
       // Add a delay before hiding the loading screen for better user experience
       setTimeout(() => {
-        if (authenticated) {
-          body.classList.remove('hidden-content');
-          loadingScreen.style.visibility = 'hidden';
-        } else {
-          window.location.href = 'sign-in.html';
-        } 
+    if (authenticated) {
+      body.classList.remove('hidden-content');
+      loadingScreen.style.visibility = 'hidden';
+    } else {
+      window.location.href = 'sign-in.html';
+    } 
       }, 300); // Adjust this value to control the delay before hiding the loading screen (in milliseconds)
-    });
+  });
   }, 300); // Adjust this value to control the initial delay before starting the authentication check (in milliseconds)
 });
 
@@ -66,6 +65,7 @@ document.getElementById('logoutButton').addEventListener('click', function() {
       if (response.ok) {
         // Remove the token from localStorage after the request
         localStorage.removeItem('sb_token');
+        localStorage.removeItem('sb_refreshToken');
         window.location.href = 'sign-in.html'; // Redirect to login page after logout
       } else {
         alert('Logout failed');
@@ -79,4 +79,3 @@ document.getElementById('logoutButton').addEventListener('click', function() {
     alert('No token found');
   }
 });
-

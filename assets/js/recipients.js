@@ -134,6 +134,8 @@ document.addEventListener('DOMContentLoaded', function () {
   
   // Function to handle editing a recipient
   function editRecipient(recipient) {
+    const firstName = recipient.firstname;
+    const lastName = recipient.lastname;
     const ccpNumber = encodeURIComponent(recipient.ccp);
     const doContact = recipient.doContact;
 

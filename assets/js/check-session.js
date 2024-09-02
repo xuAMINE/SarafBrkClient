@@ -8,7 +8,7 @@ document.getElementById('check-session').addEventListener('click', function() {
       fetch('http://localhost:8088/api/v1/auth/check-session', {
           method: 'GET',
           headers: {
-              'Authorization': `Bearer ${token}`  // Include the "Bearer " prefix
+              'Authorization': `Bearer ${token}`
           }
       })
       .then(response => response.text())  // Use .text() to handle plain text response
@@ -17,7 +17,7 @@ document.getElementById('check-session').addEventListener('click', function() {
           if (result === 'true') {
               window.location.href = 'recipients.html';
           } else if (result === 'Admin session valid') {
-              window.location.href = './admin/manage-transfers.html';  // Redirect to admin page
+              window.location.href = 'manage-transfers.html';  // Redirect to admin page
           } else {
               window.location.href = 'sign-in.html';
           }
@@ -93,10 +93,6 @@ function displayErrorMessages(errorData) {
   }
 }
 
-  
-
-
-
 document.getElementById('logoutButton').addEventListener('click', function() {
     const token = localStorage.getItem('sb_token');
 
@@ -133,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // Function to check session validity
     async function checkSession() {
-      const token = localStorage.getItem('sb_token'); // Replace with your method of retrieving the token
+      const token = localStorage.getItem('sb_token');
   
       if (!token) {
         accountButton.style.display = 'none';
@@ -141,16 +137,16 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   
       try {
-        const response = await fetch('http://localhost:8088/api/v1/auth/check-session', {
+        const session = await fetch('http://localhost:8088/api/v1/auth/check-session', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
   
-        const isValid = await response.json();
+        const isValid = await session.text();
   
-        if (isValid) {
+        if (isValid || isValid === 'Admin session valid') {
           accountButton.style.display = 'block';
         } else {
           accountButton.style.display = 'none';
@@ -163,18 +159,3 @@ document.addEventListener("DOMContentLoaded", function() {
   
     checkSession();
   });
-
-
-function togglePasswordVisibility(inputId, toggleIconId) {
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(toggleIconId);
-    if (input.type === 'password') {
-      input.type = 'text';
-      icon.classList.remove('fa-eye');
-      icon.classList.add('fa-eye-slash');
-    } else {
-      input.type = 'password';
-      icon.classList.remove('fa-eye-slash');
-      icon.classList.add('fa-eye');
-    }
-  }
