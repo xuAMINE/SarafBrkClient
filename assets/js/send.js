@@ -1,13 +1,11 @@
 import { showSpinner, hideSpinner } from './spinner.js';
+import apiClient from './apiClient.js';
 
 let globalAmount;
 let globalRip;
 
 document.querySelectorAll('.send-transfer').forEach(button => {
   button.addEventListener('click', async function() {
-    // Get token from local storage
-    const token = localStorage.getItem('sb_token');
-    
     // Get the form id
     const formId = this.getAttribute('data-form');
     
@@ -30,65 +28,58 @@ document.querySelectorAll('.send-transfer').forEach(button => {
 
     // Send the POST request
     try {
-      showSpinner();
-      const response = await fetch('http://localhost:8088/api/v1/transfer/check-transfer-credentials', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(body)
-      });
+  showSpinner();
+  
+  const response = await apiClient.post('/api/v1/transfer/check-transfer-credentials', body);
 
-      if (!response.ok) {
-        // If response status is not OK, handle error
-        if (response.status === 400) {
-          const errorData = await response.json();
-          if (errorData.amount) {
-            document.getElementById('amount-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errorData.amount;
-          }
-          if (errorData.ccp) {
-            document.getElementById('ccp-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errorData.ccp;
-          }
-        } else {
-          // Handle other status codes if necessary
-          document.getElementById('amount-error').innerText = 'An error occurred. Please try again.';
-        }
+  // Check if the response is successful
+  if (response.status === 200 || response.status === 201) {
+    // Show the appropriate modal or trigger PayPal
+    let selectedOption = document.querySelector('input[name="modalOption"]:checked');
+    if (selectedOption) {
+      let paymentMethod = selectedOption.value;
+      
+      if (paymentMethod === 'paypal') {
+        // If PayPal is selected, trigger the PayPal form submission
+        window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
       } else {
-        // Show the appropriate modal or trigger PayPal
-        let selectedOption = document.querySelector('input[name="modalOption"]:checked');
-        if (selectedOption) {
-          let paymentMethod = selectedOption.value;
-          
-          if (paymentMethod === 'paypal') {
-            // If PayPal is selected, trigger the PayPal form submission
-            window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
-          } else {
-            // Handle other payment methods (Zelle, Venmo)
-            let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
-            modal.show();
+        // Handle other payment methods (Zelle, Venmo)
+        let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
+        modal.show();
 
-            if (paymentMethod === 'modal2') {
-              document.getElementById('venmo-me').addEventListener('click', function() {
-                const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
-                const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
+        if (paymentMethod === 'modalVenmo') {
+          document.getElementById('venmo-me').addEventListener('click', function() {
+            const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+            const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
 
-                window.open(venmoUrl, '_blank');
-              });
-            }
-          }
-        } else {
-          alert('Please select a payment option.');
+            window.open(venmoUrl, '_blank');
+          });
         }
       }
-    } catch (error) {
-      console.error('Error:', error);
-      document.getElementById('amount-error').innerText = 'An error occurred. Please try again.';
-    } finally {
-      hideSpinner();
+    } else {
+      alert('Please select a payment option.');
     }
+  }
+} catch (error) {
+  if (error.response && error.response.status === 400) {
+    const errorData = error.response.data;
+
+    if (errorData.amount) {
+      document.getElementById('amount-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errorData.amount;
+    }
+    if (errorData.ccp) {
+      document.getElementById('ccp-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errorData.ccp;
+    }
+  } else {
+    // Handle other errors
+    document.getElementById('amount-error').innerText = 'An error occurred. Please try again.';
+  }
+} finally {
+  hideSpinner();
+}
+
   });
 });
 
@@ -97,7 +88,6 @@ document.querySelectorAll('.send-transfer').forEach(button => {
 document.querySelectorAll('.make-transfer').forEach(button => {
   button.addEventListener('click', async function() {
     // Get token from local storage
-    const token = localStorage.getItem('sb_token');
     
     // Use globalAmount and globalRip variables
     const body = {
@@ -108,30 +98,24 @@ document.querySelectorAll('.make-transfer').forEach(button => {
     // Send the POST request
     try {
       showSpinner();
-        const response = await fetch('http://localhost:8088/api/v1/transfer/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(body)
-        });
+      const response = await apiClient.post('/api/v1/transfer/add', body);
 
-        if (response.ok) {
-            // Redirect to transfer-details.html after successful request
-            window.location.href = 'transfer-details.html';
-        } else {
-            // Handle other status codes if necessary
-            alert('An error occurred. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
+      if (response.status === 201) {
+        // Redirect to transfer-details.html after successful request
+        window.location.href = 'transfer-details.html';
+      } else {
+        // Handle other status codes if necessary
         alert('An error occurred. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
     } finally {
       hideSpinner();
     }
   });
 });
+
 
 function clearErrorMessage(id) {
   document.getElementById(id).textContent = '';

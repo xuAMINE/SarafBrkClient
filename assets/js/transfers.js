@@ -1,39 +1,24 @@
+import apiClient from './apiClient.js';
+
 async function fetchTransfers() {
-  const token = localStorage.getItem('sb_token');
+  try {
+    const response = await apiClient.get('api/v1/transfer');
 
-  const response = await fetch('http://localhost:8088/api/v1/transfer', {
-      method: 'GET',
-      headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-      }
-  });
+    return response.data;
 
-  if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
+  } catch (error) {
+    throw new Error('Network response was not ok ' + response.statusText);
   }
-
-  const data = await response.json();
-  return data;
 }
 
 async function fetchReceipt(transfer_id) {
-  const token = localStorage.getItem('sb_token');
-
-  const response = await fetch(`http://localhost:8088/api/v1/transfer/receipt/${transfer_id}`, {
-    method : 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  });
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok ' + response.statusText);
+  try {
+    const response = await apiClient.get(`api/v1/transfer/receipt/${transfer_id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Network or other error:', error);
+    throw new Error('Network response was not ok: ' + error.message);
   }
-
-  const data = await response.text();
-  return data;
 }
 
 // MAP TRANSFERS

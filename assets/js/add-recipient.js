@@ -1,4 +1,5 @@
 import { showSpinner, hideSpinner } from './spinner.js';
+import apiClient from './apiClient.js';
 
 function toggleTextColor() {
   const checkbox = document.getElementById('doContact');
@@ -40,13 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-  
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contact-form');
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
     showSpinner();
+
     // Gather form data
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
@@ -76,47 +77,51 @@ document.addEventListener('DOMContentLoaded', function() {
       hideSpinner();
       return;
     }
-    
+
     try {
-      const response = await fetch('http://localhost:8088/api/v1/recipient/add', {
-        method: 'POST',
+      const response = await apiClient.post('/api/v1/recipient/add', requestBody, {
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify(requestBody)
+        }
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         let modal = new bootstrap.Modal(document.getElementById('recipient-added'));
         modal.show();
 
         setTimeout(() => {
           window.location.href = 'recipients.html'; // Replace with your redirect URL
         }, 1500);
-      } else if (response.status === 400) {
-        const errors = await response.json();
-        
-        // Map the errors to the corresponding <p> elements
-        if (errors.firstName || errors.lastName) {
-          document.getElementById('name-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + (errors.firstName ? errors.firstName : errors.lastName);
-        }
-        if (errors.ccp) {
-          document.getElementById('ccp-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + errors.ccp;
-        }
-      } else if (errorText === 'Duplicate key value violates unique constraint.') {
-        let modal = new bootstrap.Modal(document.getElementById('recipient-exist'));
-        modal.show();
-      } else {
-        alert('Error');
       }
     } catch (error) {
-      console.error('Network or other error:', error);
-    } {
+      if (error.response) {
+        // Axios-specific error handling
+        const { status, data } = error.response;
+
+        if (status === 400) {
+          // Map the errors to the corresponding <p> elements
+          if (data.firstName || data.lastName) {
+            document.getElementById('name-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + (data.firstName ? data.firstName : data.lastName);
+          }
+          if (data.ccp) {
+            document.getElementById('ccp-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + data.ccp;
+          }
+        } else if (status === 409) {
+          let modal = new bootstrap.Modal(document.getElementById('recipient-exist'));
+          modal.show();
+        } else {
+          alert('Error');
+        }
+      } else {
+        // Network or other errors
+        console.error('Network or other error:', error);
+      }
+    } finally {
       hideSpinner();
     }
   });
 });
+
   
   // Restrict input to digits only and limit length
   document.addEventListener('DOMContentLoaded', function() {

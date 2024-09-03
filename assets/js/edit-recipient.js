@@ -1,4 +1,5 @@
 import { showSpinner, hideSpinner } from './spinner.js';
+import apiClient from './apiClient.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,52 +33,38 @@ document.addEventListener('DOMContentLoaded', function() {
       phoneNumber: phoneNumber,
       doContact: doContact
     };
-
-    const token = localStorage.getItem('sb_token');
-
-    if (!token) {
-      console.error('No token found');
-      hideSpinner();
-      return;
-    }
     
     try {
-      const response = await fetch(`http://localhost:8088/api/v1/recipient/${ccp}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify(requestBody)
-      });
+      const response = await apiClient.put(`/api/v1/recipient/${ccp}`, requestBody);
 
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         let modal = new bootstrap.Modal(document.getElementById('recipient-added'));
         modal.show();
 
         setTimeout(() => {
           window.location.href = 'recipients.html'; // Replace with your redirect URL
         }, 1500);
-      } else if (response.status === 400) {
-        const errors = await response.json();
-        
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        const errors = error.response.data;
+
         // Map the errors to the corresponding <p> elements
         if (errors.firstName || errors.lastName) {
           document.getElementById('name-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + (errors.firstName ? errors.firstName : errors.lastName);
         }
-      } else if (errorText === 'Duplicate key value violates unique constraint.') {
+      } else if (error.response && error.response.data === 'Duplicate key value violates unique constraint.') {
         let modal = new bootstrap.Modal(document.getElementById('recipient-exist'));
         modal.show();
       } else {
-        alert('Error');
+        alert('Error: ' + error.message);
       }
-    } catch (error) {
-      console.error('Network or other error:', error);
-    } {
+    } finally {
       hideSpinner();
     }
   });
 });
+
 
   // Format phone number as user types
 document.addEventListener('DOMContentLoaded', function() {

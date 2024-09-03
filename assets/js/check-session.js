@@ -1,67 +1,54 @@
 import { showSpinner, hideSpinner } from './spinner.js';
+import apiClient from './apiClient.js';
 
-document.getElementById('check-session').addEventListener('click', function() {
+document.getElementById('check-session').addEventListener('click', async function() {
   const token = localStorage.getItem('sb_token');
 
   if (token) {
-      showSpinner();
-      fetch('http://localhost:8088/api/v1/auth/check-session', {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${token}`
-          }
-      })
-      .then(response => response.text())  // Use .text() to handle plain text response
-      .then(result => {
-          hideSpinner();
-          if (result === 'true') {
-              window.location.href = 'recipients.html';
-          } else if (result === 'Admin session valid') {
-              window.location.href = 'manage-transfers.html';  // Redirect to admin page
-          } else {
-              window.location.href = 'sign-in.html';
-          }
-      })
-      .catch(error => {
-          console.error('Error verifying session:', error);
-          window.location.href = 'sign-in.html';
-          hideSpinner();
-      });
-  } else {
+    showSpinner();
+    try {
+      const response = await apiClient.get('/api/v1/auth/check-session');
+      const result = response.data;  // Assuming the server returns plain text in response.data
+
+      hideSpinner();
+      if (result === 'true') {
+        window.location.href = 'recipients.html';
+      } else if (result === 'Admin session valid') {
+        window.location.href = 'manage-transfers.html';  // Redirect to admin page
+      } else {
+        window.location.href = 'sign-in.html';
+      }
+    } catch (error) {
+      console.error('Error verifying session:', error);
       window.location.href = 'sign-in.html';
+      hideSpinner();
+    }
+  } else {
+    window.location.href = 'sign-in.html';
   }
 });
-
 
 document.getElementById('changePassword').addEventListener('click', async () => {
   const currentPassword = document.getElementById('currentPassword').value;
   const newPassword = document.getElementById('newPassword').value;
   const confirmNewPassword = document.getElementById('confirmNewPassword').value;
-  const token = localStorage.getItem('sb_token'); 
+  const token = localStorage.getItem('sb_token');
 
   const requestBody = {
     currentPassword: currentPassword,
     newPassword: newPassword,
     confirmationPassword: confirmNewPassword
   };
-  
+
   try {
     showSpinner();
-    const response = await fetch('http://localhost:8088/api/v1/users', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(requestBody)
-    });
-
+    const response = await apiClient.patch('/api/v1/users', requestBody);
     hideSpinner();
 
     if (response.status === 200) {
       alert('Password changed successfully');
     } else if (response.status === 400) {
-      const errorText = await response.json();
+      const errorText = response.data;  // Assuming the server returns JSON error messages
       displayErrorMessages(errorText);
     }
   } catch (error) {
@@ -69,6 +56,7 @@ document.getElementById('changePassword').addEventListener('click', async () => 
     console.error('Error:', error);
   }
 });
+
 
   
 function displayErrorMessages(errorData) {
@@ -93,69 +81,51 @@ function displayErrorMessages(errorData) {
   }
 }
 
-document.getElementById('logoutButton').addEventListener('click', function() {
-    const token = localStorage.getItem('sb_token');
+document.getElementById('logoutButton').addEventListener('click', async function() {
+  const token = localStorage.getItem('sb_token');
 
-    if (token) {
-        fetch('http://localhost:8088/api/v1/auth/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Include the token in the request headers
-        },
-        body: JSON.stringify({ token }) // Optionally include the token in the request body if needed
-        })
-        .then(response => {
-        if (response.ok) {
-            // Remove the token from localStorage after the request
-            localStorage.removeItem('sb_token');
-            window.location.href = 'sign-in.html'; // Redirect to login page after logout
-        } else {
-            window.location.href = 'sign-in.html'; // Redirect to login page after logout
-        }
-        })
-        .catch(error => {
-        console.error('Error during logout:', error);
-        });
-    } else {
-        alert('Your already logged out');
-        window.location.href = 'sign-in.html'; // Redirect to login page after logout
+  if (token) {
+    try {
+      await apiClient.post('/api/v1/auth/logout', { token });
+      // Remove the token from localStorage after the request
+      localStorage.removeItem('sb_token');
+      window.location.href = 'sign-in.html'; // Redirect to login page after logout
+    } catch (error) {
+      console.error('Error during logout:', error);
+      window.location.href = 'sign-in.html'; // Redirect to login page after logout
     }
+  } else {
+    alert('You are already logged out');
+    window.location.href = 'sign-in.html'; // Redirect to login page after logout
+  }
 });
 
-// Hide account button when user is not logged in
 document.addEventListener("DOMContentLoaded", function() {
-    const accountButton = document.getElementById('account-button');
-  
-    // Function to check session validity
-    async function checkSession() {
-      const token = localStorage.getItem('sb_token');
-  
-      if (!token) {
-        accountButton.style.display = 'none';
-        return;
-      }
-  
-      try {
-        const session = await fetch('http://localhost:8088/api/v1/auth/check-session', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-  
-        const isValid = await session.text();
-  
-        if (isValid || isValid === 'Admin session valid') {
-          accountButton.style.display = 'block';
-        } else {
-          accountButton.style.display = 'none';
-        }
-      } catch (error) {
-        console.error('Error checking session:', error);
-        accountButton.style.display = 'none';
-      }
+  const accountButton = document.getElementById('account-button');
+
+  // Function to check session validity
+  async function checkSession() {
+    const token = localStorage.getItem('sb_token');
+
+    if (!token) {
+      accountButton.style.display = 'none';
+      return;
     }
-  
-    checkSession();
-  });
+
+    try {
+      const response = await apiClient.get('/api/v1/auth/check-session');
+      const isValid = response.data; // Assuming the server returns plain text
+
+      if (isValid === 'true' || isValid === 'Admin session valid') {
+        accountButton.style.display = 'block';
+      } else {
+        accountButton.style.display = 'none';
+      }
+    } catch (error) {
+      console.error('Error checking session:', error);
+      accountButton.style.display = 'none';
+    }
+  }
+
+  checkSession();
+});

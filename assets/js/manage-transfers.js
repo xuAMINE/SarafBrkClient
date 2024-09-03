@@ -153,7 +153,7 @@ function updateTransfers(responseData) {
         document.getElementById('newStatus').textContent = selectedStatus;
         document.getElementById('confirmChangeStatus').onclick = function() {
           // Make the request to change the status using Axios
-          axios.patch('http://localhost:8088/api/v1/admin/update-status', 
+          apiClient.patch('/api/v1/admin/update-status', 
             { id: transfer.id, status: selectedStatus },
             {
               headers: {
@@ -267,22 +267,14 @@ function uploadStoredFiles(transferId) {
       formData.append('receipt', file);
     });
 
-    fetch(`http://localhost:8088/api/v1/admin/upload-receipt/${transferId}`, {
-      method: 'POST',
+    apiClient.post(`/api/v1/admin/upload-receipt/${transferId}`, formData, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('sb_token')}`
-      },
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Failed to upload receipts');
+        'Authorization': `Bearer ${localStorage.getItem('sb_token')}`,
+        'Content-Type': 'multipart/form-data'
       }
     })
-    .then(data => {
-      console.log('Receipts uploaded successfully', data);
+    .then(response => {
+      console.log('Receipts uploaded successfully', response.data);
       // Update UI or notify user of success
       const modal = new bootstrap.Modal(document.getElementById('receiptConfirmation'));
       modal.show();
@@ -296,6 +288,7 @@ function uploadStoredFiles(transferId) {
     alert('No files selected for this transfer.');
   }
 }
+
 
 // GET receipt URL.
 document.addEventListener("DOMContentLoaded", function () {
@@ -312,29 +305,24 @@ document.addEventListener("DOMContentLoaded", function () {
         modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg";
       } else {
         
-        // Fetch the receipt URL using the transfer ID
-        fetch(`http://localhost:8088/api/v1/transfer/receipt/${transferId}`, {
+        // Fetch the receipt URL using Axios
+        apiClient.get(`/api/v1/transfer/receipt/${transferId}`, {
           headers: {
             'Authorization': `Bearer ${token}` // Include the token in the request header
           }
         })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error("Failed to fetch the receipt URL.");
-            }
-            return response.text();
-          })
-          .then(receiptUrl => {
-            modalImage.src = receiptUrl;
-          })
-          .catch(error => {
-            console.error("Error fetching receipt:", error);
-            modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg"; // Default image if there's an error
-          });
+        .then(response => {
+          modalImage.src = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching receipt:", error);
+          modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg"; // Default image if there's an error
+        });
       }
     }
   });
 });
+
 
 // Display transfers.
 document.addEventListener('DOMContentLoaded', async () => {
