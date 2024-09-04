@@ -1,41 +1,48 @@
-// Function to handle authentication response
-function handleAuthResponse(response) {
-  if (response.accessToken) {
-      // Store the token in localStorage
-      localStorage.setItem('sb_token', response.accessToken);
-      // Redirect the user to a protected route
-      window.location.href = '/transfer-details.html';
-  } else {
-      // Handle error or redirect back to the login page
-      window.location.href = '/sign-in.html';
-  }
-}
-
 // Function to initiate OAuth2 authentication process
 function authenticate(provider) {
-  // Redirect the user to the OAuth2 provider's authorization page
   window.location.href = `http://localhost:8088/oauth2/authorization/${provider}`;
 }
 
-// Function to handle OAuth2 callback
-async function handleOAuth2Callback() {
+// Function to store the OAuth2 token and handle redirect after successful login
+function handleOAuth2Callback() {
   const urlParams = new URLSearchParams(window.location.search);
-  const accessToken = urlParams.get('access_token'); // Replace with the actual key if different
+  const accessToken = urlParams.get('token');
+  const refreshToken = urlParams.get('refreshToken');
 
   if (accessToken) {
-      // Store the token in localStorage
-      localStorage.setItem('sb_token', accessToken);
-      // Redirect the user to a protected route
-      window.location.href = '/transfer-details.html';
+    localStorage.setItem('sb_token', accessToken);
+    localStorage.setItem('sb_refreshToken', refreshToken);
+    // Clean up the URL to remove the token parameter
+    window.history.replaceState({}, document.title, window.location.pathname);
   } else {
-      // Handle error or redirect back to the login page
-      window.location.href = '/sign-in.html';
+    console.error("No token received or token is invalid.");
   }
 }
 
-// Call handleOAuth2Callback on page load if it's an OAuth2 callback
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.location.pathname === '/oauth2/callback') { // Adjust this path as needed
-      handleOAuth2Callback();
+// Function to ensure the user is authenticated
+function ensureAuthenticated() {
+  const storedToken = localStorage.getItem('sb_token');
+
+  if (!storedToken) {
+    // No token found, redirect to the login page
+    console.log("No token found in localStorage, redirecting to login page.");
+    window.location.href = 'sign-in.html';
+  } else {
+    console.log("User is authenticated with token:", storedToken);
+    // Further checks for token validity can be added here
   }
-});
+}
+
+// Initialize authentication check and handle OAuth2 callback if present
+function initializeAuth() {
+  if (window.location.search.includes('token')) {
+    handleOAuth2Callback();  // Only called when redirected from OAuth2 provider
+  }
+
+  if (window.location.pathname.endsWith('/recipients.html')) {
+    ensureAuthenticated();  // Ensure authentication on protected pages
+  }
+}
+
+// Initialize authentication logic on page load
+document.addEventListener('DOMContentLoaded', initializeAuth);

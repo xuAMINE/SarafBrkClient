@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Check if the response is ok and session is valid
       const result = response.data;
-      return result === 'true' || result === 'Admin session valid';
+      console.log(result);
+      return result === 'User session valid' || result === 'Admin session valid';
     } catch (error) {
       console.error('Error checking session:', error);
       return false;

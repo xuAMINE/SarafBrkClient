@@ -11,7 +11,7 @@ document.getElementById('check-session').addEventListener('click', async functio
       const result = response.data;  // Assuming the server returns plain text in response.data
 
       hideSpinner();
-      if (result === 'true') {
+      if (result === 'User session valid') {
         window.location.href = 'recipients.html';
       } else if (result === 'Admin session valid') {
         window.location.href = 'manage-transfers.html';  // Redirect to admin page
@@ -32,7 +32,6 @@ document.getElementById('changePassword').addEventListener('click', async () => 
   const currentPassword = document.getElementById('currentPassword').value;
   const newPassword = document.getElementById('newPassword').value;
   const confirmNewPassword = document.getElementById('confirmNewPassword').value;
-  const token = localStorage.getItem('sb_token');
 
   const requestBody = {
     currentPassword: currentPassword,
@@ -42,7 +41,8 @@ document.getElementById('changePassword').addEventListener('click', async () => 
 
   try {
     showSpinner();
-    const response = await apiClient.patch('/api/v1/users', requestBody);
+    console.log('start change');
+    const response = await apiClient.patch('/api/v1/user', requestBody);
     hideSpinner();
 
     if (response.status === 200) {
