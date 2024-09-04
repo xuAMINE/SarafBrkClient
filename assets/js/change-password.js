@@ -28,6 +28,19 @@ document.getElementById('check-session').addEventListener('click', async functio
   }
 });
 
+// Load password change when clicked on other pages.
+window.onload = function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const showModal = urlParams.get('showChangePasswordModal');
+
+  if (showModal) {
+      // Trigger the modal to open
+      const passwordModal = new bootstrap.Modal(document.getElementById('exampleModalSignup'));
+      passwordModal.show();
+  }
+};
+
+
 document.getElementById('changePassword').addEventListener('click', async () => {
   const currentPassword = document.getElementById('currentPassword').value;
   const newPassword = document.getElementById('newPassword').value;
@@ -47,18 +60,19 @@ document.getElementById('changePassword').addEventListener('click', async () => 
 
     if (response.status === 200) {
       alert('Password changed successfully');
-    } else if (response.status === 400) {
-      const errorText = response.data;  // Assuming the server returns JSON error messages
-      displayErrorMessages(errorText);
-    }
+    } 
   } catch (error) {
     hideSpinner();
-    console.error('Error:', error);
+
+    // Check if error has a response with data
+    if (error.response && error.response.data) {
+      displayErrorMessages(error.response.data);
+    } else {
+      console.error('Error:', error);
+    }
   }
 });
 
-
-  
 function displayErrorMessages(errorData) {
   const passwordError = document.getElementById('password-error');
   const newPasswordError = document.getElementById('new-password-error');
@@ -81,6 +95,7 @@ function displayErrorMessages(errorData) {
   }
 }
 
+
 document.getElementById('logoutButton').addEventListener('click', async function() {
   const token = localStorage.getItem('sb_token');
 
@@ -100,8 +115,9 @@ document.getElementById('logoutButton').addEventListener('click', async function
   }
 });
 
+// Load Account Drop Down
 document.addEventListener("DOMContentLoaded", function() {
-  const accountButton = document.getElementById('account-button');
+  const accountButton = document.getElementById('accountDropDown');
 
   // Function to check session validity
   async function checkSession() {
@@ -116,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const response = await apiClient.get('/api/v1/auth/check-session');
       const isValid = response.data; // Assuming the server returns plain text
 
-      if (isValid === 'true' || isValid === 'Admin session valid') {
+      if (isValid === 'User session valid' || isValid === 'Admin session valid') {
         accountButton.style.display = 'block';
       } else {
         accountButton.style.display = 'none';

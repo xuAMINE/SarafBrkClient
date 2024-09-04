@@ -3,11 +3,23 @@ import apiClient from './apiClient.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
+  
+  const firstName = urlParams.get('firstName');
+  const lastName = urlParams.get('lastName');
   const ccpNumber = urlParams.get('ccpNumber');
+  const phoneNumber = urlParams.get('phoneNumber');
   const doContact = urlParams.get('doContact');
 
-  document.getElementById('ccpNumber').textContent = decodeURIComponent(ccpNumber);
-  document.getElementById('doContact').textContent = decodeURIComponent(doContact);
+  if (firstName) 
+    document.getElementById('firstName').value = decodeURIComponent(firstName);
+  if (lastName)
+    document.getElementById('lastName').value = decodeURIComponent(lastName);
+  if (ccpNumber)
+    document.getElementById('ccpNumber').textContent = decodeURIComponent(ccpNumber);
+  if (doContact)
+    document.getElementById('doContact').textContent = decodeURIComponent(doContact);
+  if (phoneNumber)
+    document.getElementById('phoneNumber').value = decodeURIComponent(phoneNumber.substring(1));
 });
 
 document.addEventListener('DOMContentLoaded', function() {

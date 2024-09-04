@@ -1,87 +1,110 @@
-
 import { showSpinner } from './spinner.js';
 import apiClient from './apiClient.js';
 
-async function fetchAdminTransfers(page = 0, size = 20) {
-    try {
-        // Use the apiClient to make the request
-        const response = await apiClient.get(`/api/v1/admin/transfers`, {
-            params: {
-                page: page,
-                size: size
-            }
-        });
-
-        // The Axios response will already be JSON, so no need to parse
-        return response.data;
-
-    } catch (error) {
-        console.error('Error fetching transfers:', error);
-        throw new Error('Network response was not ok ' + error.response?.statusText || error.message);
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  const paginationItems = document.querySelectorAll('.pagination .page-item a');
-
-  paginationItems.forEach((item) => {
-    item.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default link behavior
-
-      // Check if the clicked item is a numeric page number
-      const pageNumber = parseInt(item.textContent);
-      if (!isNaN(pageNumber)) {
-        const page = pageNumber - 1;
-        fetchAndRenderPage(page);
-      } else {
-        // Handle "Previous" and "Next" buttons
-        const currentPage = getCurrentPage();
-        const totalPages = getTotalPages();
-
-        if (item.getAttribute('aria-label') === 'Previous' && currentPage > 0) {
-          fetchAndRenderPage(currentPage - 1);
-        } else if (item.getAttribute('aria-label') === 'Next' && currentPage < totalPages - 1) {
-          fetchAndRenderPage(currentPage + 1);
-        }
-      }
-    });
-  });
-});
-
-function getCurrentPage() {
-  const activeItem = document.querySelector('.pagination .page-item.active a');
-  console.log(activeItem.textContent);
-  return parseInt(activeItem.textContent) - 1;
-}
-
-function getTotalPages() {
-  return document.querySelectorAll('.pagination .page-item').length - 2; // Exclude Prev and Next buttons
-}
-
-async function fetchAndRenderPage(page) {
+document.addEventListener('DOMContentLoaded', async function() {
   try {
-    const data = await fetchAdminTransfers(page);
-    updateTransfers(data);
+    const initialData = await fetchAdminTransfers(0);
+    const totalPages = initialData.totalPages;
 
-    // Update active page in pagination
-    const paginationItems = document.querySelectorAll('.pagination .page-item');
-    paginationItems.forEach((item, index) => {
-      if (index > 0 && index < paginationItems.length - 1) { // Exclude Prev and Next buttons
-        if (index === page + 1) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
+    const paginationContainer = document.getElementById('pagination-container');
+
+    const maxVisiblePages = 6;
+
+    // Initially generate pagination items and render the first page
+    generatePaginationItems(totalPages, 0);
+
+    function generatePaginationItems(totalPages, currentPage) {
+      paginationContainer.innerHTML = '';
+
+      // Add "Previous" button
+      const prevItem = document.createElement('li');
+      prevItem.classList.add('page-item');
+      prevItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>`;
+      prevItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (currentPage > 0) {
+          const newPage = currentPage - 1;
+          updatePage(newPage);
         }
+      });
+      paginationContainer.appendChild(prevItem);
+
+      // Determine the range of pages to display
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2) + 1);
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+      // Adjust start and end pages if they don't fill maxVisiblePages
+      if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
       }
-    });
+
+      // Add page number buttons
+      for (let i = startPage; i <= endPage; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+        if (i === currentPage + 1) {
+          pageItem.classList.add('active');
+        }
+        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        pageItem.addEventListener('click', function(event) {
+          event.preventDefault();
+          updatePage(i - 1);
+        });
+        paginationContainer.appendChild(pageItem);
+      }
+
+      // Add "Next" button
+      const nextItem = document.createElement('li');
+      nextItem.classList.add('page-item');
+      nextItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>`;
+      nextItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (currentPage < totalPages - 1) {
+          const newPage = currentPage + 1;
+          updatePage(newPage);
+        }
+      });
+      paginationContainer.appendChild(nextItem);
+    }
+
+    async function updatePage(page) {
+      // Update the pagination controls to reflect the new current page
+      generatePaginationItems(totalPages, page);
+      const responseData = await fetchAdminTransfers(page);
+      updateTransfers(responseData);
+    }
 
   } catch (error) {
-    console.error('Error fetching or rendering page:', error);
+    console.error('Error fetching initial data:', error);
+  }
+});
+
+async function fetchAdminTransfers(page = 0, size = 18) {
+  try {
+    // Use the apiClient to make the request
+    const response = await apiClient.get(`/api/v1/admin/transfers`, {
+      params: {
+        page: page,
+        size: size
+      }
+    });
+
+    // The Axios response will already be JSON, so no need to parse
+    return response.data;
+
+  } catch (error) {
+    console.error('Error fetching transfers:', error);
+    throw new Error('Network response was not ok ' + error.response?.statusText || error.message);
   }
 }
 
-
+// MAP TRANSFERS
 function updateTransfers(responseData) {
   const transfers = responseData.content; // Extract the list of transfers
   const tbody = document.querySelector('tbody');
@@ -137,7 +160,7 @@ function updateTransfers(responseData) {
         <input class="form-check-label receipt-input" type="file" accept="image/*" style="display: none;">
       </td>
       <td>
-        <button type="button" class="custom-button btn bg-gradient-secondary btn-xs ms-2" data-id="${transfer.id}">
+        <button type="button" class="custom-button btn bg-gradient-secondary btn-xs m-n1" data-id="${transfer.id}" style="margin-left: 0.6rem !important;">
           <i class="fa-solid fa-paper-plane" style="font-size: 1rem; padding: 0 1rem; vertical-align: middle;"></i>
         </button>
       </td>`;
@@ -147,13 +170,13 @@ function updateTransfers(responseData) {
     dropdownItems.forEach(item => {
       item.addEventListener('click', function () {
         const selectedStatus = this.getAttribute('data-status');
-      
+
         // Show confirmation modal
         const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
         document.getElementById('newStatus').textContent = selectedStatus;
         document.getElementById('confirmChangeStatus').onclick = function() {
           // Make the request to change the status using Axios
-          apiClient.patch('/api/v1/admin/update-status', 
+          apiClient.patch('/api/v1/admin/update-status', 
             { id: transfer.id, status: selectedStatus },
             {
               headers: {
@@ -171,20 +194,18 @@ function updateTransfers(responseData) {
                 badge.textContent = selectedStatus;
               }
               const dropdownToggle = tr.querySelector('.dropdown-toggle');
-              if (dropdownToggle) 
+              if (dropdownToggle) 
                 dropdownToggle.className = `btn ${getStatusClass(selectedStatus)} dropdown-toggle btn-xs m-n1 mx-n1`;
-      
             })
             .catch(error => {
               console.error('Error:', error);
             });
-          
+
           confirmationModal.hide();
         };
-      
+
         confirmationModal.show();
       });
-      
     });
   });
 
@@ -199,6 +220,17 @@ function updateTransfers(responseData) {
     }
   }
 }
+
+// Display transfers.
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const responseData = await fetchAdminTransfers();
+    updateTransfers(responseData);
+
+  } catch (error) {
+    console.error('Error fetching transfers:', error);
+  }
+});
 
 const fileStorage = new Map(); // Stores transfer ID -> Array of files
 
@@ -289,7 +321,6 @@ function uploadStoredFiles(transferId) {
   }
 }
 
-
 // GET receipt URL.
 document.addEventListener("DOMContentLoaded", function () {
   // Event delegation for showing receipt in modal
@@ -321,15 +352,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
-});
-
-
-// Display transfers.
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const responseData = await fetchAdminTransfers();
-    updateTransfers(responseData);
-  } catch (error) {
-    console.error('Error fetching transfers:', error);
-  }
 });
