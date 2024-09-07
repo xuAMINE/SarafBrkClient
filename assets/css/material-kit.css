@@ -23304,6 +23304,13 @@ label,
   background-image: linear-gradient(195deg, #EF5350 0%, #E53935 100%);
 }
 
+.bg-gradient-violet {
+  background-image: linear-gradient(195deg, #8850ef 0%, #ca50ef 100%);
+}
+
+.bg-gradient-venmo {
+  background-image: linear-gradient(195deg, #43b0f1 0%, #057dcd 100%);
+}
 .bg-gradient-light {
   background-image: linear-gradient(195deg, #EBEFF4 0%, #CED4DA 100%);
 }

@@ -52,9 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedOption) {
           let paymentMethod = selectedOption.value;
 
-          if (paymentMethod === 'paypal') {
-            // If PayPal is selected, trigger the PayPal form submission
-            window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
+          if (paymentMethod === 'modalPaypal') {
+            let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
+            modal.show();
+            document.getElementById('paypal-me').addEventListener('click', function() {
+              window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
+            })
           } else {
             // Handle other payment methods (Zelle, Venmo)
             let modal = new bootstrap.Modal(document.getElementById(paymentMethod));

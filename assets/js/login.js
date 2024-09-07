@@ -1,42 +1,57 @@
+import { showSpinner, hideSpinner } from './spinner.js';
+
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  // Clear previous error message
+  document.getElementById('password-error').innerHTML = ''; 
+
+  showSpinner();  // Start the spinner right before making the request
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
-  const response = await fetch('http://localhost:8088/api/v1/auth/authenticate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
-  });
+  try {
+    const response = await fetch('http://localhost:8088/api/v1/auth/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    localStorage.setItem('sb_token', data.access_token);
-    localStorage.setItem('sb_refreshToken', data.refresh_token);
-    if (data.role === 'ADMIN' || data.role === 'MANAGER') {
-      window.location.href = './manage-transfers.html';
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('sb_token', data.access_token);
+      localStorage.setItem('sb_refreshToken', data.refresh_token);
+      if (data.role === 'ADMIN' || data.role === 'MANAGER') {
+        window.location.href = './manage-transfers.html';
+      } else {
+        window.location.href = 'recipients.html';
+      }
     } else {
-      window.location.href = 'recipients.html';
+      const error = await response.json();
+      if (error.message === 'Email not verified') {
+        sessionStorage.setItem('sb_email', email);
+        document.getElementById('password-error').innerHTML = `
+          Please verify your email before logging in. 
+          <a href="email-validation.html" style="text-decoration: underline; red: blue;">Verify Email</a>`;
+      } else if (error.message === 'Invalid credentials') {
+        document.getElementById('password-error').innerHTML = `
+            The password you’ve entered is incorrect. 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#passwordResetModal" style="text-decoration: underline; color: blue;">Forgot Password?</a>`;
+      } else {
+        alert('Login failed');
+      }
     }
-  } else {
-    const error = await response.json();
-    if (error.message === 'Email not verified') {
-      sessionStorage.setItem('sb_email', email);
-      document.getElementById('password-error').innerHTML = `
-        Please verify your email before logging in. 
-        <a href="email-validation.html" style="text-decoration: underline; red: blue;">Verify Email</a>`;
-    } else if (error.message === 'Invalid credentials') {
-      document.getElementById('password-error').innerHTML = `
-          The password you’ve entered is incorrect. 
-          <a href="#" data-bs-toggle="modal" data-bs-target="#passwordResetModal" style="text-decoration: underline; color: blue;">Forgot Password?</a>`;
-    } else {
-      alert('Login failed');
-    }
+  } catch (error) {
+    console.error('Error during fetch:', error);
+    alert("An error occurred while trying to log in. Please try again.");
+  } finally {
+    hideSpinner();  // Hide the spinner no matter what happens
   }
 });
+
 
 document.getElementById('requestPasswordReset').addEventListener('click', async function (event) {
   event.preventDefault();
@@ -54,9 +69,9 @@ document.getElementById('requestPasswordReset').addEventListener('click', async 
 
     if (response.ok) {
       // Handle success
-      document.getElementById('email-reset').innerText = 'A reset password link has been sent to your email if it exists in our system.';
+      document.getElementById('email-reset').innerText = 'A reset password link has been sent to your email.';
     } else {
-      alert("Something went wrong. Please try again later.");
+      document.getElementById('email-reset').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i> An account with this email does not exist in our system.';
     }
   } catch (error) {
     // Handle network or unexpected errors
@@ -64,4 +79,11 @@ document.getElementById('requestPasswordReset').addEventListener('click', async 
     alert("Unable to connect to the server. Please try again later.");
   }
 });
+
+// prevent default submit
+document.getElementById('passwordResetForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+  document.getElementById('requestPasswordReset').click(); // Trigger button click
+});
+
 

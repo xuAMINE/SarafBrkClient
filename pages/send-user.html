@@ -359,7 +359,7 @@
                       </div>   
                       <div class="payment-options">
                         <div class="payment-option">
-                          <input type="radio" id="paypal" name="modalOption" value="paypal">
+                          <input type="radio" id="paypal" name="modalOption" value="modalPaypal">
                           <label for="paypal">  
                             <img src="../assets/img/paypal-black.png" alt="PayPal">
                           </label>
@@ -408,7 +408,9 @@
                   <div class="toast-body text-white">
                     - To ensure same-day delivery of your transfer, payment validation must occur before 14:00 PM Algerian Time.
                     <br><br>
-                    - Payments via Zelle or Venmo typically require an hour for validation, whereas PayPal payments are validated immediately.
+                    - Payments typically require an hour for validation.
+                    <br><br>
+                    - Please make sure to in
                   </div>
                 </div>
               </div>
@@ -422,12 +424,36 @@
       <div class="row mt-5">
         <div class="col-sm-3 col-6 mx-auto">
           <!-- Paypal Form -->
-          
-        
+          <div class="modal fade" id="modalPaypal" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+              <div class="modal-content bg-gradient-info">
+                <div class="modal-header border-0">
+                  <h6 class="modal-title text-white" id="modal-title-notification">Paypal for</h6>
+                  <button type="button" class="btn btn-close text-white my-0" data-bs-dismiss="modal">
+                </div>
+                <hr class="horizontal light mt-0">
+                <div class="modal-body">
+                  <div class="py-3 text-center text-white">
+                    <h4 class="heading mt-4 text-white"><a class="text-white" href="https://www.paypal.com/paypalme/AmineXU" target="_blank"><i class="fa-brands fa-cc-paypal"></i> paypal.me/AmineXU</a></h4>
+                    <div class="modal-qr my-3">
+                      <img src="../assets/img/paypal-qr.JPEG" alt="Zelle">
+                    </div>
+                    <p class="text-white opacity-8 my-4" style="font-weight: 500;">Please ensure that your payment is complete before clicking GOT IT.</p>
+                    <p class="text-white sm-font">press "PAYPAL ME" to be redirected to our Paypal account</p>
+                  </div>
+                </div>
+                <hr class="horizontal light mb-0">
+                <div class="modal-footer justify-content-between border-0">
+                  <button type="button" class="make-transfer btn btn-white my-1" data-bs-dismiss="modal">GOT IT</button>
+                  <button id="paypal-me" type="button" class="btn btn-link text-white my-2">PAYPAL ME</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- Zelle Modal -->
           <div class="modal fade" id="modalZelle" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-              <div class="modal-content bg-gradient-danger">
+              <div class="modal-content bg-gradient-violet">
                 <div class="modal-header border-0">
                   <h6 class="modal-title text-white" id="modal-title-notification">Zelle for</h6>
                   <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
@@ -456,7 +482,7 @@
             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-header border-0">
-                  <h6 class="modal-title text-white" id="modal-title-notification">Your attention is required</h6>
+                  <h6 class="modal-title text-white" id="modal-title-notification">Venmo for</h6>
                   <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
                 </div>
                 <hr class="horizontal light mt-0">
