@@ -493,6 +493,111 @@ body.hidden-content {
 }
 
 
+.card-body ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Remove bullet points */
+}
+
+.card-body ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem; /* Controls the space between the title and value */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-body ul li strong {
+  width: 40%;
+  text-align: left;
+  font-weight: 700; /* Slightly bold for emphasis */
+  color: #ffffff; /* Lighter shade for the title */
+  font-size: 1rem; /* Adjust the size for modern look */
+}
+
+.card-body ul li span {
+  width: 60%; /* Ensure values take up the remaining space */
+  text-align: left; /* Align values to the right */
+  padding-left: 5rem;
+  font-weight: 500; /* Regular weight for values */
+  color: #e0e0e0; /* Keep values brighter for contrast */
+  font-size: 1rem;
+}
+
+/* Adjust paragraph styling for the card title */
+.card-body p.text-sm {
+  font-size: 1rem; /* Slightly smaller font for a clean look */
+  font-weight: 700; /* Bold for emphasis */
+  letter-spacing: 10px; /* Slight letter spacing for modern feel */
+  text-transform: uppercase; /* Keep the title in uppercase */
+  margin-bottom: 4.5rem;
+}
+
+.card-body p.text-sm-back {
+  font-size: 1rem; /* Slightly smaller font for a clean look */
+  font-weight: 700; /* Bold for emphasis */
+  letter-spacing: 10px; /* Slight letter spacing for modern feel */
+  text-transform: uppercase; /* Keep the title in uppercase */
+  margin-bottom: 1rem;
+  margin-top: -3.5rem;
+}
+
+/* Styling for the receipt image container */
+.receipt-image-container {
+  width: 85%; /* Image container takes up 80% of the card's width */
+  aspect-ratio: 4 / 5; /* Maintain the 4:5 aspect ratio for the container */
+  margin: 0 auto; /* Center the image container */
+  border-radius: 10px; /* Adds rounded corners */
+  overflow: hidden; /* Ensures the image doesn't spill outside the rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+}
+
+/* Styling for the receipt image itself */
+.receipt-image-container img {
+  width: 100%; /* Ensure the image scales with the container */
+  height: 100%; /* Fit the image within the container */
+  object-fit: cover; /* Ensures the image fills the container without stretching */
+  display: block; /* Remove default inline spacing */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Light border around the image */
+}
+
+/* Styling for the download icon */
+.download-icon {
+  position: absolute;
+  top: 10px; /* Distance from the top of the card */
+  right: 10px; /* Distance from the right of the card */
+  font-size: 24px; /* Icon size */
+  color: #ffffff; /* Icon color */
+  text-decoration: none; /* Remove underline */
+  padding: 10px;
+  border-radius: 50%; /* Round background */
+  transition: background-color 0.3s ease;
+}
+
+.download-icon:hover {
+  color: #000; /* Change icon color on hover */
+}
+
+/* Smaller columns for mobile view */
+@media only screen and (max-width: 768px) {
+  .table th, .table td {
+    padding: 7px 0; /* Minimize padding */
+    font-size: 0.75rem; /* Smaller font size for mobile */
+  }
+
+  .table tbody td:first-child {
+    max-width: 120px; /* Limit width */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis if the name is too long */
+  }
+
+  /* Word wrapping to fit content in the column */
+  .table td p {
+    word-wrap: break-word;
+    margin: 0;
+  }
+}
+
 /* end code ************************************** */
 
 hr {

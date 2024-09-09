@@ -59,462 +59,97 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
   <link id="pagestyle" href="../assets/css/material-kit.css" rel="stylesheet" />
-
-  <style>
-    .async-hide {
-      opacity: 0 !important
-    }
-  </style>
-  <script>
-    (function (a, s, y, n, c, h, i, d, e) {
-      s.className += ' ' + y;
-      h.start = 1 * new Date;
-      h.end = i = function () {
-        s.className = s.className.replace(RegExp(' ?' + y), '')
-      };
-      (a[n] = a[n] || []).hide = h;
-      setTimeout(function () {
-        i();
-        h.end = null
-      }, c);
-      h.timeout = c;
-    })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
-      'GTM-K9BGS8K': true
-    });
-  </script>
-
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-46172202-22', 'auto', {
-      allowLinker: true
-    });
-    ga('set', 'anonymizeIp', true);
-    ga('require', 'GTM-K9BGS8K');
-    ga('require', 'displayfeatures');
-    ga('require', 'linker');
-    ga('linker:autoLink', ["2checkout.com", "avangate.com"]);
-  </script>
-
-
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
-
-
-
 </head>
 
 <body class="sign-in-illustration">
 
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-        <nav
-          class="navbar navbar-expand-lg  navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4 my-3 py-2 start-0 end-0 mx-4">
-          <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3  d-none d-md-block"
-              href="home-page.html" rel="tooltip"
-              title="Designed and Coded by Creative Tim" data-placement="bottom">
-              <img src="../assets/img/sb-logo.png" alt="SARAF BRK" style="height: 35px;">
-            </a>
-            <a class="navbar-brand font-weight-bolder ms-sm-3  d-block d-md-none"
-              href="home-page.html" rel="tooltip"
-              title="Designed and Coded by Creative Tim" data-placement="bottom">
-              <img src="../assets/img/sb-logo.png" alt="SARAF BRK" style="height: 35px;">
-            </a>
-            <a href="recipients.html"
-              class="btn btn-sm  bg-gradient-primary  mb-0 ms-auto d-lg-none d-block">SEND</a>
-            <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </span>
-            </button>
-            <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-auto">
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
-                    Socials
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
-                      class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
-                      class="arrow ms-1 d-lg-none d-block ms-auto">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3"
-                    aria-labelledby="dropdownMenuPages">
-                    <div class="row d-none d-lg-block">
-                      <div class="col-12 px-4 py-2">
-                        <div class="row">
-                          <div class="col-4 position-relative">
-                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                              Facebook
-                            </div>
-                            <a href="../pages/coworking.html" class="dropdown-item border-radius-md">
-                              <span><i class="fa-brands fa-facebook"></i> /sarafBRK</span>
-                            </a>
-                            <div
-                              class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
-                              Instagram
-                            </div>
-                            <a href="../pages/about-us.html" class="dropdown-item border-radius-md">
-                              <span><i class="fa-brands fa-instagram"></i> /soon</span>
-                            </a>
-                            <hr class="vertical dark">
-                          </div>
-                          <div class="col-4 position-relative">
-                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                              Support
-                            </div>
-                            <a href="../pages/contact-us.html" class="dropdown-item border-radius-md">
-                              <span>Contact Us</span>
-                            </a>
-                            <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md" target="_blank">
-                              <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
-                            </a>
-                            <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md" target="_blank">
-                              <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
-                            </a>
-                            <div
-                              class="dropdown-header text-dark font-weight-bolder d-flex align-items-center mt-3 px-1">
-                              Apps
-                            </div>
-                            <a href="#" class="dropdown-item border-radius-md">
-                              <span>Mobile App (soon)</span>
-                            </a>
-                            <hr class="vertical dark">
-                          </div>
-                          <div class="col-4">
-                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                              Blogs
-                            </div>
-                            <a href="#" class="dropdown-item border-radius-md">
-                              <span>Single Article</span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-lg-none">
-                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0">
-                        Facebook
-                      </div>
-                      <a href="https://www.facebook.com/muhammudz/" class="dropdown-item border-radius-md">
-                        <span><i class="fa-brands fa-facebook"></i> /sarafBRK</span>
-                      </a>
-                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
-                        Instagram
-                      </div>
-                      <a href="#" class="dropdown-item border-radius-md">
-                        <span><i class="fa-brands fa-instagram"></i> /soon</span>
-                      </a>
-                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
-                        Support
-                      </div>
-                      <a href="contact-us.html" class="dropdown-item border-radius-md">
-                        Contact Us
-                      </a>
-                      <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md" target="_blank">
-                        <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
-                      </a>
-                      <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md" target="_blank">
-                        <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
-                      </a>
-                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center mt-3 px-0">
-                        Apps
-                      </div>
-                      <a href="#" class="dropdown-item border-radius-md">
-                        Mobile App (soon)
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                    id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons opacity-6 me-2 text-md">contacts</i>
-                    Account
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
-                      class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
-                      class="arrow ms-1 d-lg-none d-block ms-auto">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-animation dropdown-md border-radius-xl p-3 mt-0 mt-lg-3"
-                    aria-labelledby="dropdownMenuAccount">
-                    <div class="d-none d-lg-flex">
-                      <ul class="list-group w-100">
-                        <li class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0">
-                          <a class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1"
-                            id="dropdownSignIn">
-                            <span>Sign In</span>
-                            <img src="../assets/img/down-arrow.svg" alt="down-arrow" class="arrow ms-auto">
-                          </a>
-                          <div class="dropdown-menu mt-0 py-3 px-2" aria-labelledby="dropdownSignIn">
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="../pages/sign-in/sign-in-cover.html">
-                              <span>Cover</span>
-                            </a>
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="../pages/sign-in/sign-in-illustration.html">
-                              <span>Illustration</span>
-                            </a>
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="../pages/sign-in/sign-in-basic.html">
-                              <span>Basic</span>
-                            </a>
-                            <a class="dropdown-item ps-3 border-radius-md" href="../pages/sign-in/sign-in-simple.html">
-                              <span>Simple</span>
-                            </a>
-                          </div>
-                        </li>
-                        <li class="nav-item list-group-item border-0 p-0">
-                          <a href="../pages/coming-soon.html"
-                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
-                            <span>Change password</span>
-                          </a>
-                        </li>
-                        <li class="nav-item list-group-item border-0 p-0">
-                          <a href="../pages/2fa-security.html"
-                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
-                            <span style="color: red;"><i class="fa-solid fa-right-from-bracket"></i> Log out</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="row d-lg-none">
-                      <div class="col-12 d-flex justify-content-center flex-column">
-                        <h6
-                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center px-0">
-                          Sign In
-                        </h6>
-                        <a href="../pages/sign-up/sign-up-simple.html" class="dropdown-item border-radius-md">
-                          Simple
-                        </a>
-                        <h6
-                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center mt-3 px-0">
-                          Change password
-                        </h6>
-                        <a href="../pages/reset/reset-cover.html" class="dropdown-item border-radius-md">
-                          Cover
-                        </a>
-                        <hr class="horizontal dark">
-                        <a href="../pages/2fa-security.html"
-                          class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
-                          <span style="color: red;"><i class="fa-solid fa-right-from-bracket"></i> Log out</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                    id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons opacity-6 me-2 text-md">view_day</i>
-                    Sections
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
-                      class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
-                      class="arrow ms-1 d-lg-none d-block ms-auto">
-                  </a>
-                  <div
-                    class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3"
-                    aria-labelledby="dropdownMenuBlocks">
-                    <div class="d-none d-lg-block">
-                      <ul class="list-group">
-                        <li class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="recipients.html">
-                            <div class="d-flex">
-                              <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                  <h6
-                                    class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
-                                    Recipients</h6>
-                                </div>
-                                <img src="../assets/img/down-arrow.svg" alt="down-arrow" class="arrow">
-                              </div>
-                            </div>
-                          </a>
-                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="recipients.html">
-                              My Recipients
-                            </a>
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="add-reciepient.html">
-                              Add recipient
-                            </a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0">
-                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="transfer-details.html">
-                            <div class="d-flex">
-                              <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                  <h6
-                                    class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
-                                    Transfers</h6>
-                                </div>
-                                <img src="../assets/img/down-arrow.svg" alt="down-arrow" class="arrow">
-                              </div>
-                            </div>
-                          </a>
-                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="transfer-details.html">
-                              My transfers
-                            </a>
-                            <a class="dropdown-item ps-3 border-radius-md mb-1"
-                              href="send-guest.html">
-                              Make a transfer
-                            </a>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="row d-lg-none">
-                      <div class="col-md-12">
-                        <div class="d-flex mb-2">
-                          <div class="w-100 d-flex align-items-center justify-content-between">
-                            <div>
-                              <h6
-                                class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
-                                Recipients</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1"
-                          href="recipients.html">
-                          My Recipients
-                        </a>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1"
-                          href="add-reciepient.html">
-                          Add recipient
-                        </a>
-                        <div class="d-flex mb-2 mt-3">
-                          <div class="w-100 d-flex align-items-center justify-content-between">
-                            <div>
-                              <h6
-                                class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
-                                Transfers</h6>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1"
-                          href="transfer-details.html">
-                          My transfers
-                        </a>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1"
-                          href="send-guest.html">
-                          Make a transfer
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <ul class="navbar-nav d-lg-block d-none">
-                <li class="nav-item">
-                  <a href="recipients.html" class="btn btn-sm  bg-gradient-primary  mb-0"
-                    ">send</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal">
+    View Receipt
+  </button>
 
-      </div>
-    </div>
-  </div>
-  <section>
-    <div class="page-header min-vh-100">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
-              style="background-image: url('../assets/img/illustrations/illustration-signin.jpg'); background-size: cover;"
-              loading="lazy"></div>
-          </div>
-          <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
-            <div class="card card-plain">
-              <div class="card-header text-center">
-                <h4 class="font-weight-bolder">Sign In</h4>
-                <p class="mb-0">Enter your email and password to sign in</p>
+  <!-- RECEIPT MODAL -->
+  <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: rgba(240, 24, 60, 0.2);">
+        <div class="rotating-card-container">
+          <div class="card card-rotate card-background mt-md-0" style="position: relative; height: 600px;">
+            <!-- Front of the rotating card -->
+            <div class="front front-background"
+              style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/alg-ds-card.jpeg); background-size: cover;">
+              <div class="card-body pt-1 text-center d-flex flex-column justify-content-center">
+                <p class="text-sm text-white text-uppercase font-weight-normal">Receipt</p>
+                <ul class="list-unstyled text-white">
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>ID:</strong> <span id="transferId">12345</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Recipient:</strong> <span id="recipient">John Doe</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Amount:</strong> <span id="amount">$500</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>To be received:</strong> <span id="toBeReceived">107500 DZD</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Date & Time:</strong> <span id="transferDateTime">2024-09-06 14:30</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Status:</strong> <span id="status">Pending</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Completed at:</strong> <span id="completedAt">N/A</span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Payment Method:</strong> <span id="paymentMethod">PayPal</span>
+                  </li>
+                </ul>
               </div>
-              <div class="card-body mt-2">
-                <form role="form">
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control">
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control">
-                  </div>
-                  <div class="form-check form-switch d-flex align-items-center mb-3">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
-                  </div>
-                  <div class="text-center">
-                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
-                  </div>
-                </form>
+            </div>
+            <!-- Back of the rotating card -->
+            <div class="back back-background"
+              style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/pattern.jpg); background-size: cover;">
+              <div class="card-body pt-7 text-center d-flex flex-column justify-content-center">
+                <p class="text-sm-back text-white text-uppercase font-weight-normal">Receipt</p>
+                <!-- Download icon -->
+                <a href="../assets/img/ccp-reciept-4by5.jpg" download="receipt.jpg" class="download-icon">
+                  <i class="fas fa-download"></i>
+                </a>
+                <!-- Receipt image holder -->
+                <div class="receipt-image-container">
+                  <img id="receiptImage" src="../assets/img/ccp-reciept-4by5.jpg" alt="Receipt Image" class="img-fluid">
+                </div>
               </div>
-              <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                <p class="mb-4 text-sm mx-auto">
-                  Don't have an account?
-                  <a href="javascript:;" class="text-primary text-gradient font-weight-bold">Sign up</a>
-                </p>
-              </div>
+              </di,lv>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  // Select the rotating card container
+    const cardContainer = document.querySelector('.rotating-card-container');
+
+    // Add a click event listener to toggle the manual-flip class
+    cardContainer.addEventListener('click', function () {
+      // Toggle the 'manual-flip' class
+      cardContainer.classList.toggle('manual-flip');
+    });
+  });
+</script>
+  
+
+  <script src=" ../assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-
   <script src="../assets/js/plugins/typedjs.js"></script>
-
   <script src="../assets/js/plugins/parallax.min.js"></script>
-
   <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-
   <script src="../assets/js/plugins/anime.min.js" type="text/javascript"></script>
-
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="../assets/js/material-kit-pro.min.js?v=3.0.4" type="text/javascript"></script>
   <script>

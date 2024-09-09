@@ -328,11 +328,11 @@
                       <thead>
                         <tr>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Recipient</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 ps-1">Amount</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 ps-3">Recieved</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Status</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Date</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7"><i class="fa-solid fa-receipt" style="color: #fb6565;"></i> Receipt</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Amount</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Status</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Received</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Date</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center" style="vertical-align: middle; text-align: center;"><i class="fa-solid fa-receipt" style="color: #fb6565;"></i> Receipt</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -343,18 +343,18 @@
                                 <img src="../assets/img/sent-logo.png" class="avatar avatar-xs rounded-circle me-2">
                               </div>
                               <div class="my-auto">
-                                <h6 id="recipientFullName" class="mb-0 text-xs">test</h6>
+                                <h6 id="recipientFullName" class="mb-0 text-xs">mohamed amine zirek</h6>
                               </div>
                             </div>
                           </td>
                           <td>
-                            <p id="amount" class="text-xs font-weight-bold mb-0">$500</p>
+                            <p id="amount" class="text-xs font-weight-bold mb-0" style="padding: 0 0.3rem;">$500</p>
                           </td>
                           <td>
                             <p id="amountReceived" class="text-xs font-weight-bold mb-0">107500 DZD</p>
                           </td>
                           <td>
-                            <span class="badge badge-dot me-4">
+                            <span class="badge badge-dot me-4" style="padding: 0 0.8rem;">
                               <span class="badge rounded-pill bg-secondary">PENDING</span>
                             </span>
                           </td>
@@ -396,7 +396,7 @@
       </div>
     </header>
     
-    <!-- RECEIPT MODAL -->
+    <!-- RECEIPT MODAL
     <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-gradient-dark">
@@ -409,7 +409,82 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>  -->
+
+    <!-- RECEIPT MODAL -->
+    <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: rgba(240, 24, 60, 0.2);">
+          <div class="rotating-card-container">
+            <div class="card card-rotate card-background mt-md-0" style="position: relative; height: 600px;">
+              <!-- Front of the rotating card -->
+              <div class="front front-background"
+                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/alg-ds-card.jpeg); background-size: cover;">
+                <div class="card-body pt-1 text-center d-flex flex-column justify-content-center">
+                  <p class="text-sm text-white text-uppercase font-weight-normal">Receipt</p>
+                  <ul class="list-unstyled text-white">
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>ID:</strong> <span id="transferId">12345</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Recipient:</strong> <span id="recipient">John Doe</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Amount:</strong> <span id="amount">$500</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>To be received:</strong> <span id="toBeReceived">107500 DZD</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Date & Time:</strong> <span id="transferDateTime">2024-09-06 14:30</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Status:</strong> <span id="status">Pending</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Completed at:</strong> <span id="completedAt">N/A</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-2">
+                      <strong>Payment Method:</strong> <span id="paymentMethod">PayPal</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Back of the rotating card -->
+              <div class="back back-background"
+                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/pattern.jpg); background-size: cover;">
+                <div class="card-body pt-7 text-center d-flex flex-column justify-content-center">
+                  <p class="text-sm-back text-white text-uppercase font-weight-normal">Receipt</p>
+                  <!-- Download icon -->
+                  <a href="../assets/img/ccp-reciept-4by5.jpg" download="receipt.jpg" class="download-icon">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <!-- Receipt image holder -->
+                  <div class="receipt-image-container">
+                    <img id="receiptImage" src="../assets/img/ccp-reciept-4by5.jpg" alt="Receipt Image" class="img-fluid">
+                  </div>
+                </div>
+                </di,lv>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+      // Select the rotating card container
+        const cardContainer = document.querySelector('.rotating-card-container');
+    
+        // Add a click event listener to toggle the manual-flip class
+        cardContainer.addEventListener('click', function () {
+          // Toggle the 'manual-flip' class
+          cardContainer.classList.toggle('manual-flip');
+        });
+      });
+    </script>
+
 
     <!-- MY JS -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

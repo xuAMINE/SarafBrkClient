@@ -123,6 +123,9 @@ function updateTransfers(responseData) {
     // Update the row content
     tr.innerHTML = `
       <td>
+        <p class="text-xs font-weight-bold text-dark-cus mb-0 text-center">${transfer.id}</p>
+      </td>
+      <td>
         <div class="d-flex px-2">
           <div>
             <img src="https://ui-avatars.com/api/?name=${transfer.recipientFullName.charAt(0)}&background=random&size=128" class="avatar avatar-xs rounded-circle me-2">

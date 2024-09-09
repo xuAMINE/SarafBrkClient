@@ -110,44 +110,48 @@ async function updateTransfers(responseData) {
     }
 
     const recipientTd = document.createElement('td');
+    let fullName = window.innerWidth <= 768 ? transfer.recipientFullName.split(' ')[0] : transfer.recipientFullName;
+    fullName = fullName === 'One' ? 'Guest' : fullName;
     recipientTd.innerHTML = `
           <div class="d-flex px-2">
               <div>
                   <img src="https://ui-avatars.com/api/?name=${transfer.recipientFullName.charAt(0)}&background=random&size=128" class="avatar avatar-xs rounded-circle me-2">
               </div>
               <div class="my-auto">
-                  <h6 class="mb-0 text-xs">${transfer.recipientFullName}</h6>
+                  <h6 class="mb-0 text-xs">${fullName}</h6>
               </div>
           </div>`;
     tr.appendChild(recipientTd);
 
     const amountTd = document.createElement('td');
-    amountTd.innerHTML = `<p class="text-xs font-weight-bold mb-0">$${transfer.amount}</p>`;
+    amountTd.innerHTML = `<p class="text-xs font-weight-bold mb-0 text-center">$${transfer.amount}</p>`;
     tr.appendChild(amountTd);
-
-    const amountReceivedTd = document.createElement('td');
-    amountReceivedTd.innerHTML = `<p class="text-xs font-weight-bold mb-0">${transfer.amountReceived} DZD</p>`;
-    tr.appendChild(amountReceivedTd);
 
     const statusTd = document.createElement('td');
     const statusClass = transfer.status === 'RECEIVED' ? 'bg-success' :
       transfer.status === 'PROCESSING' ? 'bg-info' :
         transfer.status === 'PENDING' ? 'bg-secondary' : 'bg-danger';
-    statusTd.innerHTML = `
-          <span class="badge badge-dot me-4">
-              <span class="badge rounded-pill ${statusClass}">${transfer.status}</span>
+        statusTd.classList.add('align-middle', 'text-center');
+        statusTd.innerHTML = `
+          <span class="badge badge-dot">
+            <span class="badge rounded-pill ${statusClass}">${transfer.status}</span>
           </span>`;
-    tr.appendChild(statusTd);
+        tr.appendChild(statusTd);
+
+    const amountReceivedTd = document.createElement('td');
+    amountReceivedTd.innerHTML = `<p class="text-xs font-weight-bold mb-0 text-center">${transfer.amountReceived} DZD</p>`;
+    tr.appendChild(amountReceivedTd);
 
     const dateTd = document.createElement('td');
     dateTd.classList.add('align-middle', 'text-center');
-    dateTd.innerHTML = `<div class="d-flex align-items-center"><p class="text-xs font-weight-bold mb-0">${new Date(transfer.transferDate).toLocaleDateString()}</p></div>`;
+    dateTd.innerHTML = `<div class="align-items-center"><p class="text-xs font-weight-bold mb-0 text-center">${new Date(transfer.transferDate).toLocaleDateString()}</p></div>`;
     tr.appendChild(dateTd);
 
     // Add receipt button column
     const receiptTd = document.createElement('td');
+    receiptTd.classList.add('align-middle', 'text-center');
     receiptTd.innerHTML = `
-            <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" 
+           <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" 
                 data-bs-toggle="modal" data-bs-target="#receiptModal" 
                 data-receipt="${transfer.receipt}" data-id="${transfer.id}">
                 <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
@@ -200,4 +204,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+function showFirstNameForMobile() {
+  if (window.innerWidth <= 768) { // Only run for screens 768px or less
+    document.querySelectorAll('#recipientFullName').forEach(function(nameElement) {
+      let fullName = nameElement.textContent.trim();
+      let firstName = fullName.split(' ')[0]; // Split at the first space
+      nameElement.textContent = firstName; // Display only the first name
+    });
+  }
+}
+
+// Call the function on page load and window resize
+window.addEventListener('load', showFirstNameForMobile);
+window.addEventListener('resize', showFirstNameForMobile);
 
