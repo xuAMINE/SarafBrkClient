@@ -1,5 +1,3 @@
-import { showSpinner, hideSpinner } from './spinner.js';
-
 document.addEventListener("DOMContentLoaded", function() {
   const rateElement = document.getElementById('rate-display');
   const duration = 1500; // Duration of the counting in milliseconds

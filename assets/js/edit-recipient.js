@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('lastName').value = decodeURIComponent(lastName);
   if (ccpNumber)
     document.getElementById('ccpNumber').textContent = decodeURIComponent(ccpNumber);
-  if (doContact)
-    document.getElementById('doContact').textContent = decodeURIComponent(doContact);
+  if (doContact !== null) 
+    document.getElementById('doContact').checked = doContact === 'true';
   if (phoneNumber)
     document.getElementById('phoneNumber').value = decodeURIComponent(phoneNumber.substring(1));
 });

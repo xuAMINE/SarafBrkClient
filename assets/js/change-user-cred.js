@@ -1,7 +1,8 @@
 import { showSpinner, hideSpinner } from './spinner.js';
 import apiClient from './apiClient.js';
 
-document.getElementById('check-session').addEventListener('click', async function() {
+// Check session
+document.getElementById('check-session').addEventListener('click', async function () {
   const token = localStorage.getItem('sb_token');
 
   if (token) {
@@ -28,20 +29,43 @@ document.getElementById('check-session').addEventListener('click', async functio
   }
 });
 
-// Load password change when clicked on other pages.
-window.onload = function() {
+// Load change Password modal when open from a diff page
+document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const showModal = urlParams.get('showChangePasswordModal');
+  const changePasswordModal = urlParams.get('showChangePasswordModal');
+  const updateNumberModal = urlParams.get('showUpdatePhoneNumberModal');
 
-  if (showModal) {
-      // Trigger the modal to open
-      const passwordModal = new bootstrap.Modal(document.getElementById('exampleModalSignup'));
-      passwordModal.show();
+  if (changePasswordModal) {
+    // Trigger the modal to open
+    const modalElement = document.getElementById('exampleModalSignup');
+    const passwordModal = new bootstrap.Modal(modalElement);
+
+    modalElement.addEventListener('shown.bs.modal', function () {
+      // Focus on the first input field after the modal is fully visible
+      document.getElementById('currentPassword').focus();
+
+      // Reset the form inputs to be empty
+      document.getElementById('currentPassword').value = '';
+      document.getElementById('newPassword').value = '';
+      document.getElementById('confirmNewPassword').value = '';
+    });
+
+    passwordModal.show();
   }
-};
 
+  if (updateNumberModal) {
+    // Trigger the modal to open
+    const modalElement = document.getElementById('PhoneNumberModal');
+    const updateNumberModal = new bootstrap.Modal(modalElement);
 
-document.getElementById('changePassword').addEventListener('click', async () => {
+    updateNumberModal.show();
+  }
+});
+
+// PATCH change-password
+document.getElementById('changePassword').addEventListener('click', async (event) => {
+  event.preventDefault();
+
   const currentPassword = document.getElementById('currentPassword').value;
   const newPassword = document.getElementById('newPassword').value;
   const confirmNewPassword = document.getElementById('confirmNewPassword').value;
@@ -59,8 +83,13 @@ document.getElementById('changePassword').addEventListener('click', async () => 
     hideSpinner();
 
     if (response.status === 200) {
-      alert('Password changed successfully');
-    } 
+      const changePasswordModalElement = document.getElementById('exampleModalSignup');
+      const changePasswordModal = bootstrap.Modal.getInstance(changePasswordModalElement);
+      changePasswordModal.hide();
+
+      const passwordChangedModal = new bootstrap.Modal(document.getElementById('passwordChangedModal'));
+      passwordChangedModal.show();
+    }
   } catch (error) {
     hideSpinner();
 
@@ -91,12 +120,12 @@ function displayErrorMessages(errorData) {
   }
 
   if (errorData.newPassword) {
-      newPasswordError.innerHTML = icon + errorData.newPassword;
+    newPasswordError.innerHTML = icon + errorData.newPassword;
   }
 }
 
-
-document.getElementById('logoutButton').addEventListener('click', async function() {
+// POST log out
+document.getElementById('logoutButton').addEventListener('click', async function () {
   const token = localStorage.getItem('sb_token');
 
   if (token) {
@@ -116,7 +145,7 @@ document.getElementById('logoutButton').addEventListener('click', async function
 });
 
 // Load Account Drop Down
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const accountButton = document.getElementById('accountDropDown');
 
   // Function to check session validity
@@ -144,4 +173,38 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   checkSession();
+});
+
+// Update Phone Number
+document.getElementById("addPhoneNumber").addEventListener("click", function () {
+  // Get the phone number from the input field
+  const phoneNumberInput = document.getElementById("phoneInput").value;
+
+  // Remove all spaces from the phone number input
+  const cleanedPhoneNumber = phoneNumberInput.replace(/\s+/g, '');
+  console.log(cleanedPhoneNumber);
+
+  // Encode the cleaned phone number for URL
+  const encodedPhoneNumber = encodeURIComponent(cleanedPhoneNumber);
+
+  // Define the endpoint URL with the encoded phone number
+  const url = `http://localhost:8088/api/v1/user/update-phone?phoneNumber=${encodedPhoneNumber}`;
+
+  // Send PUT request using axios (or apiClient)
+  apiClient.put(url)
+    .then(response => {
+      console.log("Phone number updated successfully:", response.data);
+
+      const changePhoneElemnt = document.getElementById('PhoneNumberModal');
+      const changePhoneModal = bootstrap.Modal.getInstance(changePhoneElemnt);
+      changePhoneModal.hide();
+
+      const phoneChangedModal = new bootstrap.Modal(document.getElementById('phoneChangedModal'));
+      phoneChangedModal.show();
+
+    })
+    .catch(error => {
+      console.error("Error updating phone number:", error);
+      // Optionally display an error message
+    });
 });

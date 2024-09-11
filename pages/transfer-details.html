@@ -270,7 +270,7 @@
                               </a>
                             </li>
                             <li class="nav-item list-group-item border-0 p-0">
-                              <a href="#" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                              <a href="home-page.html?showUpdatePhoneNumberModal=true" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                                 <span>Change Phone number</span>
                               </a>
                             </li>
@@ -290,7 +290,7 @@
                             <a href="home-page.html?showChangePasswordModal=true" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1 text-white">
                               <span>Change password</span>
                             </a>
-                            <a href="#" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1 text-white">
+                            <a href="home-page.html?showUpdatePhoneNumberModal=true" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1 text-white">
                               <span>Change number</span>
                             </a>
                             <hr class="horizontal dark">
@@ -329,10 +329,13 @@
                         <tr>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Recipient</th>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Amount</th>
-                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Status</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">
+                            <a id="sortIcon" href="#">Status</a> 
+                          </th>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Received</th>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Date</th>
                           <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center" style="vertical-align: middle; text-align: center;"><i class="fa-solid fa-receipt" style="color: #fb6565;"></i> Receipt</th>
+                          <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center"><i class="fa-solid fa-ban"></i></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -395,21 +398,6 @@
         </section>
       </div>
     </header>
-    
-    <!-- RECEIPT MODAL
-    <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-gradient-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-white" id="receiptModalLabel">Receipt</h5>
-            <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <img id="receiptImage" src="" alt="Receipt Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>  -->
 
     <!-- RECEIPT MODAL -->
     <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
@@ -464,7 +452,6 @@
                     <img id="receiptImage" src="../assets/img/ccp-reciept-4by5.jpg" alt="Receipt Image" class="img-fluid">
                   </div>
                 </div>
-                </di,lv>
               </div>
             </div>
           </div>
@@ -472,19 +459,45 @@
       </div>
     </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-      // Select the rotating card container
-        const cardContainer = document.querySelector('.rotating-card-container');
-    
-        // Add a click event listener to toggle the manual-flip class
-        cardContainer.addEventListener('click', function () {
-          // Toggle the 'manual-flip' class
-          cardContainer.classList.toggle('manual-flip');
-        });
-      });
-    </script>
+     <!-- STATUS CONFIRMATION MODAL -->
+     <div class="modal fade" id="cancelTransferModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dark modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-gradient-danger">
+          <div class="modal-body">
+            <div class="py-3 text-center text-white">
+              <div class="modal-check">
+                <i class="fa-solid fa-circle-exclamation fa-2xl"></i>
+              </div>
+              <h5 class="heading mt-4 text-white">Please confirm you want to <strong>CANCEL</strong></h5>
+              <p id="cancel-error"></p>
+            </div>
+          </div>
+          <div class="modal-footer-email justify-content-center border-0">
+            <button id="confirmCancelTransfer" type="button" class="btn btn-white mt-n4">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- ADD PHONE NUMBER MODAL -->
+  <div class="modal fade" id="addPhoneNumberModal" tabindex="-1" aria-labelledby="addPhoneNumberModal" aria-hidden="true">
+    <div class="modal-dialog modal-dark modal-dialog-centered modal-" role="document">
+      <div class="modal-content bg-gradient-faded-secondary">
+        <div class="modal-body">
+          <div class="py-3 text-center text-white">
+            <div class="modal-check">
+              <i class="fa-solid fa-phone-volume fa-bounce text-3xl" style="color: #ffffff;"></i>
+            </div>
+            <h5 class="heading mt-4 text-white">Please add your phone number to make it easier for us to contact you.</h5>
+          </div>
+        </div>
+        <div class="modal-footer-email justify-content-center border-0">
+          <a id="confirmChangeStatus" href="home-page.html?showUpdatePhoneNumberModal=true" class="btn btn-white mt-n4">YES?</a>
+        </div>
+        <a type="button" class="btn text-white text-xl-end m-xxl-0" id="dontShowAgainBtn">Don't show anymore</a>
+      </div>
+    </div>
+  </div>
 
     <!-- MY JS -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

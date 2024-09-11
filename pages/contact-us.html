@@ -1,15 +1,3 @@
-<!--
-=========================================================
-* Material Kit 2 - v3.0.4
-=========================================================
-
-* Product Page:  https://www.creative-tim.com/product/material-kit 
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
@@ -22,7 +10,8 @@
     Contact SB
   </title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -32,6 +21,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
+  <link id="pagestyle" href="../assets/scss/output.css" rel="stylesheet" />
 </head>
 
 <body class="contact-us">
@@ -39,30 +29,293 @@
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
-        <nav class="navbar navbar-expand-lg  blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <nav
+          class="navbar navbar-expand-lg navbar navbar-expand-lg border-radius-lg top-0 z-index-3 shadow-none navbar-transparent bg-gradient-dark position-absolute mt-4 py-2 start-0 end-0 mx-4 my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3" href="home-page.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
-              SARAF BRK
+            <a class="navbar-brand font-weight-bolder ms-sm-3  d-none d-md-block" href="home-page.html" rel="tooltip"
+              title="Designed and Coded by Creative Tim" data-placement="bottom">
+              <img src="../assets/img/sb-logo-off-white.png" alt="SARAF BRK" style="height: 30px;">
             </a>
-            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand font-weight-bolder ms-sm-3  d-block d-md-none" href="home-page.html" rel="tooltip"
+              title="Designed and Coded by Creative Tim" data-placement="bottom">
+              <img src="../assets/img/sb-logo-off-white.png" alt="SARAF BRK" style="height: 35px;">
+            </a>
+            <a href="send-guest.html" class="btn btn-sm  bg-gradient-primary  mb-0 ms-auto d-lg-none d-block">SEND</a>
+            <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
             </button>
-            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-auto">   
-                <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2" href="https://twitter.com/amine_zirek" target="_blank">
-                    <!-- <i class="fa fa-github me-1"></i> -->
-                    <i class="fab fa-twitter text-lg opacity-8"></i>
-                    <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Star us on Github">Twitter</p>
+            <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
+              <ul class="navbar-nav navbar-nav-hover ms-auto">
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+                    Socials
+                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
+                      class="arrow ms-2 d-lg-block d-none">
+                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
+                      class="arrow ms-1 d-lg-none d-block ms-auto">
                   </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3 bg-gradient-dark"
+                    aria-labelledby="dropdownMenuPages">
+                    <div class="row d-none d-lg-block">
+                      <div class="col-12 px-4 py-2">
+                        <div class="row">
+                          <div class="col-4 position-relative">
+                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                              Facebook
+                            </div>
+                            <a href="https://www.facebook.com/muhammudz/"
+                              class="dropdown-item border-radius-md text-white">
+                              <span><i class="fa-brands fa-facebook"></i> /sarafBRK</span>
+                            </a>
+                            <div
+                              class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
+                              Instagram
+                            </div>
+                            <a href="../pages/about-us.html" class="dropdown-item border-radius-md text-white">
+                              <span><i class="fa-brands fa-instagram"></i> /soon</span>
+                            </a>
+                            <hr class="vertical dark">
+                          </div>
+                          <div class="col-4 position-relative">
+                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                              Support
+                            </div>
+                            <a href="../pages/contact-us.html" class="dropdown-item border-radius-md text-white">
+                              <span>Contact Us</span>
+                            </a>
+                            <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md text-white"
+                              target="_blank">
+                              <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
+                            </a>
+                            <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md text-white"
+                              target="_blank">
+                              <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
+                            </a>
+                            <hr class="vertical dark">
+                          </div>
+                          <div class="col-4">
+                            <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+                              Apps
+                            </div>
+                            <a href="#" class="dropdown-item border-radius-md text-white">
+                              <span>Mobile App (soon)</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-lg-none">
+                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0">
+                        Facebook
+                      </div>
+                      <a href="https://www.facebook.com/muhammudz/" class="dropdown-item border-radius-md text-white">
+                        <span><i class="fa-brands fa-facebook"></i> /sarafBRK</span>
+                      </a>
+                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
+                        Instagram
+                      </div>
+                      <a href="#" class="dropdown-item border-radius-md text-white">
+                        <span><i class="fa-brands fa-instagram"></i> /soon</span>
+                      </a>
+                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3">
+                        Support
+                      </div>
+                      <a href="contact-us.html" class="dropdown-item border-radius-md text-white">
+                        Contact Us
+                      </a>
+                      <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md text-white"
+                        target="_blank">
+                        <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
+                      </a>
+                      <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md text-white"
+                        target="_blank">
+                        <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
+                      </a>
+                      <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center mt-3 px-0">
+                        Apps
+                      </div>
+                      <a href="#" class="dropdown-item border-radius-md text-white">
+                        Mobile App (soon)
+                      </a>
+                    </div>
+                  </div>
                 </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="home-page.html" class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">HOME</a>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                    id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons opacity-6 me-2 text-md">view_day</i>
+                    Sections
+                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
+                      class="arrow ms-2 d-lg-block d-none">
+                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
+                      class="arrow ms-1 d-lg-none d-block ms-auto">
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md dropdown-md-responsive p-3 border-radius-lg mt-0 mt-lg-3 bg-gradient-dark"
+                    aria-labelledby="dropdownMenuBlocks">
+                    <div class="d-none d-lg-block">
+                      <ul class="list-group">
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="recipients.html">
+                            <div class="d-flex">
+                              <div class="w-100 d-flex align-items-center justify-content-between">
+                                <div>
+                                  <h6
+                                    class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
+                                    Recipients</h6>
+                                </div>
+                                <img src="../assets/img/down-arrow.svg" alt="down-arrow" class="arrow">
+                              </div>
+                            </div>
+                          </a>
+                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3 bg-gradient-dark">
+                            <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="recipients.html">
+                              My Recipients
+                            </a>
+                            <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="add-reciepient.html">
+                              Add recipient
+                            </a>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0">
+                          <a class="dropdown-item py-2 ps-3 border-radius-md" href="transfer-details.html">
+                            <div class="d-flex">
+                              <div class="w-100 d-flex align-items-center justify-content-between">
+                                <div>
+                                  <h6
+                                    class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
+                                    Transfers</h6>
+                                </div>
+                                <img src="../assets/img/down-arrow.svg" alt="down-arrow" class="arrow">
+                              </div>
+                            </div>
+                          </a>
+                          <div class="dropdown-menu mt-0 py-3 px-2 mt-3 bg-gradient-dark">
+                            <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="transfer-details.html">
+                              My transfers
+                            </a>
+                            <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="send-guest.html">
+                              Make a transfer
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="row d-lg-none">
+                      <div class="col-md-12">
+                        <div class="d-flex mb-2">
+                          <div class="w-100 d-flex align-items-center justify-content-between">
+                            <div>
+                              <h6
+                                class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
+                                Recipients</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="recipients.html">
+                          My Recipients
+                        </a>
+                        <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="add-reciepient.html">
+                          Add recipient
+                        </a>
+                        <div class="d-flex mb-2 mt-3">
+                          <div class="w-100 d-flex align-items-center justify-content-between">
+                            <div>
+                              <h6
+                                class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
+                                Transfers</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="transfer-details.html">
+                          My transfers
+                        </a>
+                        <a class="dropdown-item ps-3 border-radius-md mb-1 text-white" href="send-guest.html">
+                          Make a transfer
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li id="accountDropDown" class="nav-item dropdown dropdown-hover mx-2">
+                  <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                    id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons opacity-6 me-2 text-md">contacts</i>
+                    Account
+                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
+                      class="arrow ms-2 d-lg-block d-none">
+                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
+                      class="arrow ms-1 d-lg-none d-block ms-auto">
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-animation dropdown-md border-radius-xl p-3 mt-0 mt-lg-3 bg-gradient-dark"
+                    aria-labelledby="dropdownMenuAccount">
+                    <div class="d-none d-lg-flex">
+                      <ul class="list-group w-100">
+                        <li class="nav-item list-group-item border-0 p-0">
+                          <a href="home-page.html?showChangePasswordModal=true"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                            <span>Change password</span>
+                          </a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                          <a href="home-page.html?showUpdatePhoneNumberModal=true"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                            <span>Change Phone number</span>
+                          </a>
+                        </li>
+                        <li class="nav-item list-group-item border-0 p-0">
+                          <a id="logoutButton" href="#"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                            <span style="color: red;"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i>
+                              Log out</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="row d-lg-none">
+                      <div class="col-12 d-flex justify-content-center flex-column">
+                        <h6
+                          class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center mt-3 px-0">
+                          Security
+                        </h6>
+                        <a href="home-page.html?showChangePasswordModal=true"
+                          class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1 text-white">
+                          <span>Change password</span>
+                        </a>
+                        <a href="home-page.html?showUpdatePhoneNumberModal=true"
+                          class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1 text-white">
+                          <span>Change number</span>
+                        </a>
+                        <hr class="horizontal dark">
+                        <a id="logoutButton" href="#"
+                          class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                          <span style="color: red;"><i class="fa-solid fa-right-from-bracket" style="color: red;"></i>
+                            Log out</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="navbar-nav d-lg-block d-none">
+                <li class="nav-item">
+                  <a href="send-guest.html" class="btn btn-sm bg-gradient-primary mb-0">send</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-        <!-- End Navbar -->
+
       </div>
     </div>
   </div>
@@ -71,8 +324,11 @@
     <div class="page-header min-vh-100">
       <div class="container">
         <div class="row">
-          <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/great-mosque-crop.jpg'); background-size: cover;" loading="lazy"></div>
+          <div
+            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+            <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
+              style="background-image: url('../assets/img/great-mosque-crop.jpg'); background-size: cover;"
+              loading="lazy"></div>
           </div>
           <div class="col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
             <div class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
@@ -83,7 +339,7 @@
               </div>
               <div class="card-body">
                 <p class="pb-3">
-                  For further questions, including partnership opportunities, please email hello@creative-tim.com
+                  For further questions, including partnership opportunities, please email sarafbrk@gmail.com
                   or contact using our contact form.
                 </p>
                 <form id="contact-form" method="post" autocomplete="off">
@@ -92,22 +348,25 @@
                       <div class="col-md-6">
                         <div class="input-group input-group-static mb-4">
                           <label>Full Name</label>
-                          <input type="email" class="form-control" placeholder="Full Name">
+                          <input type="text" name="name" class="form-control" placeholder="Mohamed Amine" required>
                         </div>
                       </div>
                       <div class="col-md-6 ps-md-2">
                         <div class="input-group input-group-static mb-4">
                           <label>Email</label>
-                          <input type="email" class="form-control" placeholder="hello@creative-tim.com">
+                          <input type="email" name="email" class="form-control" placeholder="sarafbrk@gmail.com"
+                            required>
                         </div>
                       </div>
                     </div>
                     <div class="form-group mb-0 mt-md-0 mt-4">
                       <div class="input-group input-group-static mb-4">
                         <label>How can we help you?</label>
-                        <textarea name="message" class="form-control" id="message" rows="6" placeholder="Describe your problem in at least 250 characters"></textarea>
+                        <textarea name="message" class="form-control" id="message" rows="6"
+                          placeholder="Describe your problem" required></textarea>
                       </div>
                     </div>
+                    <p id="confirmingContact" class="success-message-old"></p>
                     <div class="row">
                       <div class="col-md-12 text-center">
                         <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">Send Message</button>
@@ -122,53 +381,21 @@
       </div>
     </div>
   </section>
-  <!-- -------- END HEADER 8 w/ card over right bg image ------- -->
-  <!-- <footer class="footer pt-5 mt-5">
-    <!-- <div class="container">
-      <div class=" row ">
-        <div class="col-md-3 ms-auto">
-          <div>
-            <a href="https://www.creative-tim.com/product/material-kit">
-              <img src="../assets/img/logo-ct-dark.png" class="mb-3 footer-logo" alt="main_logo">
-            </a>
-            <h6 class="font-weight-bolder col-auto">Material Kit 2</h6>
-          </div>
-          <div>
-            <ul class="d-flex flex-row ms-n3 nav">
-              <li class="nav-item">
-                <a class="nav-link pe-1" href="https://www.facebook.com/CreativeTim" target="_blank">
-                  <i class="fab fa-facebook text-lg opacity-8"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pe-1" href="https://twitter.com/creativetim" target="_blank">
-                  <i class="fab fa-twitter text-lg opacity-8"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pe-1" href="https://dribbble.com/creativetim" target="_blank">
-                  <i class="fab fa-dribbble text-lg opacity-8"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pe-1" href="https://github.com/creativetimofficial" target="_blank">
-                  <i class="fab fa-github text-lg opacity-8"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link pe-1" href="https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w" target="_blank">
-                  <i class="fab fa-youtube text-lg opacity-8"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </footer> -->
-  <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="loading-sp">
+    <div class="loader">
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__ball"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="../assets/js/contact.js"></script>
   <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
 </body>
 

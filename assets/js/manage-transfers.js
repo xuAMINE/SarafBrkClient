@@ -1,90 +1,6 @@
 import { showSpinner } from './spinner.js';
 import apiClient from './apiClient.js';
 
-document.addEventListener('DOMContentLoaded', async function() {
-  try {
-    const initialData = await fetchAdminTransfers(0);
-    const totalPages = initialData.totalPages;
-
-    const paginationContainer = document.getElementById('pagination-container');
-
-    const maxVisiblePages = 6;
-
-    // Initially generate pagination items and render the first page
-    generatePaginationItems(totalPages, 0);
-
-    function generatePaginationItems(totalPages, currentPage) {
-      paginationContainer.innerHTML = '';
-
-      // Add "Previous" button
-      const prevItem = document.createElement('li');
-      prevItem.classList.add('page-item');
-      prevItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>`;
-      prevItem.addEventListener('click', function(event) {
-        event.preventDefault();
-        if (currentPage > 0) {
-          const newPage = currentPage - 1;
-          updatePage(newPage);
-        }
-      });
-      paginationContainer.appendChild(prevItem);
-
-      // Determine the range of pages to display
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2) + 1);
-      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-      // Adjust start and end pages if they don't fill maxVisiblePages
-      if (endPage - startPage < maxVisiblePages - 1) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
-
-      // Add page number buttons
-      for (let i = startPage; i <= endPage; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.classList.add('page-item');
-        if (i === currentPage + 1) {
-          pageItem.classList.add('active');
-        }
-        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-        pageItem.addEventListener('click', function(event) {
-          event.preventDefault();
-          updatePage(i - 1);
-        });
-        paginationContainer.appendChild(pageItem);
-      }
-
-      // Add "Next" button
-      const nextItem = document.createElement('li');
-      nextItem.classList.add('page-item');
-      nextItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>`;
-      nextItem.addEventListener('click', function(event) {
-        event.preventDefault();
-        if (currentPage < totalPages - 1) {
-          const newPage = currentPage + 1;
-          updatePage(newPage);
-        }
-      });
-      paginationContainer.appendChild(nextItem);
-    }
-
-    async function updatePage(page) {
-      // Update the pagination controls to reflect the new current page
-      generatePaginationItems(totalPages, page);
-      const responseData = await fetchAdminTransfers(page);
-      updateTransfers(responseData);
-    }
-
-  } catch (error) {
-    console.error('Error fetching initial data:', error);
-  }
-});
-
 async function fetchAdminTransfers(page = 0, size = 18) {
   try {
     // Use the apiClient to make the request
@@ -104,6 +20,21 @@ async function fetchAdminTransfers(page = 0, size = 18) {
   }
 }
 
+async function fetchPendingTransfers(page = 0, size = 18) {
+  try {
+    const response = await apiClient.get(`/api/v1/admin/transfers/pending`, {
+      params: {
+        page: page,
+        size: size
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pending transfers:', error);
+    throw new Error('Network response was not ok ' + (error.response?.statusText || error.message));
+  }
+}
+
 // MAP TRANSFERS
 function updateTransfers(responseData) {
   const transfers = responseData.content; // Extract the list of transfers
@@ -120,24 +51,28 @@ function updateTransfers(responseData) {
       tbody.appendChild(tr);
     }
 
+    let transferId = transfer.paymentMethod === 'ZELLE' ? 'SRZ' + transfer.id
+      : transfer.paymentMethod === 'VENMO' ? 'SRV' + transfer.id
+        : 'SRP' + transfer.id;
+
     // Update the row content
     tr.innerHTML = `
       <td>
-        <p class="text-xs font-weight-bold text-dark-cus mb-0 text-center">${transfer.id}</p>
+        <p class="text-xs font-weight-bold text-dark-cus mb-0 text-center">${transferId}</p>
       </td>
       <td>
-        <div class="d-flex px-2">
+        <div class="d-flex">
           <div>
             <img src="https://ui-avatars.com/api/?name=${transfer.recipientFullName.charAt(0)}&background=random&size=128" class="avatar avatar-xs rounded-circle me-2">
           </div>
-          <div class="my-auto">
+          <div class="my-auto text-center">
             <h6 class="mb-0 text-xs">${transfer.recipientFullName}</h6>
           </div>
         </div>
       </td>
-      <td><p class="text-xs font-weight-bold mb-0">$${transfer.amount}</p></td>
-      <td><p class="text-xs font-weight-bold mb-0">${transfer.amountReceived} DZD</p></td>
-      <td>
+      <td><p class="text-xs font-weight-bold mb-0 text-center">$${transfer.amount}</p></td>
+      <td><p class="text-xs font-weight-bold mb-0 text-center">${transfer.amountReceived} DZD</p></td>
+      <td class="text-center">
         <span class="badge badge-dot me-0">
           <span class="badge rounded-pill ${getStatusClass(transfer.status)}">${transfer.status}</span>
         </span>
@@ -153,7 +88,7 @@ function updateTransfers(responseData) {
           </ul>
         </div>
       </td>
-      <td>
+      <td class="text-center">
         <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="${transfer.receipt}" data-id="${transfer.id}">
           <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
         </button>
@@ -162,10 +97,15 @@ function updateTransfers(responseData) {
         </button>
         <input class="form-check-label receipt-input" type="file" accept="image/*" style="display: none;">
       </td>
-      <td>
-        <button type="button" class="custom-button btn bg-gradient-secondary btn-xs m-n1" data-id="${transfer.id}" style="margin-left: 0.6rem !important;">
+      <td class="text-center">
+        <button type="button" class="custom-button btn bg-gradient-secondary btn-xs m-n1" data-id="${transfer.id}">
           <i class="fa-solid fa-paper-plane" style="font-size: 1rem; padding: 0 1rem; vertical-align: middle;"></i>
         </button>
+      </td>
+      <td class="text-center" style="padding: 0; margin: 0">
+        <a href="#" class="phone-action" transfer-id="${transfer.id}" style="font-size: 1.9rem;">
+          <i class="fa-solid fa-square-phone-flip"></i>
+        </a>
       </td>`;
 
     // Add event listeners for dropdown items
@@ -177,9 +117,9 @@ function updateTransfers(responseData) {
         // Show confirmation modal
         const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
         document.getElementById('newStatus').textContent = selectedStatus;
-        document.getElementById('confirmChangeStatus').onclick = function() {
+        document.getElementById('confirmChangeStatus').onclick = function () {
           // Make the request to change the status using Axios
-          apiClient.patch('/api/v1/admin/update-status', 
+          apiClient.patch('/api/v1/admin/update-status',
             { id: transfer.id, status: selectedStatus },
             {
               headers: {
@@ -190,14 +130,14 @@ function updateTransfers(responseData) {
             .then(response => {
               console.log('Status updated successfully', response.data);
               // Update the specific row with the new status
-              const badgeWrapper = tr.querySelector('.badge-dot');
+              const badgeWrapper = document.querySelector(`#transfer-row-${transfer.id} .badge-dot`);
               if (badgeWrapper) {
                 const badge = badgeWrapper.querySelector('.badge');
                 badge.className = `badge rounded-pill ${getStatusClass(selectedStatus)}`;
                 badge.textContent = selectedStatus;
               }
               const dropdownToggle = tr.querySelector('.dropdown-toggle');
-              if (dropdownToggle) 
+              if (dropdownToggle)
                 dropdownToggle.className = `btn ${getStatusClass(selectedStatus)} dropdown-toggle btn-xs m-n1 mx-n1`;
             })
             .catch(error => {
@@ -210,9 +150,36 @@ function updateTransfers(responseData) {
         confirmationModal.show();
       });
     });
+
+    // Attach click event listener to the <a> tag
+    const phoneAction = tr.querySelector('.phone-action');
+    phoneAction.addEventListener('click', function (event) {
+      event.preventDefault();  // Prevent the default action of the link
+      const transferId = this.getAttribute('transfer-id');
+
+      // Make the API request using apiClient
+      apiClient.get(`/api/v1/transfer/user-phone/${transferId}`)
+        .then(response => {
+          document.getElementById('userPhoneNumber').innerText = response.data;
+
+          const phoneNumberModal = new bootstrap.Modal(document.getElementById('phoneNumberModal'));
+          phoneNumberModal.show();
+
+          console.log(`Transfer ID: ${transferId}`, response.data); // Log the results
+        })
+        .catch(error => {
+          if (error.status === 404) {
+            document.getElementById('userPhoneNumber').innerText = 'معندوش تيليفون حبيبنا';
+            const phoneNumberModal = new bootstrap.Modal(document.getElementById('phoneNumberModal'));
+            phoneNumberModal.show();
+          }
+          console.error('Request failed', error);
+        });
+    });
+
   });
 
-  // Helper function to get status class
+  // get status class
   function getStatusClass(status) {
     switch (status) {
       case 'RECEIVED': return 'bg-success';
@@ -308,16 +275,16 @@ function uploadStoredFiles(transferId) {
         'Content-Type': 'multipart/form-data'
       }
     })
-    .then(response => {
-      console.log('Receipts uploaded successfully', response.data);
-      // Update UI or notify user of success
-      const modal = new bootstrap.Modal(document.getElementById('receiptConfirmation'));
-      modal.show();
-      fileStorage.delete(transferId); // Clear files after successful upload
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(response => {
+        console.log('Receipts uploaded successfully', response.data);
+        // Update UI or notify user of success
+        const modal = new bootstrap.Modal(document.getElementById('receiptConfirmation'));
+        modal.show();
+        fileStorage.delete(transferId); // Clear files after successful upload
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   } else {
     console.log(fileStorage);
     alert('No files selected for this transfer.');
@@ -338,21 +305,110 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!receiptName || receiptName === 'null') {
         modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg";
       } else {
-        
+
         // Fetch the receipt URL using Axios
         apiClient.get(`/api/v1/transfer/receipt/${transferId}`, {
           headers: {
             'Authorization': `Bearer ${token}` // Include the token in the request header
           }
         })
-        .then(response => {
-          modalImage.src = response.data;
-        })
-        .catch(error => {
-          console.error("Error fetching receipt:", error);
-          modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg"; // Default image if there's an error
-        });
+          .then(response => {
+            modalImage.src = response.data;
+          })
+          .catch(error => {
+            console.error("Error fetching receipt:", error);
+            modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg"; // Default image if there's an error
+          });
       }
     }
   });
+});
+
+// Pagination controlls
+document.addEventListener('DOMContentLoaded', async function () {
+  try {
+    let isPendingFilterActive = false;  // Flag to toggle between all and pending transfers
+    const initialData = await fetchAdminTransfers(0);
+    const totalPages = initialData.totalPages;
+
+    const paginationContainer = document.getElementById('pagination-container');
+    const pendingFilterButton = document.getElementById('sortIcon');  // Assuming there's a button in your UI
+
+    const maxVisiblePages = 6;
+
+    // Handle pending filter button click
+    pendingFilterButton.addEventListener('click', async function () {
+      console.log(isPendingFilterActive);
+      isPendingFilterActive = !isPendingFilterActive;  // Toggle filter
+      const responseData = await (isPendingFilterActive ? fetchPendingTransfers(0) : fetchAdminTransfers(0));
+      updateTransfers(responseData);
+    });
+
+    // Generate pagination items and render the first page
+    generatePaginationItems(totalPages, 0);
+
+    function generatePaginationItems(totalPages, currentPage) {
+      paginationContainer.innerHTML = '';
+
+      const prevItem = document.createElement('li');
+      prevItem.classList.add('page-item');
+      prevItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>`;
+      prevItem.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (currentPage > 0) {
+          const newPage = currentPage - 1;
+          updatePage(newPage);
+        }
+      });
+      paginationContainer.appendChild(prevItem);
+
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2) + 1);
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+      if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+        if (i === currentPage + 1) {
+          pageItem.classList.add('active');
+        }
+        pageItem.innerHTML = `<a class="page-link text-dark text-bold" href="#">${i}</a>`;
+        pageItem.addEventListener('click', function (event) {
+          event.preventDefault();
+          updatePage(i - 1);
+        });
+        paginationContainer.appendChild(pageItem);
+      }
+
+      const nextItem = document.createElement('li');
+      nextItem.classList.add('page-item');
+      nextItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>`;
+      nextItem.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (currentPage < totalPages - 1) {
+          const newPage = currentPage + 1;
+          updatePage(newPage);
+        }
+      });
+      paginationContainer.appendChild(nextItem);
+    }
+
+    async function updatePage(page) {
+      generatePaginationItems(totalPages, page);
+      const responseData = await (isPendingFilterActive ? fetchPendingTransfers(page) : fetchAdminTransfers(page));
+      updateTransfers(responseData);
+    }
+
+  } catch (error) {
+    console.error('Error fetching initial data:', error);
+  }
 });

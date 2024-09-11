@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img/sb-logo-off-white.png">
-      <title>
-        Transactions
-      </title>
-      <!-- Nucleo Icons -->
-      <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-      <!-- Font Awesome Icons -->
-      <script src="https://kit.fontawesome.com/7898bcf363.js" crossorigin="anonymous"></script>
-      <!-- Material Icons -->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-      <!-- CSS Files -->
-      <link id="pagestyle" href="../assets/css/material-kit.css" rel="stylesheet" />
-      <!-- Nepcha Analytics (nepcha.com) -->
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
 
-  <body class="hidden-content">
-    <style>
-      input[type="file"] {
-        display: none;
-      }
-    </style>
-    <div class="loading-screen" id="loading-screen">
-      <img src="../assets/img/sb-logo.png" alt="Loading...">
-    </div>
-      <!-- -------- START HEADER 1 w/ text and image on right ------- -->
-    <header>
-      <div class="container position-sticky z-index-sticky top-0">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/sb-logo-off-white.png">
+  <title>
+    Manage Transactions
+  </title>
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/7898bcf363.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/material-kit.css" rel="stylesheet" />
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="hidden-content">
+
+  <style>
+    input[type="file"] {
+      display: none;
+    }
+
+    table tr th:nth-child(5) {
+      cursor: pointer;
+    }
+
+    table tr th:nth-child(5):hover {
+      color: #4606bd !important;
+      /*rgb(69, 8, 211)n the red on hover */
+    }
+  </style>
+
+  <div class="loading-screen" id="loading-screen">
+    <img src="../assets/img/sb-logo.png" alt="Loading...">
+  </div>
+  <!-- -------- START HEADER 1 w/ text and image on right ------- -->
+  <header>
+    <div class="container position-sticky z-index-sticky top-0">
       <div class="row">
         <div class="col-12">
           <nav
             class="navbar navbar-expand-lg navbar navbar-expand-lg border-radius-lg top-0 z-index-3 shadow-none navbar-transparent position-absolute mt-4 py-2 start-0 end-0 mx-4 my-3 py-2 start-0 end-0 mx-4">
             <div class="container-fluid px-0">
-              <a class="navbar-brand font-weight-bolder ms-sm-3  d-none d-md-block"
-                href="home-page.html" rel="tooltip"
+              <a class="navbar-brand font-weight-bolder ms-sm-3  d-none d-md-block" href="home-page.html" rel="tooltip"
                 title="Designed and Coded by Creative Tim" data-placement="bottom">
                 <img src="../assets/img/logo-offwhite-no-box.png" alt="SARAF BRK" style="height: 40px;">
               </a>
-              <a class="navbar-brand font-weight-bolder ms-sm-3  d-block d-md-none"
-                href="home-page.html" rel="tooltip"
+              <a class="navbar-brand font-weight-bolder ms-sm-3  d-block d-md-none" href="home-page.html" rel="tooltip"
                 title="Designed and Coded by Creative Tim" data-placement="bottom">
                 <img src="../assets/img/logo-off-white.png" alt="SARAF BRK" style="height: 35px;">
               </a>
@@ -62,8 +72,8 @@
               <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                   <li class="nav-item dropdown dropdown-hover mx-2">
-                    <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages"
-                      data-bs-toggle="dropdown" aria-expanded="false">
+                    <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                      id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
                       Socials
                       <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
@@ -71,7 +81,8 @@
                       <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
                         class="arrow ms-1 d-lg-none d-block ms-auto">
                     </a>
-                    <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3"
+                    <div
+                      class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3"
                       aria-labelledby="dropdownMenuPages">
                       <div class="row d-none d-lg-block">
                         <div class="col-12 px-4 py-2">
@@ -99,10 +110,12 @@
                               <a href="../pages/contact-us.html" class="dropdown-item border-radius-md">
                                 <span>Contact Us</span>
                               </a>
-                              <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md" target="_blank">
+                              <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md"
+                                target="_blank">
                                 <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
                               </a>
-                              <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md" target="_blank">
+                              <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md"
+                                target="_blank">
                                 <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
                               </a>
                               <hr class="vertical dark">
@@ -140,7 +153,8 @@
                         <a href="https://wa.me/19254968027" class="dropdown-item border-radius-md" target="_blank">
                           <span><i class="fa-brands fa-square-whatsapp"></i> +1 925-496-8027</span>
                         </a>
-                        <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md" target="_blank">
+                        <a href="viber://chat?number=19254968027" class="dropdown-item border-radius-md"
+                          target="_blank">
                           <span><i class="fa-brands fa-viber"></i> +1 925-496-8027</span>
                         </a>
                         <div class="dropdown-header text-dark font-weight-bolder d-flex align-items-center mt-3 px-0">
@@ -181,12 +195,10 @@
                               </div>
                             </a>
                             <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                              <a class="dropdown-item ps-3 border-radius-md mb-1"
-                                href="recipients.html">
+                              <a class="dropdown-item ps-3 border-radius-md mb-1" href="recipients.html">
                                 My Recipients
                               </a>
-                              <a class="dropdown-item ps-3 border-radius-md mb-1"
-                                href="add-reciepient.html">
+                              <a class="dropdown-item ps-3 border-radius-md mb-1" href="add-reciepient.html">
                                 Add recipient
                               </a>
                             </div>
@@ -205,12 +217,10 @@
                               </div>
                             </a>
                             <div class="dropdown-menu mt-0 py-3 px-2 mt-3">
-                              <a class="dropdown-item ps-3 border-radius-md mb-1"
-                                href="transfer-details.html">
+                              <a class="dropdown-item ps-3 border-radius-md mb-1" href="transfer-details.html">
                                 My transfers
                               </a>
-                              <a class="dropdown-item ps-3 border-radius-md mb-1"
-                                href="send-guest.html">
+                              <a class="dropdown-item ps-3 border-radius-md mb-1" href="send-guest.html">
                                 Make a transfer
                               </a>
                             </div>
@@ -228,12 +238,10 @@
                               </div>
                             </div>
                           </div>
-                          <a class="dropdown-item ps-3 border-radius-md mb-1"
-                            href="recipients.html">
+                          <a class="dropdown-item ps-3 border-radius-md mb-1" href="recipients.html">
                             My Recipients
                           </a>
-                          <a class="dropdown-item ps-3 border-radius-md mb-1"
-                            href="add-reciepient.html">
+                          <a class="dropdown-item ps-3 border-radius-md mb-1" href="add-reciepient.html">
                             Add recipient
                           </a>
                           <div class="d-flex mb-2 mt-3">
@@ -245,12 +253,10 @@
                               </div>
                             </div>
                           </div>
-                          <a class="dropdown-item ps-3 border-radius-md mb-1"
-                            href="transfer-details.html">
+                          <a class="dropdown-item ps-3 border-radius-md mb-1" href="transfer-details.html">
                             My transfers
                           </a>
-                          <a class="dropdown-item ps-3 border-radius-md mb-1"
-                            href="send-guest.html">
+                          <a class="dropdown-item ps-3 border-radius-md mb-1" href="send-guest.html">
                             Make a transfer
                           </a>
                         </div>
@@ -272,12 +278,14 @@
                       <div class="d-none d-lg-flex">
                         <ul class="list-group w-100">
                           <li class="nav-item list-group-item border-0 p-0">
-                            <a href="home-page.html?showChangePasswordModal=true" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                            <a href="home-page.html?showChangePasswordModal=true"
+                              class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                               <span>Change password</span>
                             </a>
                           </li>
                           <li class="nav-item list-group-item border-0 p-0">
-                            <a href="#" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                            <a href="home-page.html?showUpdatePhoneNumberModal=true"
+                              class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                               <span>Change Phone number</span>
                             </a>
                           </li>
@@ -291,17 +299,21 @@
                       </div>
                       <div class="row d-lg-none">
                         <div class="col-12 d-flex justify-content-center flex-column">
-                          <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center mt-3 px-0">
+                          <h6
+                            class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center mt-3 px-0">
                             Security
                           </h6>
-                          <a href="home-page.html?showChangePasswordModal=true" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                          <a href="home-page.html?showChangePasswordModal=true"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                             <span>Change password</span>
                           </a>
-                          <a href="#" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                          <a href="home-page.html?showUpdatePhoneNumberModal=true"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                             <span>Change number</span>
                           </a>
                           <hr class="horizontal dark">
-                          <a id="logoutButton" href="#" class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
+                          <a id="logoutButton" href="#"
+                            class="dropdown-item border-radius-md text-dark ps-3 d-flex align-items-center mb-1">
                             <span style="color: red;"><i class="fa-solid fa-right-from-bracket"></i> Log out</span>
                           </a>
                         </div>
@@ -318,7 +330,7 @@
               </div>
             </div>
           </nav>
-  
+
         </div>
       </div>
     </div>
@@ -335,13 +347,24 @@
                     <thead>
                       <tr>
                         <!-- ID column with narrow width -->
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7" style="width: 50px;">ID</th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7"
+                          style="width: 50px;">ID</th>
                         <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Recipient</th>
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 ps-1">Amount</th>
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 ps-3">Recieved</th>
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">Status</th>
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7"><i class="fa-solid fa-receipt" style="color: #fb6565;"></i> Receipt</th>
-                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7">ab3t yroh</th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Amount
+                        </th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">Recieved
+                        </th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">
+                          <a id="sortIcon" href="#">Status</a>
+                        </th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center"><i
+                            class="fa-solid fa-receipt" style="color: #fb6565;"></i> Receipt</th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">
+                          ab3tyroh
+                        </th>
+                        <th class="text-uppercase text-danger text-xs font-weight-bolder opacity-7 text-center">
+                          <i class="fa-brands fa-connectdevelop fa-spin-pulse fa-xl"></i>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -370,28 +393,41 @@
                           <span class="badge badge-dot me-0">
                             <span class="badge rounded-pill bg-secondary">PENDING</span>
                           </span>
-                          <button class="btn bg-gradient-dark dropdown-toggle btn-xs m-n1 mx-n1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-grip" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
+                          <button class="btn bg-gradient-dark dropdown-toggle btn-xs m-n1 mx-n1" type="button"
+                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-grip"
+                              style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
                           </button>
                           <ul class="dropdown-menu px-0 py-0" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item border-radius-xs" href="javascript:;" data-status="pending">pending</a></li>
-                            <li><a class="dropdown-item border-radius-xs" href="javascript:;" data-status="processing">processing</a></li>
-                            <li><a class="dropdown-item border-radius-xs" href="javascript:;" data-status="received">received</a></li>
-                            <li><a class="dropdown-item border-radius-xs" href="javascript:;" data-status="canceled">canceled</a></li>
+                            <li><a class="dropdown-item border-radius-xs" href="javascript:;"
+                                data-status="pending">pending</a></li>
+                            <li><a class="dropdown-item border-radius-xs" href="javascript:;"
+                                data-status="processing">processing</a></li>
+                            <li><a class="dropdown-item border-radius-xs" href="javascript:;"
+                                data-status="received">received</a></li>
+                            <li><a class="dropdown-item border-radius-xs" href="javascript:;"
+                                data-status="canceled">canceled</a></li>
                           </ul>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#confirmModal" data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
-                            <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
+                          <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;"
+                            data-bs-toggle="modal" data-bs-target="#confirmModal"
+                            data-receipt="https://live.staticflickr.com/65535/53921500960_18775d10d1_b.jpg">
+                            <i class="fa-solid fa-handshake-angle"
+                              style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
                           </button>
-                          <button type="button" class="custom-button btn bg-gradient-dark btn-xs m-n1 mx-n1" style="margin: 0">
-                            <i class="fa-solid fa-upload" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
+                          <button type="button" class="custom-button btn bg-gradient-dark btn-xs m-n1 mx-n1"
+                            style="margin: 0">
+                            <i class="fa-solid fa-upload"
+                              style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
                           </button>
                           <input class="form-check-label receipt-input" type="file" accept="image/*">
                         </td>
                         <td>
-                          <button type="button" class="custom-button btn bg-gradient-secondary btn-xs m-n1" style="margin-left: 0.6rem !important;">
-                            <i class="fa-solid fa-paper-plane" style="font-size: 1rem; padding: 0 1rem; vertical-align: middle;"></i>
+                          <button type="button" class="custom-button btn bg-gradient-secondary btn-xs m-n1"
+                            style="margin-left: 0.6rem !important;">
+                            <i class="fa-solid fa-paper-plane"
+                              style="font-size: 1rem; padding: 0 1rem; vertical-align: middle;"></i>
                           </button>
                         </td>
                       </tr>
@@ -413,66 +449,84 @@
         </div>
       </section>
     </div>
-    
-    </header>
-    
-    <!-- RECEIPT MODAL -->
-    <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-gradient-dark">
-          <div class="modal-header">
-            <h5 class="modal-title text-white" id="receiptModalLabel">Receipt</h5>
-            <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <img id="receiptImage" src="" alt="Receipt Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>  
 
-    <!-- STATUS CONFIRMATION MODAL -->
-    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dark modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-gradient-dark">
-          <div class="modal-body">
-            <div class="py-3 text-center text-white">
-              <div class="modal-check">
-                <i class="fa-solid fa-circle-exclamation fa-2xl"></i>
-              </div>
-              <h5 class="heading mt-4 text-white">Ak sure ak hab tabdl l <strong id="newStatus"></strong>?</h5>
-            </div>
-          </div>
-          <div class="modal-footer-email justify-content-center border-0">
-            <button id="confirmChangeStatus" type="button" class="btn btn-white mt-n4">ROH!</button>
-          </div>
+  </header>
+
+  <!-- RECEIPT MODAL -->
+  <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-gradient-dark">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="receiptModalLabel">Receipt</h5>
+          <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="receiptImage" src="" alt="Receipt Image" class="img-fluid">
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- RECEIPT CONFIMATION MODAL -->
-    <div class="modal fade" id="receiptConfirmation" tabindex="-1" aria-labelledby="exampleModalNotification" aria-hidden="true">
-      <div class="modal-dialog modal-success modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-gradient-success">
-          <div class="modal-body">
-            <div class="py-3 text-center text-white">
-              <i class="material-icons text-3xl">notifications_active</i>
-              <h4 class="heading mt-4 text-white">SAHAA!</h4>
+  <!-- STATUS CONFIRMATION MODAL -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dark modal-dialog-centered modal-" role="document">
+      <div class="modal-content bg-gradient-dark">
+        <div class="modal-body">
+          <div class="py-3 text-center text-white">
+            <div class="modal-check">
+              <i class="fa-solid fa-circle-exclamation fa-2xl"></i>
             </div>
+            <h5 class="heading mt-4 text-white">Ak sure ak hab tabdl l <strong id="newStatus"></strong>?</h5>
           </div>
-          <hr class="horizontal light mb-0">
+        </div>
+        <div class="modal-footer-email justify-content-center border-0">
+          <button id="confirmChangeStatus" type="button" class="btn btn-white mt-n4">ROH!</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- MY JS -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="../assets/js/manage-transfers.js"></script>
-    <script type="module" src="../assets/js/admin-session.js"></script>
-    <!-- -------- END HEADER 1 w/ text and image on right ------- -->
-    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
-  </body>
+  <!-- RECEIPT CONFIMATION MODAL -->
+  <div class="modal fade" id="receiptConfirmation" tabindex="-1" aria-labelledby="exampleModalNotification"
+    aria-hidden="true">
+    <div class="modal-dialog modal-success modal-dialog-centered modal-" role="document">
+      <div class="modal-content bg-gradient-success">
+        <div class="modal-body">
+          <div class="py-3 text-center text-white">
+            <i class="material-icons text-3xl">notifications_active</i>
+            <h4 class="heading mt-4 text-white">SAHAA!</h4>
+          </div>
+        </div>
+        <hr class="horizontal light mb-0">
+      </div>
+    </div>
+  </div>
+
+  <!-- PHONE NUMBER DISPLAY MODAL -->
+  <div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="phoneNumberModal" aria-hidden="true">
+    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+      <div class="modal-content bg-gradient-violet">
+        <div class="modal-body">
+          <div class="py-3 text-center text-white">
+            <i class="fa-solid fa-phone-volume fa-bounce text-3xl" style="color: #ffffff;"></i>
+            <h4 id="userPhoneNumber" class="heading mt-4 text-white"></h4>
+          </div>
+        </div>
+        <hr class="horizontal light mb-0">
+      </div>
+    </div>
+  </div>
+
+  <!-- MY JS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="../assets/js/manage-transfers.js"></script>
+  <script type="module" src="../assets/js/admin-session.js"></script>
+  <!-- -------- END HEADER 1 w/ text and image on right ------- -->
+  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
+</body>
+
 </html>
