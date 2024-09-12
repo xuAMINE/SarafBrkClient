@@ -3,18 +3,21 @@ import apiClient from './apiClient.js';
 
 let globalAmount;
 let globalRip;
+let paymentOption;
+let paymentCode;
 
-document.addEventListener('DOMContentLoaded', function() {
+// Check Transfer
+document.addEventListener('DOMContentLoaded', function () {
   // Handle both form submission (ENTER key) and button click
   document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault(); // Prevent the default form submission
       handleTransfer(this.getAttribute('id')); // Trigger the send transfer logic
     });
   });
 
   document.querySelectorAll('.send-transfer').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
       const formId = this.getAttribute('data-form');
       handleTransfer(formId); // Trigger the send transfer logic
     });
@@ -52,28 +55,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedOption) {
           let paymentMethod = selectedOption.value;
 
-          if (paymentMethod === 'modalPaypal') {
-            let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
-            modal.show();
-            document.getElementById('paypal-me').addEventListener('click', function() {
-              window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G', '_blank');
-            })
-          } else {
-            // Handle other payment methods (Zelle, Venmo)
-            let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
-            modal.show();
+          paymentOption = paymentMethod.slice(5);
+          console.log('payment method: ', paymentOption); // delete
+          paymentCode = generateRandomFourDigit();
+          document.getElementById(paymentMethod + 'Code').innerText = 'Code: ' + paymentCode;
 
-            if (paymentMethod === 'modalVenmo') {
-              document.getElementById('venmo-me').addEventListener('click', function() {
-                const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
-                const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
+          if (paymentMethod === 'modalVENMO') {
+            document.getElementById('venmo-me').addEventListener('click', function () {
+              const venmoUrlDesktop = `https://venmo.com/?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+              const venmoUrlMobile = `venmo://paycharge?txn=pay&recipients=${encodeURIComponent('@Uhammud')}&amount=${encodeURIComponent(globalAmount)}&note=${encodeURIComponent('DZD Exchange')}`;
+              const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+              const venmoUrl = isMobile ? venmoUrlMobile : venmoUrlDesktop;
 
-                window.open(venmoUrl, '_blank');
-              });
-            }
+              window.open(venmoUrl, '_blank');
+            });
           }
+
+          let modal = new bootstrap.Modal(document.getElementById(paymentMethod));
+          modal.show();
         } else {
           alert('Please select a payment option.');
         }
@@ -98,17 +97,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-
-
 // send the transfer when user clicks GOT IT
 document.querySelectorAll('.make-transfer').forEach(button => {
-  button.addEventListener('click', async function() {
+  button.addEventListener('click', async function () {
     // Get token from local storage
-    
+
     // Use globalAmount and globalRip variables
     const body = {
-        amount: parseFloat(globalAmount),
-        ccp: globalRip
+      amount: parseFloat(globalAmount),
+      ccp: globalRip,
+      paymentMethod: paymentOption,
+      code: paymentCode
     };
 
     // Send the POST request
@@ -117,8 +116,20 @@ document.querySelectorAll('.make-transfer').forEach(button => {
       const response = await apiClient.post('/api/v1/transfer/add', body);
 
       if (response.status === 201) {
-        // Redirect to transfer-details.html after successful request
-        window.location.href = 'transfer-details.html';
+
+        // Ensure modal element is found correctly
+        const modalElement = document.getElementById('transferSucessModal');
+        if (!modalElement) {
+          return;
+        }
+
+        // Initialize and show the Bootstrap modal
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+
+        setTimeout(() => {
+          window.location.href = 'transfer-details.html'; // Fixed typo here as well
+        }, 1500);
       } else {
         // Handle other status codes if necessary
         alert('An error occurred. Please try again.');
@@ -140,7 +151,7 @@ function clearErrorMessage(id) {
 // Add event listeners to inputs to clear error messages on change
 document.addEventListener('DOMContentLoaded', function () {
   const inputs = document.querySelectorAll('input');
-  
+
   inputs.forEach(input => {
     input.addEventListener('input', function () {
       switch (input.id) {
@@ -156,38 +167,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-  // Restrict input to digits only and limit length
-  document.addEventListener('DOMContentLoaded', function() {
-    function restrictInput(inputId, maxLength) {
-      const inputElement = document.getElementById(inputId);
-  
-      inputElement.addEventListener('input', function(e) {
-        // Remove non-numeric characters
-        this.value = this.value.replace(/[^0-9]/g, '');
-  
-        // Limit to the specified number of digits
-        if (this.value.length > maxLength) {
-          this.value = this.value.slice(0, maxLength);
-        }
-      });
-    }
-  
-    // Apply the restriction to specific input fields
-    restrictInput('cle', 2);
-    restrictInput('ccp', 12);
-  });
 
-
-
+// compy Phone Number
 document.getElementById('copyNumber').addEventListener('click', () => {
-  navigator.clipboard.writeText('925-496-8027').then(function() {
+  navigator.clipboard.writeText('925-496-8027').then(function () {
     var copiedMessage = document.getElementById('copyNumber');
     copiedMessage.textContent = 'copied!';
-    setTimeout(function() {
-        copiedMessage.textContent = 'copie number';
+    setTimeout(function () {
+      copiedMessage.textContent = 'copie number';
     }, 1200);
-  }, function(err) {
-      console.error('Could not copy text: ', err);
+  }, function (err) {
+    console.error('Could not copy text: ', err);
   });
 })
 
+function generateRandomFourDigit() {
+  return Math.floor(1000 + Math.random() * 9000);
+}

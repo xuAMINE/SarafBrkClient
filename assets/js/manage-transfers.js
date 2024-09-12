@@ -51,14 +51,14 @@ function updateTransfers(responseData) {
       tbody.appendChild(tr);
     }
 
-    let transferId = transfer.paymentMethod === 'ZELLE' ? 'SRZ' + transfer.id
-      : transfer.paymentMethod === 'VENMO' ? 'SRV' + transfer.id
-        : 'SRP' + transfer.id;
+    let transferCode = transfer.paymentMethod === 'ZELLE' ? 'SRZ' + transfer.code
+      : transfer.paymentMethod === 'VENMO' ? 'SRV' + transfer.code
+        : 'SRP' + transfer.code;
 
     // Update the row content
     tr.innerHTML = `
       <td>
-        <p class="text-xs font-weight-bold text-dark-cus mb-0 text-center">${transferId}</p>
+        <p class="text-xs font-weight-bold text-dark-cus mb-0 text-center">${transferCode}</p>
       </td>
       <td>
         <div class="d-flex">
@@ -66,7 +66,7 @@ function updateTransfers(responseData) {
             <img src="https://ui-avatars.com/api/?name=${transfer.recipientFullName.charAt(0)}&background=random&size=128" class="avatar avatar-xs rounded-circle me-2">
           </div>
           <div class="my-auto text-center">
-            <h6 class="mb-0 text-xs">${transfer.recipientFullName}</h6>
+            <h6 class="mb-0 text-xs">${transfer.firstName} ${transfer.lastName}</h6>
           </div>
         </div>
       </td>
@@ -89,9 +89,20 @@ function updateTransfers(responseData) {
         </div>
       </td>
       <td class="text-center">
-        <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" data-bs-toggle="modal" data-bs-target="#receiptModal" data-receipt="${transfer.receipt}" data-id="${transfer.id}">
-          <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
-        </button>
+         <button type="button" class="btn btn-outline-dark btn-xs" style="margin: 0 0.9rem;" 
+                data-bs-toggle="modal" data-bs-target="#receiptModal" 
+                data-receipt="${transfer.receipt}"
+                data-code="${transfer.code}" 
+                data-id="${transfer.id}"
+                data-recipient="${transfer.recipientFullName}"
+                data-amount="${transfer.amount}"
+                data-tobereceived="${transfer.amountReceived}"
+                data-transferdatetime="${new Date(transfer.transferDate).toISOString()}"
+                data-status="${transfer.status}"
+                data-completedat="${transfer.completedAt || 'N/A'}"
+                data-paymentmethod="${transfer.paymentMethod || 'N/A'}">
+                <i class="fa-solid fa-handshake-angle" style="font-size: 1rem; padding: 0 0.3rem; vertical-align: middle;"></i>
+            </button>
         <button type="button" class="custom-button btn bg-gradient-dark btn-xs m-n1 mx-n1" style="margin: 0" data-id="${transfer.id}">
           <i class="fa-solid fa-upload" style="font-size: 1rem; padding: 0; vertical-align: middle;"></i>
         </button>
@@ -293,20 +304,54 @@ function uploadStoredFiles(transferId) {
 
 // GET receipt URL.
 document.addEventListener("DOMContentLoaded", function () {
-  // Event delegation for showing receipt in modal
+  // Event delegation for showing receipt and details in modal
   document.querySelector("table").addEventListener("click", function (event) {
     if (event.target.closest("button[data-bs-target='#receiptModal']")) {
       const receiptButton = event.target.closest("button[data-bs-target='#receiptModal']");
+
+      // Get all the necessary transfer data from the button's data attributes
       const receiptName = receiptButton.getAttribute("data-receipt");
-      const modalImage = document.querySelector("#receiptModal img");
+      const receiptCode = receiptButton.getAttribute("data-code");
       const transferId = receiptButton.getAttribute("data-id");
-      const token = localStorage.getItem('sb_token');
+      const recipient = receiptButton.getAttribute("data-recipient");
+      const amount = receiptButton.getAttribute("data-amount");
+      const toBeReceived = receiptButton.getAttribute("data-tobereceived");
+      const transferDateTimeString = receiptButton.getAttribute("data-transferdatetime");
+      const transferDateTime = new Date(transferDateTimeString);
+      const status = receiptButton.getAttribute("data-status");
+      const completedAt = receiptButton.getAttribute("data-completedat");
+      const paymentMethod = receiptButton.getAttribute("data-paymentmethod");
+      const modalImage = document.getElementById('receiptImage');
+
+      const pstFormatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles',
+        dateStyle: 'short',
+        timeStyle: 'short'
+      });
+      const pstTime = pstFormatter.format(transferDateTime);
+
+      const gmt1Formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Etc/GMT-1', // GMT-1 time zone
+        timeStyle: 'short'
+      });
+      const gmt1Time = gmt1Formatter.format(transferDateTime);
+
+      // Update modal fields with the transfer data
+      document.getElementById("transferCode").textContent = receiptCode;
+      document.getElementById("transferId").textContent = transferId;
+      document.getElementById("recipient").textContent = recipient;
+      document.getElementById("amount").textContent = `$${amount}`;
+      document.getElementById("toBeReceived").textContent = `${toBeReceived} DZD`;
+      document.getElementById("transferDateTime").textContent = `${pstTime} | DZ: ${gmt1Time}`;
+      document.getElementById("status").textContent = status;
+      document.getElementById("completedAt").textContent = completedAt;
+      document.getElementById("paymentMethod").textContent = paymentMethod;
 
       if (!receiptName || receiptName === 'null') {
         modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg";
       } else {
-
         // Fetch the receipt URL using Axios
+        const token = localStorage.getItem('sb_token');
         apiClient.get(`/api/v1/transfer/receipt/${transferId}`, {
           headers: {
             'Authorization': `Bearer ${token}` // Include the token in the request header

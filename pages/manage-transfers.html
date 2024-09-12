@@ -455,14 +455,61 @@
   <!-- RECEIPT MODAL -->
   <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-gradient-dark">
-        <div class="modal-header">
-          <h5 class="modal-title text-white" id="receiptModalLabel">Receipt</h5>
-          <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal"
-            aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <img id="receiptImage" src="" alt="Receipt Image" class="img-fluid">
+      <div class="modal-content" style="background-color: rgba(240, 24, 60, 0.2);">
+        <div class="rotating-card-container">
+          <div class="card card-rotate card-background mt-md-0" style="position: relative; height: 600px;">
+            <!-- Front of the rotating card -->
+            <div class="front front-background"
+              style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/alg-ds-card.jpeg); background-size: cover;">
+              <div class="card-body pt-1 text-center d-flex flex-column justify-content-center">
+                <p class="text-sm text-white text-uppercase font-weight-normal">Receipt</p>
+                <ul class="list-unstyled text-white">
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Code:</strong> <span id="transferCode"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>ID:</strong> <span id="transferId"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Recipient:</strong> <span id="recipient"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Amount:</strong> <span id="amount"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>To be received:</strong> <span id="toBeReceived"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Date & Time:</strong> <span id="transferDateTime"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Status:</strong> <span id="status"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Completed at:</strong> <span id="completedAt"></span>
+                  </li>
+                  <li class="d-flex justify-content-between mb-2">
+                    <strong>Payment Method:</strong> <span id="paymentMethod"></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Back of the rotating card -->
+            <div class="back back-background"
+              style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url(../assets/img/pattern.jpg); background-size: cover;">
+              <div class="card-body pt-7 text-center d-flex flex-column justify-content-center">
+                <p class="text-sm-back text-white text-uppercase font-weight-normal">Receipt</p>
+                <!-- Download icon -->
+                <a href="../assets/img/ccp-reciept-4by5.jpg" download="receipt.jpg" class="download-icon">
+                  <i class="fas fa-download"></i>
+                </a>
+                <!-- Receipt image holder -->
+                <div class="receipt-image-container">
+                  <img id="receiptImage" src="../assets/img/ccp-reciept-4by5.jpg" alt="Receipt Image" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

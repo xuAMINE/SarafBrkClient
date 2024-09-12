@@ -363,19 +363,19 @@
                                     </div>
                                     <div class="payment-options">
                                       <div class="payment-option">
-                                        <input type="radio" id="paypal" name="modalOption" value="modalPaypal">
+                                        <input type="radio" id="paypal" name="modalOption" value="modalPAYPAL">
                                         <label for="paypal">
                                           <img src="../assets/img/paypal-black.png" alt="PayPal">
                                         </label>
                                       </div>
                                       <div class="payment-option">
-                                        <input type="radio" id="zelle" name="modalOption" value="modalZelle">
+                                        <input type="radio" id="zelle" name="modalOption" value="modalZELLE">
                                         <label for="zelle">
                                           <img src="../assets/img/zelle-black.png" alt="Zelle">
                                         </label>
                                       </div>
                                       <div class="payment-option">
-                                        <input type="radio" id="venmo" name="modalOption" value="modalVenmo">
+                                        <input type="radio" id="venmo" name="modalOption" value="modalVENMO">
                                         <label for="venmo">
                                           <img src="../assets/img/venmo-black.png" alt="Venmo">
                                         </label>
@@ -421,7 +421,6 @@
                                   <br><br>
                                   - Payments typically require an hour for validation.
                                   <br><br>
-                                  - Please make sure to in
                                 </div>
                               </div>
                             </div>
@@ -434,59 +433,64 @@
                     <div class="container py-77 hide-modal">
                       <div class="row mt-5">
                         <div class="col-sm-3 col-6 mx-auto">
-                          <!-- Paypal Form -->
-                          <div class="modal fade" id="modalPaypal" tabindex="-1"
-                            aria-labelledby="exampleModalNotification" aria-hidden="true">
+                          <!-- Paypal Modal -->
+                          <div class="modal fade" id="modalPAYPAL" tabindex="-1" aria-labelledby="modalPAYPAL"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
                               <div class="modal-content bg-gradient-info">
                                 <div class="modal-header border-0">
-                                  <h6 class="modal-title text-white" id="modal-title-notification">Paypal for</h6>
+                                  <h6 class="modal-title text-white fa-bounce" id="modalPAYPALCode">Code: </h6>
                                   <button type="button" class="btn btn-close text-white my-0" data-bs-dismiss="modal">
                                 </div>
                                 <hr class="horizontal light mt-0">
                                 <div class="modal-body">
                                   <div class="py-3 text-center text-white">
-                                    <h4 class="heading mt-4 text-white"><a class="text-white"
-                                        href="https://www.paypal.com/paypalme/AmineXU" target="_blank"><i
-                                          class="fa-brands fa-cc-paypal"></i> paypal.me/AmineXU</a></h4>
+                                    <h4 class="heading mt-0 text-white"><a class="text-white"
+                                        href="https://www.paypal.com/paypalme/AmineXU" target="_blank">Mohamed A
+                                        Zirek<br>
+                                        <i class="fa-brands fa-cc-paypal"></i> paypal.me/AmineXU</a></h4>
                                     <div class="modal-qr my-3">
                                       <img src="../assets/img/paypal-qr.JPEG" alt="Zelle">
                                     </div>
-                                    <p class="text-white opacity-8 my-4" style="font-weight: 500;">Please ensure that
-                                      your payment is complete before clicking GOT IT.</p>
-                                    <p class="text-white sm-font">press "PAYPAL ME" to be redirected to our Paypal
-                                      account</p>
+                                    <p class="text-white text-lg text-bold mt-4 mb-4">You must include
+                                      the code above in the memo of your Paypal payment.</p>
+                                    <p class="text-white text-sm text-bold mb-n4">
+                                      Please ensure your payment is complete before clicking GOT IT.</p>
                                   </div>
                                 </div>
                                 <hr class="horizontal light mb-0">
                                 <div class="modal-footer justify-content-between border-0">
                                   <button type="button" class="make-transfer btn btn-white my-1"
                                     data-bs-dismiss="modal">GOT IT</button>
-                                  <button id="paypal-me" type="button" class="btn btn-link text-white my-2">PAYPAL
-                                    ME</button>
+                                  <a id="paypal-me"
+                                    href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5UL8W5K7BB24G"
+                                    target="_blank" class="btn btn-link text-white my-2">PAYPAL
+                                    ME</a>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <!-- Zelle Modal -->
-                          <div class="modal fade" id="modalZelle" tabindex="-1"
-                            aria-labelledby="exampleModalNotification" aria-hidden="true">
-                            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                          <div class="modal fade" id="modalZELLE" tabindex="-1" aria-labelledby="modalZELLE"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-danger modal-dialog-centered" role="document">
                               <div class="modal-content bg-gradient-violet">
                                 <div class="modal-header border-0">
-                                  <h6 class="modal-title text-white" id="modal-title-notification">Zelle for</h6>
+                                  <h6 class="modal-title text-white fa-bounce" id="modalZELLECode">Code: </h6>
                                   <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
                                 </div>
                                 <hr class="horizontal light mt-0">
                                 <div class="modal-body">
                                   <div class="py-3 text-center text-white">
-                                    <h4 class="heading mt-4 text-white">Mohamed Zirek<br>925-496-8027</h4>
+                                    <h4 class="heading mt-0 text-white">Mohamed Zirek<br>925-496-8027</h4>
                                     <div class="modal-qr">
                                       <img src="../assets/img/my-zelle-qr-code.png" alt="Zelle">
                                     </div>
-                                    <p class="text-white opacity-8" style="font-weight: 700;">Please ensure that your
-                                      payment is complete before clicking GOT IT.</p>
-                                    <p id="copied-message" class="copied-message"></p>
+                                    <p class="text-white text-lg text-bold mt-4 mb-4">You must include
+                                      the code above in the memo of your Zelle payment.</p>
+
+                                    <p class="text-white text-sm text-bold mb-n4">
+                                      Please ensure your payment is complete before clicking GOT IT.</p>
                                   </div>
                                 </div>
                                 <hr class="horizontal light mb-0">
@@ -500,25 +504,27 @@
                             </div>
                           </div>
                           <!-- Venmo Modal -->
-                          <div class="modal fade" id="modalVenmo" tabindex="-1"
-                            aria-labelledby="exampleModalNotification" aria-hidden="true">
+                          <div class="modal fade" id="modalVENMO" tabindex="-1" aria-labelledby="modalVENMO"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
                               <div class="modal-content bg-gradient-danger">
                                 <div class="modal-header border-0">
-                                  <h6 class="modal-title text-white" id="modal-title-notification">Venmo for</h6>
+                                  <h6 class="modal-title text-white fa-bounce" id="modalVENMOCode">Code: </h6>
                                   <button type="button" class="btn btn-close text-white my-1" data-bs-dismiss="modal">
                                 </div>
                                 <hr class="horizontal light mt-0">
                                 <div class="modal-body">
                                   <div class="pb-2 pe-0 text-center text-white mt-0">
-                                    <h4 class="heading mt-4 text-white">Mohamed Zirek<br>@Uhammud</h4>
+                                    <h4 class="heading mt-0 text-white">Mohamed Zirek<br>@Uhammud</h4>
                                     <div class="modal-qr">
                                       <img src="../assets/img/my-venmo-qr-code.png" alt="Venmo">
                                     </div>
-                                    <p class="text-white">Please ensure that your payment is complete before clicking
-                                      GOT IT.</p>
-                                    <p class="text-white sm-font">press "VENMO ME" to be redirected to our Venmo account
-                                    </p>
+                                    <p class="text-white text-lg text-bold mt-4 mb-4">You must include
+                                      the code above in the memo of your Venmo payment.</p>
+                                    <p class="text-white text-sm text-bold">Please ensure your payment is complete
+                                      before clicking GOT IT.</p>
+                                    <p class="text-white text-sm text-bold mb-n4">press "VENMO ME" to be redirected to
+                                      our Venmo account</p>
                                   </div>
                                 </div>
                                 <hr class="horizontal light mb-0">
@@ -531,9 +537,27 @@
                               </div>
                             </div>
                           </div>
+                          <!-- success modal -->
+                          <div class="modal fade" id="transferSucessModal" tabindex="-1"
+                            aria-labelledby="transferSucessModal" aria-hidden="true">
+                            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                              <div class="modal-content bg-gradient-success">
+                                <div class="modal-body">
+                                  <div class="py-3 text-center text-white">
+                                    <i class="material-icons text-3xl">notifications_active</i>
+                                    <h4 class="heading mt-4 text-white">Transaction was successful!</h4>
+                                  </div>
+                                </div>
+                                <hr class="horizontal light mb-0">
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
+
+
+
                     <!-- Loading Spinner -->
                     <div id="loading-spinner" class="loading-sp">
                       <div class="loader">
