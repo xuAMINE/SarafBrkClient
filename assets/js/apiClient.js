@@ -40,14 +40,14 @@ async function refreshToken() {
       // Clear tokens and redirect to login
       localStorage.removeItem('sb_token');
       localStorage.removeItem('sb_refreshToken');
-      window.location.href = 'sign-in.html';
+      window.location.href = '../login/index.html';
       return Promise.reject(error);
     }
   } else {
     console.error('No refresh token available');
     localStorage.removeItem('sb_token');
     localStorage.removeItem('sb_refreshToken');
-    window.location.href = 'sign-in.html';
+    window.location.href = '../login/index.html';
     return Promise.reject(new Error('No refresh token available'));
   }
 }

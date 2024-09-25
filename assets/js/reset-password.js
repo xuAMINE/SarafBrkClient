@@ -25,7 +25,7 @@ async function resetPassword() {
       if (response.ok) {
         document.getElementById('resetPassword').innerHTML = `
           Password was successfully changed. 
-          <a href="sign-in.html" style="text-decoration: underline; color: blue;">Login page?</a>`;
+          <a href="../../login/index.html" style="text-decoration: underline; color: blue;">Login page?</a>`;
 
       } else if (response.status === 400) {
             const errors = await response.json();

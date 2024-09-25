@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.show();
 
         setTimeout(() => {
-          window.location.href = 'recipients.html'; // Replace with your redirect URL
+          window.location.href = '../recipient/index.html'; // Replace with your redirect URL
         }, 1500);
       }
     } catch (error) {

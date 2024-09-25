@@ -13,19 +13,19 @@ document.getElementById('check-session').addEventListener('click', async functio
 
       hideSpinner();
       if (result === 'User session valid') {
-        window.location.href = 'recipients.html';
+        window.location.href = './pages/../recipient/index.html';
       } else if (result === 'Admin session valid') {
-        window.location.href = 'manage-transfers.html';  // Redirect to admin page
+        window.location.href = './pages/admin-transfer/index.html';  // Redirect to admin page
       } else {
-        window.location.href = 'sign-in.html';
+        window.location.href = './pages/login/index.html';
       }
     } catch (error) {
       console.error('Error verifying session:', error);
-      window.location.href = 'sign-in.html';
+      window.location.href = './pages/login/index.html';
       hideSpinner();
     }
   } else {
-    window.location.href = 'sign-in.html';
+    window.location.href = './pages/login/index.html';
   }
 });
 
@@ -133,14 +133,14 @@ document.getElementById('logoutButton').addEventListener('click', async function
       await apiClient.post('/api/v1/auth/logout', { token });
       // Remove the token from localStorage after the request
       localStorage.removeItem('sb_token');
-      window.location.href = 'sign-in.html'; // Redirect to login page after logout
+      window.location.href = './pages/login/index.html'; // Redirect to login page after logout
     } catch (error) {
       console.error('Error during logout:', error);
-      window.location.href = 'sign-in.html'; // Redirect to login page after logout
+      window.location.href = './pages/login/index.html'; // Redirect to login page after logout
     }
   } else {
     alert('You are already logged out');
-    window.location.href = 'sign-in.html'; // Redirect to login page after logout
+    window.location.href = './pages/login/index.html'; // Redirect to login page after logout
   }
 });
 
