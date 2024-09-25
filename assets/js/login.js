@@ -38,7 +38,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
           <a href="email-validation.html" style="text-decoration: underline; red: blue;">Verify Email</a>`;
       } else if (error.message === 'Invalid credentials') {
         document.getElementById('password-error').innerHTML = `
-            The password you’ve entered is incorrect. 
+            email or password you’ve entered is incorrect. 
             <a href="#" data-bs-toggle="modal" data-bs-target="#passwordResetModal" style="text-decoration: underline; color: blue;">Forgot Password?</a>`;
       } else {
         alert('Login failed');

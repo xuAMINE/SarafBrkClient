@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("paymentMethod").textContent = paymentMethod;
 
       if (!receiptName || receiptName === 'null') {
-        modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg";
+        modalImage.src = "../assets/img/NullReceipt.png";
       } else {
         // Fetch the receipt URL using Axios
         const token = localStorage.getItem('sb_token');
@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .catch(error => {
             console.error("Error fetching receipt:", error);
-            modalImage.src = "https://live.staticflickr.com/65535/53920294662_136cda84df_c.jpg"; // Default image if there's an error
+            modalImage.src = "../assets/img/NullReceipt.png"; // Default image if there's an error
           });
       }
     }
