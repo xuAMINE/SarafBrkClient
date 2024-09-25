@@ -26,11 +26,11 @@ export async function fetchWithAuth(url, options = {}) {
               response = await fetch(url, options);
           } catch (error) {
               console.error('Failed to refresh token', error);
-              window.location.href = '../../login/index.html'; 
+              window.location.href = '../../login/'; 
           }
       } else {
           console.error('No refresh token available');
-          window.location.href = '../../login/index.html'; 
+          window.location.href = '../../login/'; 
       }
   }
 
@@ -64,11 +64,11 @@ export async function fetchWithAuthUpload(url, options = {}) {
         response = await fetch(url, options);
       } catch (error) {
         console.error('Failed to refresh token', error);
-        window.location.href = '../../login/index.html';
+        window.location.href = '../../login/';
       }
     } else {
       console.error('No refresh token available');
-      window.location.href = '../../login/index.html';
+      window.location.href = '../../login/';
     }
   }
 

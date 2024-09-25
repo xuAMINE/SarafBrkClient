@@ -128,7 +128,7 @@ document.querySelectorAll('.make-transfer').forEach(button => {
         modal.show();
 
         setTimeout(() => {
-          window.location.href = '../transfer/index.html'; // Fixed typo here as well
+          window.location.href = '../transfer/'; // Fixed typo here as well
         }, 1500);
       } else {
         // Handle other status codes if necessary

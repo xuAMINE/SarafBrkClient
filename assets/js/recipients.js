@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const doContact = recipient.doContact ? '- recipient will be contacted.' : '- recipient will not be contacted.';
       const doContactEncoded = encodeURIComponent(doContact);
 
-      window.location.href = `../send-user/index.html?fullName=${fullName}&ccpNumber=${ccpNumber}&doContact=${doContactEncoded}`;
+      window.location.href = `../send-user/?fullName=${fullName}&ccpNumber=${ccpNumber}&doContact=${doContactEncoded}`;
     });
 
     imgLink.addEventListener('click', () => {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const doContact = recipient.doContact ? '- recipient will be contacted.' : '- recipient will not be contacted.';
       const doContactEncoded = encodeURIComponent(doContact);
 
-      window.location.href = `../send-user/index.html?fullName=${fullName}&ccpNumber=${ccpNumber}&doContact=${doContactEncoded}`;
+      window.location.href = `../send-user/?fullName=${fullName}&ccpNumber=${ccpNumber}&doContact=${doContactEncoded}`;
     });
 
     document.getElementById('recipient-container').appendChild(colDiv);
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const phoneNumber = encodeURIComponent(recipient.phoneNumber);
     const doContact = encodeURIComponent(recipient.doContact);
 
-    window.location.href = `../edit-recipient/index.html?firstName=${firstName}&lastName=${lastName}&ccpNumber=${ccpNumber}&phoneNumber=${phoneNumber}&doContact=${doContact}`;
+    window.location.href = `../edit-recipient/?firstName=${firstName}&lastName=${lastName}&ccpNumber=${ccpNumber}&phoneNumber=${phoneNumber}&doContact=${doContact}`;
 }
 
   // Function to handle deleting a recipient

@@ -26,7 +26,7 @@ function ensureAuthenticated() {
   if (!storedToken) {
     // No token found, redirect to the login page
     console.log("No token found in localStorage, redirecting to login page.");
-    window.location.href = '../../login/index.html';
+    window.location.href = '../../login/';
   } else {
     console.log("User is authenticated with token:", storedToken);
     // Further checks for token validity can be added here
@@ -39,7 +39,7 @@ function initializeAuth() {
     handleOAuth2Callback();  // Only called when redirected from OAuth2 provider
   }
 
-  if (window.location.pathname.endsWith('/../recipient/index.html')) {
+  if (window.location.pathname.endsWith('/../recipient/')) {
     ensureAuthenticated();  // Ensure authentication on protected pages
   }
 }

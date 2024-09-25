@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
           body.classList.remove('hidden-content');
           loadingScreen.style.visibility = 'hidden';
         } else {
-          window.location.href = '../login/index.html';
+          window.location.href = '../login/';
         } 
       }, 300); // Adjust this value to control the delay before hiding the loading screen (in milliseconds)
     });
@@ -48,7 +48,7 @@ document.getElementById('logoutButton').addEventListener('click', async function
       // Remove the tokens from localStorage after the request
       localStorage.removeItem('sb_token');
       localStorage.removeItem('sb_refreshToken');
-      window.location.href = '../login/index.html'; // Redirect to login page after logout
+      window.location.href = '../login/'; // Redirect to login page after logout
     } else {
       alert('Logout failed');
     }
