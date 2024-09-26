@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
 
       try {
-        const response = await fetch(`http://localhost:8088/api/v1/recipient/deactivate/${recipient.ccp}`, {
+        const response = await fetch(`https://13.57.42.52:8088/api/v1/recipient/deactivate/${recipient.ccp}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

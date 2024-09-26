@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value;
 
   try {
-    const response = await fetch('http://localhost:8088/api/v1/auth/authenticate', {
+    const response = await fetch('https://13.57.42.52:8088/api/v1/auth/authenticate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ document.getElementById('requestPasswordReset').addEventListener('click', async 
   const email = document.getElementById('resetEmail').value;
 
   try {
-    const response = await fetch('http://localhost:8088/api/v1/user/forgot-password', {
+    const response = await fetch('https://13.57.42.52:8088/api/v1/user/forgot-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

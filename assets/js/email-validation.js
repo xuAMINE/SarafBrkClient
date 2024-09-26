@@ -38,7 +38,7 @@ async function collectValues(event) {
   });
 
   // Endpoint URL
-  let endpoint = 'http://localhost:8088/api/v1/auth/activate-account';
+  let endpoint = 'https://13.57.42.52:8088/api/v1/auth/activate-account';
   let url = `${endpoint}?verToken=${finalValue}`;
 
   try {
@@ -75,7 +75,7 @@ async function collectValues(event) {
   function resendEmail() {
     const email = sessionStorage.getItem('sb_email');
     if (email) {
-      fetch('http://localhost:8088/api/v1/auth/resend-verification', {
+      fetch('https://13.57.42.52:8088/api/v1/auth/resend-verification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

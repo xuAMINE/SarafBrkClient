@@ -76,7 +76,7 @@ export async function fetchWithAuthUpload(url, options = {}) {
 }
 
 export async function refreshAccessToken(refreshToken) {
-  const response = await fetch('http://localhost:8088/api/v1/auth/refresh-token', {
+  const response = await fetch('https://13.57.42.52:8088/api/v1/auth/refresh-token', {
       method: 'POST',
       headers: {
           'Authorization': `Bearer ${refreshToken}`,

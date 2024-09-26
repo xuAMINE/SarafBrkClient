@@ -1,6 +1,6 @@
 // Create an Axios instance with default settings
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8088', // Replace with your API's base URL
+  baseURL: 'https://13.57.42.52:8088', // Replace with your API's base URL
   timeout: 10000, // Optional: set a timeout for requests
   headers: {
     'Content-Type': 'application/json', // Set default content type
@@ -28,7 +28,7 @@ async function refreshToken() {
   const refreshToken = localStorage.getItem('sb_refreshToken');
   if (refreshToken) {
     try {
-      const { data } = await axios.post('http://localhost:8088/api/v1/auth/refresh-token', {}, {
+      const { data } = await axios.post('https://13.57.42.52:8088/api/v1/auth/refresh-token', {}, {
         headers: {
           'Authorization': `Bearer ${refreshToken}`,
         }
