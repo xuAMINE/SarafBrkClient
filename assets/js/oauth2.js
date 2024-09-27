@@ -1,6 +1,6 @@
 // Function to initiate OAuth2 authentication process
 function authenticate(provider) {
-  window.location.href = `https://13.57.42.52:8088/oauth2/authorization/${provider}`;
+  window.location.href = `https://sarafbrk.com:8088/oauth2/authorization/${provider}`;
 }
 
 // Function to store the OAuth2 token and handle redirect after successful login

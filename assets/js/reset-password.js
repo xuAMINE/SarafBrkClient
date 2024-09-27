@@ -14,7 +14,7 @@ async function resetPassword() {
 
   try {
         showSpinner();
-      const response = await fetch(`https://13.57.42.52:8088/api/v1/user/reset-password?token=${token}`, {
+      const response = await fetch(`https://sarafbrk.com:8088/api/v1/user/reset-password?token=${token}`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

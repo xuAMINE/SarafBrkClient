@@ -188,7 +188,7 @@ document.getElementById("addPhoneNumber").addEventListener("click", function () 
   const encodedPhoneNumber = encodeURIComponent(cleanedPhoneNumber);
 
   // Define the endpoint URL with the encoded phone number
-  const url = `https://13.57.42.52:8088/api/v1/user/update-phone?phoneNumber=${encodedPhoneNumber}`;
+  const url = `https://sarafbrk.com:8088/api/v1/user/update-phone?phoneNumber=${encodedPhoneNumber}`;
 
   // Send PUT request using axios (or apiClient)
   apiClient.put(url)
