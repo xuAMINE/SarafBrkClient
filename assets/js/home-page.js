@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const duration = 1500; // Duration of the counting in milliseconds
 
   function fetchRate() {
-    fetch('https://sarafbrk.com:8088/api/v1/rate') 
-      .then(response => response.json())
-      .then(data => {
-        const targetNumber = data;
+    apiClient.get('/api/v1/rate')
+      .then(response => {
+        const targetNumber = response.data; // Assuming the API response is a number
         animateCountUp(targetNumber);
       })
       .catch(error => {
@@ -34,6 +33,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   fetchRate();
-
-
 });

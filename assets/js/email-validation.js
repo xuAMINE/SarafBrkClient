@@ -1,3 +1,5 @@
+import apiClient from './apiClient.js';
+
 function moveToNext(element, event) {
   // Clear validation message
   document.getElementById('validation-message').innerHTML = '';
@@ -25,9 +27,6 @@ function moveToNext(element, event) {
   }
 }
 
-
-
-// Function to collect values and send GET request
 async function collectValues(event) {
   event.preventDefault(); // Prevent default form submission
 
@@ -38,67 +37,68 @@ async function collectValues(event) {
   });
 
   // Endpoint URL
-  let endpoint = 'https://sarafbrk.com:8088/api/v1/auth/activate-account';
+  let endpoint = '/api/v1/auth/activate-account';
   let url = `${endpoint}?verToken=${finalValue}`;
 
   try {
-      let response = await fetch(url, {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      });
+      let response = await apiClient.get(url);
 
-      if (response.ok) {
-          // Request was successful
-          console.log('Activation request successful.');
-          // Show the modal notification
-          $('#exampleModalNotification').modal('show');
-      } else if (response.status === 400) {
-          let message = await response.text();
-          document.getElementById('validation-message').innerHTML = 
-              '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + message;
+      // Request was successful
+      console.log('Activation request successful.');
+      // Show the modal notification
+      $('#exampleModalNotification').modal('show');
+  } catch (error) {
+      if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          if (error.response.status === 400) {
+              let message = error.response.data; // Assuming server returns text message
+              document.getElementById('validation-message').innerHTML = 
+                  '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + message;
+          } else {
+              // Request failed
+              console.error('Activation request failed with status:', error.response.status);
+              // Handle error as needed
+          }
       } else {
-          // Request failed
-          console.error('Activation request failed.');
+          // The request was made but no response was received or there was an error in setting up the request
+          console.error('Error making activation request:', error.message);
           // Handle error as needed
       }
-  } catch (error) {
-      console.error('Error making activation request:', error);
-      // Handle error as needed
   }
 }
 
+
   // Attach collectValues() function to form submit event
   document.getElementById('emailValidationForm').addEventListener('submit', collectValues);
+  document.getElementById('resenEmail').addEventListener('click', resendEmail);
 
   function resendEmail() {
     const email = sessionStorage.getItem('sb_email');
     if (email) {
-      fetch('https://sarafbrk.com:8088/api/v1/auth/resend-verification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email })
-      })
-      .then(response => {
-        if (response.ok) {
-          // Success, display success message
-          document.getElementById('validation-message').innerHTML = 
-              '<i class="fa fa-check" aria-hidden="true" style="padding: 0 5px; color: green;"></i><span style="color: green;">Verification email has been resent.</span>';
-          clearForm();
-        } else {
-          return response.text().then(text => { throw new Error(text); });
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+        apiClient.post('/api/v1/auth/resend-verification', { email: email })
+        .then(response => {
+            // Success, display success message
+            document.getElementById('validation-message').innerHTML = 
+                '<i class="fa fa-check" aria-hidden="true" style="padding: 0 5px; color: green;"></i><span style="color: green;">Verification email has been resent.</span>';
+            clearForm();
+        })
+        .catch(error => {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.error('Error:', error.response.data);
+                document.getElementById('validation-message').innerHTML = 
+                    '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + error.response.data;
+            } else {
+                // The request was made but no response was received
+                console.error('Error making request:', error.message);
+            }
+        });
     } else {
-      console.error('No email found in session storage.');
+        console.error('No email found in session storage.');
     }
-  }
+}
 
   function clearForm() {
     const form = document.getElementById('emailValidationForm');

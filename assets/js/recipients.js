@@ -144,25 +144,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Show the delete confirmation modal
     let modal = new bootstrap.Modal(document.getElementById('deleteRecipientModal'));
     modal.show();
-
+  
     // Get the confirm button inside the modal
     const confirmButton = document.getElementById('delete-recepient');
-    const token = localStorage.getItem('sb_token');
-
+  
     // Attach a one-time event listener to the confirm button
     confirmButton.addEventListener('click', async function handleDelete(event) {
       event.preventDefault();
-
+  
       try {
-        const response = await fetch(`https://sarafbrk.com:8088/api/v1/recipient/deactivate/${recipient.ccp}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-        });
-
-        if (response.ok) {
+        const response = await apiClient.put(`/api/v1/recipient/deactivate/${recipient.ccp}`);
+  
+        if (response.status === 200) { // Assuming 204 No Content for successful deletion
           // Handle success
           modal.hide(); // Close the modal
           location.reload(); // Refresh the page
@@ -174,10 +167,11 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Error:', error);
         alert("Unable to connect to the server. Please try again later.");
       }
-
+  
       // Remove the event listener after handling the delete action
       confirmButton.removeEventListener('click', handleDelete);
     }, { once: true }); // Ensure the listener is only triggered once
   }
+  
 
 });

@@ -40,20 +40,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Logout Functionality
-document.getElementById('logoutButton').addEventListener('click', async function() {
-  try {
-    const response = await apiClient.post('/api/v1/auth/logout', {});
-    
-    if (response.status === 200) {
-      // Remove the tokens from localStorage after the request
-      localStorage.removeItem('sb_token');
-      localStorage.removeItem('sb_refreshToken');
-      window.location.href = '../login/'; // Redirect to login page after logout
-    } else {
-      alert('Logout failed');
+document.querySelectorAll('.logoutButton').forEach(button => {
+  button.addEventListener('click', async function() {
+    try {
+      const response = await apiClient.post('/api/v1/auth/logout', {});
+
+      if (response.status === 200) {
+        // Remove the tokens from localStorage after the request
+        localStorage.removeItem('sb_token');
+        localStorage.removeItem('sb_refreshToken');
+        window.location.href = '../login/'; // Redirect to login page after logout
+      } else {
+        alert('Logout failed');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('Error during logout');
     }
-  } catch (error) {
-    console.error('Error during logout:', error);
-    alert('Error during logout');
-  }
+  });
 });
+
+

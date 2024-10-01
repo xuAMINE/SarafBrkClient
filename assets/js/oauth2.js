@@ -1,7 +1,17 @@
 // Function to initiate OAuth2 authentication process
 function authenticate(provider) {
-  window.location.href = `https://sarafbrk.com:8088/oauth2/authorization/${provider}`;
+  window.location.href = `https://api.sarafbrk.com:8088/oauth2/authorization/${provider}`;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('facebook-login').addEventListener('click', function () {
+    authenticate('facebook');
+  });
+
+  document.getElementById('google-login').addEventListener('click', function () {
+    authenticate('google');
+  });
+});
 
 // Function to store the OAuth2 token and handle redirect after successful login
 function handleOAuth2Callback() {
