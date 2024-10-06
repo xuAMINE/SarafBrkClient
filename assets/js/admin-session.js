@@ -49,7 +49,7 @@ document.querySelectorAll('.logoutButton').forEach(button => {
         // Remove the tokens from localStorage after the request
         localStorage.removeItem('sb_token');
         localStorage.removeItem('sb_refreshToken');
-        window.location.href = '../login/'; // Redirect to login page after logout
+        window.location.href = '../login/';
       } else {
         alert('Logout failed');
       }
