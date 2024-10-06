@@ -1,6 +1,6 @@
 // Function to initiate OAuth2 authentication process
 function authenticate(provider) {
-  window.location.href = `http://localhost:8088/oauth2/authorization/${provider}`;
+  window.location.href = `https://api.sarafbrk.com:8088/oauth2/authorization/${provider}`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
