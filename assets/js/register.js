@@ -16,9 +16,10 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   try {
     const response = await apiClient.post('/api/v1/auth/register', formData);
 
-    if (response.status === 201) { // Assuming 201 Created for successful registration
+    if (response.status === 201) { 
+      console.log('register suceesful'); // Assuming 201 Created for successful registration
       sessionStorage.setItem('sb_email', formData.email);
-      window.location.href = './email-validation.html';
+      window.location.href = '../email-validation/';
     }
   } catch (error) {
     if (error.response) {
