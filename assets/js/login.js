@@ -85,7 +85,6 @@ document.getElementById('requestPasswordReset').addEventListener('click', async 
   }
 });
 
-
 // prevent default submit
 document.getElementById('passwordResetForm').addEventListener('submit', function (event) {
   event.preventDefault();
