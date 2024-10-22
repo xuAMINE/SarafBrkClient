@@ -4,6 +4,7 @@ import apiClient from './apiClient.js';
 document.addEventListener('DOMContentLoaded', function () {
   const loadingScreen = document.getElementById('loading-screen');
   const body = document.body;
+  const dropdownMenuAccount = document.getElementById('accountName'); // Select the account dropdown
 
   // Show the loading screen immediately
   loadingScreen.style.visibility = 'visible';
@@ -23,30 +24,49 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Add a small delay before starting the authentication check
+  // Function to get and display the username
+  async function getName() {
+    try {
+      const response = await apiClient.get('/api/v1/user/name');
+      
+      // Fix typo from 'response.date' to 'response.data'
+      const name = response.data;
+      
+      dropdownMenuAccount.textContent = name; // Set the username in the dropdown
+    } catch (error) {
+      if (error.response) {
+        console.log('Invalid token:', error.response.data.message);
+      } else {
+        console.error('Error:', error.message);
+      }
+    }
+  }
+
+  // Wait for the user to be authenticated and then show the page
   setTimeout(() => {
     isAuthenticated().then(authenticated => {
-      // Add a delay before hiding the loading screen for better user experience
-      setTimeout(() => {
+      setTimeout(async () => {
         if (authenticated) {
           body.classList.remove('hidden-content');
           loadingScreen.style.visibility = 'hidden';
+
+          // Call getName() to set the username in the dropdown
+          await getName();
         } else {
           window.location.href = '../login/';
         } 
-      }, 300); // Adjust this value to control the delay before hiding the loading screen (in milliseconds)
+      }, 300); 
     });
-  }, 300); // Adjust this value to control the initial delay before starting the authentication check (in milliseconds)
+  }, 300); 
 });
 
-// Logout Functionality
+// Logout Function
 document.querySelectorAll('.logoutButton').forEach(button => {
   button.addEventListener('click', async function() {
     try {
       const response = await apiClient.post('/api/v1/auth/logout', {});
 
       if (response.status === 200) {
-        // Remove the tokens from localStorage after the request
         localStorage.removeItem('sb_token');
         localStorage.removeItem('sb_refreshToken');
         window.location.href = '../login/';
