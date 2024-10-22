@@ -1,31 +1,47 @@
-import apiClient from './apiClient.js';
+document.addEventListener('DOMContentLoaded', () => {
+  // Select all input elements inside the form
+  const inputs = document.querySelectorAll('#emailValidationForm input[type="text"]');
+
+  inputs.forEach(input => {
+      input.addEventListener('input', (event) => moveToNext(input, event));
+      input.addEventListener('keydown', (event) => handleBackspace(input, event));
+  });
+});
 
 function moveToNext(element, event) {
   // Clear validation message
   document.getElementById('validation-message').innerHTML = '';
 
+  // Only allow digits (0-9)
   if (!/^\d$/.test(event.data)) {
       element.value = '';
       return;
   }
 
+  // Move to next input when a digit is entered
   if (event.inputType === "insertText" && element.value.length === element.maxLength) {
       let nextElement = element.parentElement.parentElement.nextElementSibling;
       if (nextElement && nextElement.querySelector('input')) {
           nextElement.querySelector('input').focus();
       }
-  } else if (event.inputType === "deleteContentBackward") {
-      if (element.value.length === 0) {
-          let previousElement = element.parentElement.parentElement.previousElementSibling;
-          if (previousElement && previousElement.querySelector('input')) {
-              let previousInput = previousElement.querySelector('input');
-              previousInput.focus();
-              // Move cursor to the end of previous input
-              previousInput.setSelectionRange(previousInput.value.length, previousInput.value.length);
-          }
+  }
+}
+
+function handleBackspace(element, event) {
+  // Check if the backspace key is pressed
+  if (event.key === 'Backspace' && element.value.length === 0) {
+      let previousElement = element.parentElement.parentElement.previousElementSibling;
+      if (previousElement && previousElement.querySelector('input')) {
+          let previousInput = previousElement.querySelector('input');
+          previousInput.value = ''; // Clear the previous input
+          previousInput.focus();
+          // Move cursor to the end of previous input
+          previousInput.setSelectionRange(previousInput.value.length, previousInput.value.length);
+          event.preventDefault(); // Prevent default backspace behavior
       }
   }
 }
+
 
 async function collectValues(event) {
   event.preventDefault(); // Prevent default form submission
@@ -49,21 +65,17 @@ async function collectValues(event) {
       $('#exampleModalNotification').modal('show');
   } catch (error) {
       if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
           if (error.response.status === 400) {
-              let message = error.response.data; // Assuming server returns text message
+              let message = error.response.data;
               document.getElementById('validation-message').innerHTML = 
                   '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + message;
           } else {
               // Request failed
               console.error('Activation request failed with status:', error.response.status);
-              // Handle error as needed
           }
       } else {
           // The request was made but no response was received or there was an error in setting up the request
           console.error('Error making activation request:', error.message);
-          // Handle error as needed
       }
   }
 }
