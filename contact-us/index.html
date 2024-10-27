@@ -25,6 +25,9 @@
 </head>
 
 <body class="contact-us">
+  <div class="loading-screen" id="loading-screen">
+    <img src="../assets/img/sb-logo.png" alt="Loading...">
+  </div>
   <!-- Navbar -->
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
@@ -57,9 +60,9 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
                     Socials
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
+                    <img src=" ../assets/img/down-arrow-white.svg  " alt="down-arrow"
                       class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
+                    <img src="../assets/img/down-arrow-white.svg" alt="down-arrow"
                       class="arrow ms-1 d-lg-none d-block ms-auto">
                   </a>
                   <div
@@ -154,9 +157,9 @@
                     id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons opacity-6 me-2 text-md">view_day</i>
                     Sections
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
+                    <img src=" ../assets/img/down-arrow-white.svg  " alt="down-arrow"
                       class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
+                    <img src="../assets/img/down-arrow-white.svg" alt="down-arrow"
                       class="arrow ms-1 d-lg-none d-block ms-auto">
                   </a>
                   <div
@@ -248,14 +251,14 @@
                 </li>
                 <li id="accountDropDown" class="nav-item dropdown dropdown-hover mx-2">
                   <a role="button" class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                    id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons opacity-6 me-2 text-md">contacts</i>
-                    Account
-                    <img src=" ../assets/img/down-arrow-dark.svg  " alt="down-arrow"
-                      class="arrow ms-2 d-lg-block d-none">
-                    <img src="../assets/img/down-arrow-dark.svg" alt="down-arrow"
-                      class="arrow ms-1 d-lg-none d-block ms-auto">
-                  </a>
+                        id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons opacity-6 me-2 text-md">contacts</i>
+                        <span id="accountName">Account</span>
+                        <img src=" ../assets/img/down-arrow-white.svg" alt="down-arrow"
+                          class="arrow ms-2 d-lg-block d-none">
+                        <img src="../assets/img/down-arrow-white.svg" alt="down-arrow"
+                          class="arrow ms-1 d-lg-none d-block ms-auto">
+                      </a>
                   <div
                     class="dropdown-menu dropdown-menu-animation dropdown-md border-radius-xl p-3 mt-0 mt-lg-3 bg-gradient-dark"
                     aria-labelledby="dropdownMenuAccount">
@@ -391,6 +394,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="module" src="../assets/js/contact.js"></script>
+  <script type="module" src="../assets/js/session.js"></script>
+
   <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
 </body>
 
