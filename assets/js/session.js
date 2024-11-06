@@ -4,7 +4,7 @@ import apiClient from './apiClient.js';
 document.addEventListener('DOMContentLoaded', function () {
   const loadingScreen = document.getElementById('loading-screen');
   const body = document.body;
-  const dropdownMenuAccount = document.getElementById('accountName'); // Select the account dropdown
+  const dropdownMenuAccount = document.getElementById('accountName');
 
   // Show the loading screen immediately
   loadingScreen.style.visibility = 'visible';
@@ -49,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (authenticated) {
           body.classList.remove('hidden-content');
           loadingScreen.style.visibility = 'hidden';
-
-          // Call getName() to set the username in the dropdown
           await getName();
         } else {
           window.location.href = '../login/';

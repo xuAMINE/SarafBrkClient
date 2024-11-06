@@ -4,6 +4,8 @@ import apiClient from './apiClient.js';
 document.addEventListener('DOMContentLoaded', function () {
   const loadingScreen = document.getElementById('loading-screen');
   const body = document.body;
+  const dropdownMenuAccount = document.getElementById('accountName'); 
+
 
   // Show the loading screen immediately
   loadingScreen.style.visibility = 'visible';
@@ -23,14 +25,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+    // Function to get and display the username
+    async function getName() {
+      try {
+        const response = await apiClient.get('/api/v1/user/name');
+        
+        // Fix typo from 'response.date' to 'response.data'
+        const name = response.data;
+        
+        dropdownMenuAccount.textContent = name; // Set the username in the dropdown
+      } catch (error) {
+        if (error.response) {
+          console.log('Invalid token:', error.response.data.message);
+        } else {
+          console.error('Error:', error.message);
+        }
+      }
+    }
+
   // Add a small delay before starting the authentication check
   setTimeout(() => {
     isAuthenticated().then(authenticated => {
       // Add a delay before hiding the loading screen for better user experience
-      setTimeout(() => {
+      setTimeout(async () => {
         if (authenticated) {
           body.classList.remove('hidden-content');
           loadingScreen.style.visibility = 'hidden';
+          await getName();
         } else {
           window.location.href = '../login/';
         } 

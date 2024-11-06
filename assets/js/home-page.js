@@ -3,6 +3,7 @@ import apiClient from './apiClient.js';
 document.addEventListener("DOMContentLoaded", function() {
   const rateElement = document.getElementById('rate-display');
   const duration = 1500; // Duration of the counting in milliseconds
+  const dropdownMenuAccount = document.getElementById('accountName'); 
 
   function fetchRate() {
     apiClient.get('/api/v1/rate')
@@ -34,5 +35,23 @@ document.addEventListener("DOMContentLoaded", function() {
     countUp();
   }
 
+  async function getName() {
+    try {
+      const response = await apiClient.get('/api/v1/user/name');
+      
+      // Fix typo from 'response.date' to 'response.data'
+      const name = response.data;
+      
+      dropdownMenuAccount.textContent = name; // Set the username in the dropdown
+    } catch (error) {
+      if (error.response) {
+        console.log('Invalid token:', error.response.data.message);
+      } else {
+        console.error('Error:', error.message);
+      }
+    }
+  }
+
+  getName();
   fetchRate();
 });

@@ -457,3 +457,37 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.error('Error fetching initial data:', error);
   }
 });
+
+// Add event listener to the input field to clear error on input change
+document.getElementById("newRate").addEventListener("input", clearErrorMessage);
+
+document.getElementById("changeRate").addEventListener("click", function() {
+  const newRate = document.getElementById("newRate").value;
+
+  if (newRate === "") {
+    document.getElementById('rate-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + 'Please enter a rate.';
+    return;
+  }
+
+  // Send an API request using Axios
+  apiClient.post(`api/v1/rate?newRate=${newRate}`)
+    .then(response => {
+      if (response.status === 201) {
+        // Hide the changeRateModal first
+        const changeRateModal = bootstrap.Modal.getInstance(document.getElementById('changeRateModal'));
+        changeRateModal.hide();
+
+        // Show the receiptConfirmation modal
+        const receiptConfirmationModal = new bootstrap.Modal(document.getElementById('receiptConfirmation'));
+        receiptConfirmationModal.show();
+      }
+    })
+    .catch(error => {
+      document.getElementById('rate-error').innerHTML = '<i class="fa fa-warning" aria-hidden="true" style="padding: 0 5px;"></i>' + error.response.data.message;
+      console.error("Error changing rate:", error);
+    });
+});
+
+function clearErrorMessage() {
+  document.getElementById('rate-error').innerHTML = '';
+}
