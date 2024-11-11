@@ -36,18 +36,19 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   async function getName() {
-    try {
-      const response = await apiClient.get('/api/v1/user/name');
-      
-      // Fix typo from 'response.date' to 'response.data'
-      const name = response.data;
-      
-      dropdownMenuAccount.textContent = name; // Set the username in the dropdown
-    } catch (error) {
-      if (error.response) {
-        console.log('Invalid token:', error.response.data.message);
-      } else {
-        console.error('Error:', error.message);
+    const token = localStorage.getItem('sb_token');
+    if (token) {
+      try {
+        const response = await apiClient.get('/api/v1/user/name');
+        const name = response.data;
+        
+        dropdownMenuAccount.textContent = name;
+      } catch (error) {
+        if (error.response) {
+          console.log('Invalid token:', error.response.data.message);
+        } else {
+          console.error('Error:', error.message);
+        }
       }
     }
   }
