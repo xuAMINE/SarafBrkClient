@@ -4,9 +4,9 @@ function authenticate(provider) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('facebook-login').addEventListener('click', function () {
-    authenticate('facebook');
-  });
+  // document.getElementById('facebook-login').addEventListener('click', function () {
+  //   authenticate('facebook');
+  // });
 
   document.getElementById('google-login').addEventListener('click', function () {
     authenticate('google');
