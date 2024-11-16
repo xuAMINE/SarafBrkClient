@@ -1,3 +1,5 @@
+import apiClient from './apiClient.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   // Select all input elements inside the form
   const inputs = document.querySelectorAll('#emailValidationForm input[type="text"]');
