@@ -20,8 +20,8 @@ async function resetPassword() {
     const response = await apiClient.post(`/api/v1/user/reset-password?token=${token}`, body);
 
     if (response.status === 200) { // Assuming 200 OK for a successful password reset
-      document.getElementById('resetPassword').innerHTML = `
-        Password was successfully changed. 
+      document.getElementById('resetPasswordSucess').innerHTML = `
+        Password was changed successfully. 
         <a href="../../login/" style="text-decoration: underline; color: blue;">Login page?</a>`;
     } 
   } catch (error) {

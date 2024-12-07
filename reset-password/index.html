@@ -194,8 +194,9 @@
               <div class="input-group input-group-outline mb-1">
                 <label class="form-label">Confirm password</label>
                 <input id="password-confirmation" type="password" class="form-control">
-                <p id="resetPassword" class="error-message-old"></p>
               </div>
+              <p id="resetPassword" class="error-message-old"></p>
+              <p id="resetPasswordSucess" class="success-message"></p>
               <div class="text-center">
                 <button id="reset-password-btn" type="button"
                   class="btn bg-gradient-warning w-100 mt-4 mb-0">Reset</button>
@@ -220,6 +221,7 @@
   </div>
 
   <!-- MY JS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="module" src="../assets/js/reset-password.js"></script>
   <!-- END -->
   <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>

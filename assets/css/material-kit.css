@@ -423,6 +423,19 @@ body.hidden-content {
   text-overflow: ellipsis; /* Show ellipsis for overflow text */
 }
 
+.success-message {
+  display: block !important;
+  font-size: 0.75em; /* Small font size */
+  width: 100%;
+  color: green;
+  font-weight: bolder;
+  margin-top: 8px;
+  margin-bottom: px;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
+}
+
 .success-message-old {
   display: block !important;
   font-size: 0.75em; /* Small font size */
