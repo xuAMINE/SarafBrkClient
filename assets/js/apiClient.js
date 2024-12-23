@@ -1,6 +1,6 @@
 // Create an Axios instance with default settings
 const apiClient = axios.create({
-  baseURL: 'https://api.sarafbrk.com:8088', // http://localhost
+  baseURL: 'https://api.sarafbrk.com', // http://localhost
   timeout: 6000, // Optional: set a timeout for requests
   headers: {
     'Content-Type': 'application/json', // Default content type
@@ -28,7 +28,7 @@ async function refreshToken() {
   const refreshToken = localStorage.getItem('sb_refreshToken');
   if (refreshToken) {
     try {
-      const { data } = await axios.post('https://api.sarafbrk.com:8088/api/v1/auth/refresh-token', {}, {
+      const { data } = await axios.post('https://api.sarafbrk.com/api/v1/auth/refresh-token', {}, {
         headers: {
           'Authorization': `Bearer ${refreshToken}`,
         }
