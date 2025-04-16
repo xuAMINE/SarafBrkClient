@@ -15,7 +15,7 @@ document.getElementById('check-session').addEventListener('click', async functio
       if (result === 'User session valid') {
         window.location.href = './recipient/';
       } else if (result === 'Admin session valid') {
-        window.location.href = './admin-transfer/index.html';  // Redirect to admin page
+        window.location.href = './admin-transfer/';  // Redirect to admin page
       } else {
         window.location.href = './login/';
       }

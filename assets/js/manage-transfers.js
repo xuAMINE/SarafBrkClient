@@ -95,6 +95,7 @@ function updateTransfers(responseData) {
                 data-code="${transfer.code}" 
                 data-id="${transfer.id}"
                 data-recipient="${transfer.recipientFullName}"
+                data-recipient-ccp="${transfer.recipientCCP}"
                 data-amount="${transfer.amount}"
                 data-tobereceived="${transfer.amountReceived}"
                 data-transferdatetime="${new Date(transfer.transferDate).toISOString()}"
@@ -314,6 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const receiptCode = receiptButton.getAttribute("data-code");
       const transferId = receiptButton.getAttribute("data-id");
       const recipient = receiptButton.getAttribute("data-recipient");
+      const recipientCCP = receiptButton.getAttribute("data-recipient-ccp");
       const amount = receiptButton.getAttribute("data-amount");
       const toBeReceived = receiptButton.getAttribute("data-tobereceived");
       const transferDateTimeString = receiptButton.getAttribute("data-transferdatetime");
@@ -340,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("transferCode").textContent = receiptCode;
       document.getElementById("transferId").textContent = transferId;
       document.getElementById("recipient").textContent = recipient;
+      document.getElementById("recipientCCP").textContent = recipientCCP;
       document.getElementById("amount").textContent = `$${amount}`;
       document.getElementById("toBeReceived").textContent = `${toBeReceived} DZD`;
       document.getElementById("transferDateTime").textContent = `${pstTime} | DZ: ${gmt1Time}`;
