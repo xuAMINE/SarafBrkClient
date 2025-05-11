@@ -3,7 +3,6 @@ import apiClient from './apiClient.js';
 document.addEventListener('DOMContentLoaded', function () {
   fetchRecipients();
 
-  // Function to fetch recipients
   async function fetchRecipients() {
     try {
       // Retrieve the token from local storage (or other storage mechanism)
@@ -25,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-
-  // Function to create a recipient card
   function createRecipientCard(recipient) {
     const colDiv = document.createElement('div');
     colDiv.classList.add('col-lg-4', 'col-12');
@@ -128,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('recipient-container').appendChild(colDiv);
   }
 
-  // Function to handle editing a recipient
   function editRecipient(recipient) {
     const firstName = encodeURIComponent(recipient.firstname);
     const lastName = encodeURIComponent(recipient.lastname);
@@ -139,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = `../edit-recipient/?firstName=${firstName}&lastName=${lastName}&ccpNumber=${ccpNumber}&phoneNumber=${phoneNumber}&doContact=${doContact}`;
 }
 
-  // Function to handle deleting a recipient
   function deleteRecipient(recipient) {
     // Show the delete confirmation modal
     let modal = new bootstrap.Modal(document.getElementById('deleteRecipientModal'));
@@ -155,10 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
       try {
         const response = await apiClient.put(`/api/v1/recipient/deactivate/${recipient.ccp}`);
   
-        if (response.status === 200) { // Assuming 204 No Content for successful deletion
-          // Handle success
-          modal.hide(); // Close the modal
-          location.reload(); // Refresh the page
+        if (response.status === 204) { 
+          
+          modal.hide();
+          location.reload();
         } else {
           alert("Something went wrong. Please try again later.");
         }
@@ -173,5 +168,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { once: true }); // Ensure the listener is only triggered once
   }
   
-
 });
